@@ -5,11 +5,19 @@
  version="1.0"
  fabric="QSYS">
  <!-- Format version 18.1 625 (Future versions may contain additional information.) -->
+<<<<<<< classification
  <!-- 2024.02.16.14:03:16 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
   <value>1708088596</value>
+=======
+ <!-- 2023.11.14.09:54:56 -->
+ <!-- A collection of modules and connections -->
+ <parameter name="AUTO_GENERATION_ID">
+  <type>java.lang.Integer</type>
+  <value>1699952096</value>
+>>>>>>> all'
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
