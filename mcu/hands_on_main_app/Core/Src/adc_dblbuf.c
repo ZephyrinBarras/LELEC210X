@@ -39,7 +39,7 @@ static void StopADCAcq() {
 
 static void print_spectrogram(void) {
 #if (DEBUGP == 1)
-	start_cycle_count();
+	//start_cycle_count();
 	DEBUG_PRINT("Acquisition complete, sending the following FVs\r\n");
 	for(unsigned int j=0; j < N_MELVECS; j++) {
 		DEBUG_PRINT("FV #%u:\t", j+1);
@@ -48,7 +48,7 @@ static void print_spectrogram(void) {
 		}
 		DEBUG_PRINT("\r\n");
 	}
-	stop_cycle_count("Print FV");
+	//stop_cycle_count("Print FV");
 #endif
 }
 
@@ -88,8 +88,9 @@ static void send_spectrogram() {
 	start_cycle_count();
 	S2LP_Send(packet, PACKET_LENGTH);
 	stop_cycle_count("Send packet");
-
+	start_cycle_count();
 	print_encoded_packet(packet);
+	stop_cycle_count("print encoded packet");
 }
 
 static void ADC_Callback(int buf_cplt) {
@@ -97,17 +98,19 @@ static void ADC_Callback(int buf_cplt) {
 		rem_n_bufs--;
 	}
 	if (rem_n_bufs == 0) {
+		//start_cycle_count();
 		StopADCAcq();
+		//stop_cycle_count("end data_acq");
 	} else if (ADCDataRdy[1-buf_cplt]) {
 		DEBUG_PRINT("Error: ADC Data buffer full\r\n");
 		Error_Handler();
 	}
 	ADCDataRdy[buf_cplt] = 1;
-	//start_cycle_count();
+	start_cycle_count();
 	Spectrogram_Format((q15_t *)ADCData[buf_cplt]);
 	Spectrogram_Compute((q15_t *)ADCData[buf_cplt], mel_vectors[cur_melvec]);
 	cur_melvec++;
-	//stop_cycle_count("spectrogram");
+	stop_cycle_count("spectrogram");
 	ADCDataRdy[buf_cplt] = 0;
 
 	if (rem_n_bufs == 0) {

@@ -1,22 +1,23 @@
+import matplotlib.pyplot as plt
+import numpy as np
+from numpy import ndarray
 import random
+
 from typing import Tuple
 
 import librosa
-import matplotlib.pyplot as plt
-import numpy as np
 import sounddevice as sd
 import soundfile as sf
-from numpy import ndarray
+from scipy import signal
 from scipy.signal import fftconvolve
 
-# -----------------------------------------------------------------------------
+#-----------------------------------------------------------------------------
 """
 Synthesis of the classes in :
 - AudioUtil : util functions to process an audio signal.
 - Feature_vector_DS : Create a dataset class for the feature vectors.
 """
-# -----------------------------------------------------------------------------
-
+#-----------------------------------------------------------------------------
 
 class AudioUtil:
     """
@@ -30,6 +31,7 @@ class AudioUtil:
         :param audio_file: The path to the audio file.
         :return: The audio signal as a tuple (signal, sample_rate).
         """
+
         sig, sr = sf.read(audio_file)
         if sig.ndim > 1:
             sig = sig[:, 0]
@@ -52,7 +54,7 @@ class AudioUtil:
         :param target_dB: The target energy in dB.
         """
         sig, sr = audio
-        sign = sig / np.sqrt(np.sum(np.abs(sig) ** 2))
+        sign = sig/np.sqrt(np.sum(np.abs(sig) ** 2))
         C = np.sqrt(10 ** (target_dB / 10))
         sign *= C
         return (sign, sr)
@@ -65,10 +67,18 @@ class AudioUtil:
         :param newsr: The target sampling frequency.
         """
         sig, sr = audio
-
+        sig, sr2 = AudioUtil.filter(audio,(signal.firwin(numtaps=100, cutoff=min(newsr*2,sr) // 2, window="hamming", fs=sr)))
+        resig = signal.resample(sig, sr)
+        
         ### TO COMPLETE
-
+        
         return (resig, newsr)
+        """N=100
+        taps = signal.firwin(numtaps=100, cutoff=newsr/2, window="hamming", fs=fs)
+        xfilt = np.convolve(x,taps,mode="full")
+        y=xfilt[//M] """
+
+        return (sig, newsr)
 
     def pad_trunc(audio, max_ms) -> Tuple[ndarray, int]:
         """
@@ -85,7 +95,7 @@ class AudioUtil:
             # Truncate the signal to the given length at random position
             # begin_len = random.randint(0, max_len)
             begin_len = 0
-            sig = sig[begin_len : begin_len + max_len]
+            sig = sig[begin_len:begin_len+max_len]
 
         elif sig_len < max_len:
             # Length of padding to add at the beginning and end of the signal
@@ -121,10 +131,12 @@ class AudioUtil:
         :param scaling_limit: The maximum scaling factor.
         """
         sig, sr = audio
+        factor  = random.uniform(0.0,scaling_limit)
+        sig = sig*factor
 
         ### TO COMPLETE
 
-        return audio
+        return sig,sr
 
     def add_noise(audio, sigma=0.05) -> Tuple[ndarray, int]:
         """
@@ -134,10 +146,11 @@ class AudioUtil:
         :param sigma: Standard deviation of the gaussian noise.
         """
         sig, sr = audio
+        sig+=np.random.normal(0,sigma,len(sig))
 
         ### TO COMPLETE
 
-        return audio
+        return sig,sr
 
     def echo(audio, nechos=2) -> Tuple[ndarray, int]:
         """
@@ -159,20 +172,18 @@ class AudioUtil:
 
     def filter(audio, filt) -> Tuple[ndarray, int]:
         """
-        Filter the audio signal with a provided filter. Note the filter is given for positive frequencies only and is thus symmetrized in the function.
+        Filter the audio signal with a provided filter. Note the filter is given for positive frequencies only and is thus symmetrized in the function. 
 
         :param audio: The audio signal as a tuple (signal, sample_rate).
         :param filt: The filter to apply.
         """
         sig, sr = audio
-
-        ### TO COMPLETE
-
-        return (sig, sr)
-
-    def add_bg(
-        audio, dataset, num_sources=1, max_ms=5000, amplitude_limit=0.1
-    ) -> Tuple[ndarray, int]:
+        #filt = np.concatenate([filt, filt[::-1]])
+        #sign = lfilter(filt,1.0,sig)
+        sig_fil = np.convolve(sig, filt, mode="full")
+        return sig_fil, sr
+	
+    def add_bg(audio, dataset, num_sources=1, max_ms=5000, amplitude_limit=0.1) -> Tuple[ndarray, int]:
         """
         Adds up sounds uniformly chosen at random to audio.
 
@@ -183,11 +194,46 @@ class AudioUtil:
         :param amplitude_limit: The maximum amplitude of the added sounds.
         """
         sig, sr = audio
+        max_samples = int(max_ms * sr / 1000)  # Convert maximum duration to samples
+        dataset_class = dataset.list_classes()
+        
+        # Randomly select num_sources sounds from the dataset
+        for _ in range(num_sources):
+            random_class = random.choice(dataset_class)
+            index_to_add = random.randint(0, len(dataset[random_class,::]))
 
-        ### TO COMPLETE
+            #Available index
+            avInd = []
+            for i in range(len(dataset[random_class,::])):
+                try:
+                    sf.read(dataset[random_class,i])
+                    if np.max(np.abs(sound_to_add))!=0:
+                        avInd.append(i)
+                except:
+                    continue
+            if len(avInd)>1:
+                i = random.randint(0,len(avInd)-1)
+                sound_to_add1, _ = sf.read(dataset[random_class,avInd[i]])
+            else:
+                sound_to_add1, _ = sf.read(dataset[random_class,0])
+            start_audio_position = random.randint(0,len(sound_to_add1)) #index début du son à ajouter
+            sound_to_add = sound_to_add1[start_audio_position:min(len(sound_to_add1)-1,start_audio_position+max_samples )] #échntillon à ajouter
+            if (len(sig) - len(sound_to_add)<=0):
+                start_idx=0
+            else:
+                start_idx = np.random.randint(0, max(1,len(sig) - len(sound_to_add))) #début de la fusion
+            amplitude_lim = random.uniform(0.01,amplitude_limit)
+            if np.max(np.abs(sound_to_add))==0:
+                print(np.abs(sound_to_add1))
+            else:
+                sound_to_add *= (amplitude_lim / np.max(np.abs(sound_to_add))) #marge amplitude
+            for j in range(start_idx, min(sr,start_idx+len(sound_to_add))):
+                sig[j]+=sound_to_add[j-start_idx]
+            
 
-        return audio
-
+        
+        return (sig, sr)
+        
     def specgram(audio, Nft=512, fs2=11025) -> ndarray:
         """
         Compute a Spectrogram.
@@ -196,10 +242,12 @@ class AudioUtil:
         :param Nft: The number of points of the FFT.
         :param fs2: The sampling frequency.
         """
-        ### TO COMPLETE
-        # stft /= float(2**8)
-        return stft
 
+        sig, sr = audio
+        _ , _, spec = signal.spectrogram(sig, fs=sr, nperseg=Nft, noverlap=Nft//2, nfft=Nft)
+        
+        return spec
+        
     def get_hz2mel(fs2=11025, Nft=512, Nmel=20) -> ndarray:
         """
         Get the hz2mel conversion matrix.
@@ -223,17 +271,24 @@ class AudioUtil:
         :param Nft: The number of points of the FFT.
         :param fs2: The sampling frequency.
         """
-        ### TO COMPLETE
-
-        return melspec
-
+        sig, sr = AudioUtil.resample(audio)
+        sig = sig[: len(sig) - len(sig) % Nft]
+        audiomat = np.reshape(sig, (len(sig) // Nft, Nft))
+        audioham = audiomat * np.hamming(Nft)
+        z = np.reshape(audioham, -1)
+        stft = np.fft.fft(audioham, axis=1)
+        stft = np.abs(stft[:, : Nft // 2].T)
+        melspec = np.dot(AudioUtil.get_hz2mel(), stft)
+        return np.abs(melspec)
+        
+        
     def spectro_aug_timefreq_masking(
         spec, max_mask_pct=0.1, n_freq_masks=1, n_time_masks=1
     ) -> ndarray:
         """
         Augment the Spectrogram by masking out some sections of it in both the frequency dimension (ie. horizontal bars) and the time dimension (vertical bars) to prevent overfitting and to help the model generalise better. The masked sections are replaced with the mean value.
 
-
+        
         :param spec: The spectrogram.
         :param max_mask_pct: The maximum percentage of the spectrogram to mask out.
         :param n_freq_masks: The number of frequency masks to apply.
@@ -283,20 +338,18 @@ class Feature_vector_DS:
         self.normalize = normalize
         self.data_aug = data_aug
         self.data_aug_factor = 1
-        if isinstance(self.data_aug, list):
+        if (isinstance(self.data_aug, list)):
             self.data_aug_factor += len(self.data_aug)
         else:
             self.data_aug = [self.data_aug]
-        self.ncol = int(
-            self.duration * self.sr / (1e3 * self.Nft)
-        )  # number of columns in melspectrogram
+        self.ncol = int(self.duration*self.sr /(1e3*self.Nft)) # number of columns in melspectrogram
         self.pca = pca
 
     def __len__(self) -> int:
         """
         Number of items in dataset.
         """
-        return len(self.dataset) * self.data_aug_factor
+        return len(self.dataset)*self.data_aug_factor
 
     def get_audiosignal(self, cls_index: Tuple[str, int]) -> Tuple[ndarray, int]:
         """
@@ -304,7 +357,8 @@ class Feature_vector_DS:
 
         :param cls_index: Class name and index.
         """
-        audio_file = self.dataset[cls_index]
+
+        audio_file = self.dataset[cls_index] 
         aud = AudioUtil.open(audio_file)
         aud = AudioUtil.resample(aud, self.sr)
         aud = AudioUtil.time_shift(aud, self.shift_pct)
@@ -326,7 +380,7 @@ class Feature_vector_DS:
                 aud = AudioUtil.scaling(aud, scaling_limit=5)
 
         # aud = AudioUtil.normalize(aud, target_dB=10)
-        aud = (aud[0] / np.max(np.abs(aud[0])), aud[1])
+        aud = (aud[0]/np.max(np.abs(aud[0])), aud[1])
         return aud
 
     def __getitem__(self, cls_index: Tuple[str, int]) -> Tuple[ndarray, int]:
@@ -335,6 +389,7 @@ class Feature_vector_DS:
 
         :param cls_index: Class name and index.
         """
+
         aud = self.get_audiosignal(cls_index)
         sgram = AudioUtil.melspectrogram(aud, Nmel=self.nmel, Nft=self.Nft)
         if self.data_aug is not None:
@@ -344,10 +399,10 @@ class Feature_vector_DS:
                 )
 
         sgram_crop = sgram[:, : self.ncol]
-        fv = sgram_crop.flatten()  # feature vector
-        if self.normalize:
+        fv = sgram_crop.flatten() #feature vector
+        if (self.normalize):
             fv /= np.linalg.norm(fv)
-        if self.pca is not None:
+        if (self.pca is not None):
             fv = self.pca.transform([fv])[0]
         return fv
 
@@ -379,7 +434,7 @@ class Feature_vector_DS:
         """
         self.data_aug = data_aug
         self.data_aug_factor = 1
-        if isinstance(self.data_aug, list):
+        if (isinstance(self.data_aug, list)):
             self.data_aug_factor += len(self.data_aug)
         else:
             self.data_aug = [self.data_aug]

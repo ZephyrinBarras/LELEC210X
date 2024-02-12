@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 uart-reader.py
 ELEC PROJECT - 210x

@@ -157,4 +157,4 @@ Info: lms_dsp: Done "lms_dsp" with 17 modules, 36 files
 Info: Generating third-party timing and resource estimation model ...
 Info: Done generating third-party timing and resource estimation model.
 Info: qsys-generate succeeded.
-Info: Stopping: Create HDL design files for synthesis
+Info: Finished: Create HDL design files for synthesis

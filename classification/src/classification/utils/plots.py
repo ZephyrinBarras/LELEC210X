@@ -16,7 +16,6 @@ Synthesis of the functions in :
 """
 # -----------------------------------------------------------------------------
 
-
 def show_confusion_matrix(y_predict, y_true, classnames, title=""):
     """
     From target labels and prediction arrays, sort them appropriately and plot confusion matrix.
@@ -30,8 +29,10 @@ def show_confusion_matrix(y_predict, y_true, classnames, title=""):
     #         mask[j] = (y_predict[j] == classnames[i])
     #     labels[mask] = mode(y_true2[mask])[0]
 
-    plt.figure(figsize=(3, 3))
-    confmat = confusion_matrix(y_true, y_predict)
+    plt.figure(figsize=(3,3))
+    confmat = confusion_matrix(
+        y_true, y_predict
+    )
     heatmap(
         confmat.T,
         square=True,
@@ -40,7 +41,7 @@ def show_confusion_matrix(y_predict, y_true, classnames, title=""):
         cbar=False,
         xticklabels=classnames,
         yticklabels=classnames,
-        ax=plt.gca(),
+        ax = plt.gca()
     )
     plt.xlabel("True label")
     plt.ylabel("Predicted label")
@@ -108,8 +109,7 @@ def plot_specgram(
     tf=None,
     invert=True,
 ):
-    """
-    Plot a spectrogram (2D matrix) in a chosen axis of a figure.
+    """Plot a spectrogram (2D matrix) in a chosen axis of a figure.
     Inputs:
         - specgram = spectrogram (2D array)
         - ax       = current axis in figure
@@ -164,7 +164,9 @@ def plot_decision_boundaries(
     grid = np.meshgrid(one_axis, one_axis)
     fv = np.array(grid).reshape(2, n**2).T
 
-    ax.contourf(grid[0], grid[1], model.predict(fv).reshape(n, n), cmap=cm, alpha=0.5)
+    ax.contourf(
+        grid[0], grid[1], model.predict(fv).reshape(n, n), cmap=cm, alpha=0.5
+    )
     scatterd = ax.scatter(X[:, 0], X[:, 1], c=y, cmap=cm, edgecolors=edgc, s=s)
     ax.set_title(title)
     ax.set_xlabel("$x_1$")

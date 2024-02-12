@@ -6,7 +6,7 @@ launching the full simulation when importing the basic_chain.py file
 """
 
 import numpy as np
-from chain import BasicChain
+from chain2 import BasicChain
 from sim import add_cfo, add_delay
 
 chain = BasicChain()

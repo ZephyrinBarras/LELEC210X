@@ -19,7 +19,10 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "adc.h"
+#include "dma.h"
 #include "usart.h"
+#include "tim.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -35,7 +38,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define ADC_BUF_SIZE 256
+#define ADC_BUF_SIZE 21000
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -47,9 +50,10 @@
 
 /* USER CODE BEGIN PV */
 volatile int state;
-volatile uint16_t ADCBuffer[2*ADC_BUF_SIZE]; /* ADC group regular conversion data (array of data) */
+volatile uint16_t ADCBuffer[ADC_BUF_SIZE]; /* ADC group regular conversion data (array of data) */
 volatile uint16_t* ADCData1;
 volatile uint16_t* ADCData2;
+uint16_t STATE = 0;
 
 char hex_encoded_buffer[4*ADC_BUF_SIZE+1];
 /* USER CODE END PV */
@@ -64,18 +68,67 @@ uint32_t get_signal_power(uint16_t *buffer, size_t len);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc){
+
+  /*for (size_t i = 0; i < ADC_BUF_SIZE; i++)
+  {
+    printf("%u\t", ADCBuffer[i]);
+  }*/
+  HAL_TIM_Base_Stop(&htim3);
+  HAL_ADC_Stop_DMA(&hadc1);
+  HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_SET);
+  printf("buffer size : %d\t%d\n", (sizeof(ADCBuffer) / sizeof(ADCBuffer[0])),(sizeof(uint16_t)/sizeof(char)));
+  print_buffer((uint16_t*) ADCBuffer);
+  //print_buffer((uint16_t*) ADCData2);
+  HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_RESET);
+  //printf("here\n");
+  //print_buffer((uint16_t*) ADCData2);
+
+}
+
+void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef *hadc){
+  //HAL_TIM_Base_Stop(&htim3);
+  /*for (size_t i = 0; i < ADC_BUF_SIZE; i++)
+  {
+	printf("%u\t", ADCBuffer[i]);
+  }*/
+  //printf("halfcompleted\n");
+  //print_buffer((uint16_t*) ADCData1);
+}
+
+void Start_recording(){
+	HAL_TIM_Base_Start(&htim3);
+	HAL_ADC_Start_DMA(&hadc1, (uint32_t*) ADCBuffer, ADC_BUF_SIZE);
+}
+
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 	if (GPIO_Pin == B1_Pin) {
 		state = 1-state;
+		/*HAL_ADC_Start(&hadc1);
+		uint32_t rep;
+		if (HAL_ADC_PollForConversion(&hadc1, 0xFFFF) == HAL_OK){
+			rep = HAL_ADC_GetValue(&hadc1);
+		}
+		HAL_ADC_Stop(&hadc1);
+		printf("%u \n", rep);*/
+		Start_recording();
 	}
 }
+
+
 
 void hex_encode(char* s, const uint8_t* buf, size_t len) {
     s[2*len] = '\0'; // A string terminated by a zero char.
     for (size_t i=0; i<len; i++) {
-        s[i*2] = "0123456789abcdef"[buf[i] >> 4];
-        s[i*2+1] = "0123456789abcdef"[buf[i] & 0xF];
+        s[i*2] = "0123456789abcdef"[buf[i] >> 4]; //converstion en hexadecimel des 4bits de poids forts
+        s[i*2+1] = "0123456789abcdef"[buf[i] & 0xF]; // convertion des 4 bits de poids faible (and 00001111)
     }
+    /*
+     * Stock sous la forme hexa don 1 lettre représente 4 bit, 2 lettre pour 8 bits
+     * 4lettre pour les 16bits
+     * 4*taille de départ
+     * faire gaffe uint_8 cast en unt 16
+     */
 }
 
 void print_buffer(uint16_t *buffer) {
@@ -122,7 +175,10 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_DMA_Init();
   MX_LPUART1_UART_Init();
+  MX_ADC1_Init();
+  MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
   RetargetInit(&hlpuart1);
   printf("Hello world!\r\n");
@@ -135,10 +191,11 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_SET);
+	/*HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_SET);
 	HAL_Delay(500);
 	HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_RESET);
-	HAL_Delay(500);
+	HAL_Delay(500);*/
+	  __WFI();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

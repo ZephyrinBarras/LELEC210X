@@ -196,7 +196,9 @@ module dual_running_sum #(
 	
 	wire  [(LONG_SUM_WIDTH+8 -1):0] long_shift_rescale;
 	
-	assign long_shift_rescale  = long_sum_reg ;
+	always_ff @(posedge clock) begin
+	    reg long_shift_rescale  <= (long_sum_reg*K)>>3 ;
+		 end
 
 	assign long_shift_full = (long_counter==LONG_SHIFT_LEN);
 	
@@ -271,16 +273,16 @@ module packet_presence_detection #(
 	);
 	localparam SHORT_SUM_LEN   = 32;
 	localparam LONG_SUM_LEN    = 256;
-	// ************************************************************
+	// **********************************************************
 	// *                 LOCALPARAM BUS WIDTHS                    *
-	// ************************************************************
+	// **********************************************************
 	localparam ACC_MAG_WIDTH = DATA_WIDTH + 1;
 	localparam ACC_SHORT_SUM_WIDTH =       $clog2((2**ACC_MAG_WIDTH) * (SHORT_SUM_LEN));
 	localparam ACC_LONG_SUM_WIDTH  =       $clog2((2**ACC_MAG_WIDTH) *  (LONG_SUM_LEN));
 	
-	// ************************************************************
+	// **********************************************************
 	// *                      CONTROLPATH                         *
-	// ************************************************************
+	// **********************************************************
 
 	localparam PIPELINE_LEN = 4; // Number of pipeline stages in this module
 
@@ -311,9 +313,9 @@ module packet_presence_detection #(
 	assign {cfg_enable_reg_t3,valid_reg_t3,data_reg_t3} = pipelined_signals[2];
 	assign {cfg_enable_reg_t4,valid_reg_t4,data_reg_t4} = pipelined_signals[3];
 
-	// ************************************************************
+	// **********************************************************
 	// *                       DATAPATH                           *
-	// ************************************************************
+	// **********************************************************
 
 	wire [(ACC_MAG_WIDTH-1):0] mag_t1; // Complex magnitude estimation
 	wire [(ACC_SHORT_SUM_WIDTH-1):0] short_sum_t2; // Running sum of magnitudes

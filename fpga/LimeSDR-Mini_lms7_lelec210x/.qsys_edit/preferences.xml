@@ -13,8 +13,8 @@
    <endaddress preferredWidth="30" />
   </columns>
  </systemtable>
- <library expandedCategories="Project/LELEC2102_IPs,Library,Project" />
- <window width="1938" height="1038" x="-9" y="-9" />
+ <library expandedCategories="Project,Library" />
+ <window width="1938" height="1038" x="66" y="27" />
  <generation
    path="_PROJECT_NAME_/"
    testbench_system="STANDARD"

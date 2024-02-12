@@ -28,10 +28,8 @@ poetry run jupyter notebook --no-browser
 # and open one of the links manually (see below).
 ```
 
-> [!NOTE]
-> You have to select the `LELEC210X` kernel prior to running any cell,
-> otherwise it will probably not work! If you are using VSCode, please
-> refer to their documentation.
+> **WARNING:** you should select the `LELEC210X` kernel prior to running any cell,
+> otherwise it will probably not work!
 
 If Jupter does not launch a browser Windows, you can scroll the terminal
 and click (<kbd>CTRL</kbd>+<kbd>LEFT CLICK</kbd>) on one of the HTTP links displayed.
@@ -46,6 +44,7 @@ poetry run auth | poetry run classify
 Of course, you can pass any argument you like to the first or the second command.
 Note that changing the output `-o` option from `auth` or the input `-i` option from `classify`
 will mean that process piping (`|` is a pipe) will not be possibly anymore.
+<<<<<<< refs/remotes/assistant/main
 
 :warning: Please make sure to use the correct number of Mel vectors and the correct length. A default value is automatically set, but you change it
 to match the one you are using! See `poetry run classify --help`.
@@ -102,3 +101,5 @@ please contact us!
 
 If soundfiles are long enough, it may be intersting to split large audio file into many audio samples,
 we provide tools to perform that automatically: `poetry run split-audio "<my_audio_file>"`.
+=======
+>>>>>>> all'
