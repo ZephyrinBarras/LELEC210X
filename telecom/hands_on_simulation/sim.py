@@ -273,6 +273,24 @@ def run_sim(chain):
         ax2.set_xlim(ax.get_xlim())
         ax2.xaxis.label.set_color("b")
         ax2.tick_params(axis="x", colors="b")
+    
+    data = [
+    [-6.876442307692307, 99],
+    [-0.7600952380952379, 96],
+    [2.3603703703703705, 59],
+    [4.293238095238095, 12],
+    [9.31504761904762, 10],
+    [11.245000000000001, 14],
+    [16.9270476190476185, 2],
+    [20.799999999999999, 0],
+    [20, 0],
+    [30, 0]
+    ]   
+
+    # Extraction des colonnes dans des vecteurs distincts
+    x = [row[0] for row in data]
+    y = np.array([row[1] for row in data])/100
+
 
     # Packet error rate
     fig, ax = plt.subplots(constrained_layout=True)
@@ -284,6 +302,7 @@ def run_sim(chain):
         label="AWGN Th. FSK non-coh.",
     )
     ax.plot(SNR_th, 1 - (1 - BER_th_BPSK) ** chain.payload_len, label="AWGN Th. BPSK")
+    ax.plot(x,y,label="mesures")
     ax.set_ylabel("PER")
     ax.set_xlabel("SNR$_{o}$ [dB]")
     ax.set_yscale("log")
@@ -353,7 +372,7 @@ def run_sim(chain):
             preamble_false,
         )
     )
-    np.savetxt(f"{test_name}.csv", save_var, delimiter="\t")
+    np.savetxt("{}.csv".format(test_name), save_var, delimiter="\t")
     # Read file:
     # data = np.loadtxt('test.csv')
     # SNRs_dB = data[:,0]

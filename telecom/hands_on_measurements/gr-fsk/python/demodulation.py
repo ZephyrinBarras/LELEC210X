@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 #
 # Copyright 2021 UCLouvain.
 #
@@ -26,9 +27,7 @@ def demodulate(y, B, R, Fdev):
     """
     Non-coherent demodulator.
     """
-    nb_syms = int(len(y) / R)
-    bits_hat = np.zeros(nb_syms, dtype=int)
-    return bits_hat  # TODO
+    raise NotImplementedError
 
 
 class demodulation(gr.basic_block):

@@ -88,7 +88,10 @@ static void acquire_and_send_packet() {
 		DEBUG_PRINT("Error while enabling the DMA\r\n");
 	}
 	while (!IsADCFinished()) {
+		//start_cycle_count();
 		__WFI();
+		//stop_cycle_count("wfi");
+		//fait pas chier
 	}
 }
 
@@ -99,19 +102,21 @@ void run(void)
 	while (1)
 	{
 	  while (!btn_press) {
-		  HAL_GPIO_WritePin(GPIOB, LD2_Pin, GPIO_PIN_SET);
-		  HAL_Delay(200);
 		  HAL_GPIO_WritePin(GPIOB, LD2_Pin, GPIO_PIN_RESET);
 		  HAL_Delay(200);
 	  }
 	  btn_press = 0;
 #if (CONTINUOUS_ACQ == 1)
 	  while (!btn_press) {
+		  //start_cycle_count();
 		  acquire_and_send_packet();
+		  //stop_cycle_count("acq");
 	  }
 	  btn_press = 0;
-#elif (CONTINUOUS_ACQ == 0)
+#elif (CONTINUOUS_ACQ == 0 )
+	  //start_cycle_count();
 	  acquire_and_send_packet();
+	  //stop_cycle_count("acquire paquet");
 #else
 #error "Wrong value for CONTINUOUS_ACQ."
 #endif
@@ -127,6 +132,7 @@ void run(void)
 int main(void)
 {
   /* USER CODE BEGIN 1 */
+
 
   /* USER CODE END 1 */
 
@@ -213,6 +219,7 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
+
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
@@ -225,6 +232,7 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
+
   /** Initializes the CPU, AHB and APB buses clocks
   */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
@@ -280,5 +288,3 @@ void assert_failed(uint8_t *file, uint32_t line)
   /* USER CODE END 6 */
 }
 #endif /* USE_FULL_ASSERT */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

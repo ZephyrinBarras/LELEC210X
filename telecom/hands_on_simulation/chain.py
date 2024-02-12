@@ -1,5 +1,6 @@
 from typing import Optional
 
+
 import numpy as np
 
 BIT_RATE = 50e3
@@ -14,23 +15,23 @@ class Chain:
     bit_rate = BIT_RATE
     freq_dev = BIT_RATE / 4
 
-    osr_tx = 64
+    osr_tx = 16
     osr_rx = 8
 
     preamble = PREAMBLE
     sync_word = SYNC_WORD
 
-    payload_len = 50  # Number of bits per packet
+    payload_len = 800  # Number of bits per packet
 
     ## Simulation parameters
-    n_packets = 100  # Number of sent packets
+    n_packets = 20  # Number of sent packets
 
     ## Channel parameters
     sto_val = 0
     sto_range = 10 / BIT_RATE  # defines the delay range when random
 
     cfo_val = 0
-    cfo_range = 10000  # defines the CFO range when random (in Hz) #(1000 in old repo)
+    cfo_range = 12500  # defines the CFO range when random (in Hz) #(1000 in old repo)
 
     snr_range = np.arange(-10, 25)
 
@@ -123,7 +124,7 @@ class BasicChain(Chain):
 
     cfo_val, sto_val = np.nan, np.nan  # CFO and STO are random
 
-    bypass_preamble_detect = True
+    bypass_preamble_detect = False
 
     def preamble_detect(self, y):
         """
@@ -139,21 +140,45 @@ class BasicChain(Chain):
 
         return None
 
-    bypass_cfo_estimation = True
+    bypass_cfo_estimation = False
 
     def cfo_estimation(self, y):
         """
         Estimates CFO using Moose algorithm, on first samples of preamble.
         """
+        """N = 2
+        Nt = N*R
+        sum1 = 0
+        T = 1/B
+        for k in range (0 , Nt) :
+            sum1 += y [k + Nt] * y [k].conjugate()
+        cfo_est = np.phase ( sum1 ) / ( 2 * np . pi * Nt * T / R )
+        return cfo_est"""
+        N = 2
+        N_t= self.osr_rx*N
+        sum1=0
+        T=1/self.bit_rate
+        for k in range (0 , N_t) :
+            sum1 += y [k + N_t] * y [k].conjugate()
+        cfo_est = np.angle ( sum1 ) / ( 2 * np . pi * N_t * T / self.osr_rx )
+        return cfo_est
         # TO DO: extract 2 blocks of size N*R at the start of y
+        #print(y)
+        """a = y[0:N*self.osr_rx]
+        a_star = np.conj(a)
+        b= y[N*self.osr_rx:2*N*self.osr_rx]
+        c = b*a_star
+        sum_= np.sum(c)
+        phase = np.angle(sum_)"""
+
 
         # TO DO: apply the Moose algorithm on these two blocks to estimate the CFO
 
-        cfo_est = 0  # Default value, to change
+        """cfo_est = phase/(2*np.pi*N/(self.bit_rate))  # Default value, to change
 
-        return cfo_est
+        return cfo_est"""
 
-    bypass_sto_estimation = True
+    bypass_sto_estimation = False
 
     def sto_estimation(self, y):
         """
@@ -181,19 +206,34 @@ class BasicChain(Chain):
         """
         Non-coherent demodulator.
         """
+        
         R = self.osr_rx  # Receiver oversampling factor
-        nb_syms = len(y) // R  # Number of CPFSK symbols in y
-
-        # Group symbols together, in a matrix. Each row contains the R samples over one symbol period
+        nb_syms = len(y) // R  # Number of CPFSK symbols in y       ok
+        fd = self.freq_dev  # Frequency deviation, Delta_f
+        B = self.bit_rate  # B=1/T
+        T=1/B
+        signal = np . zeros ( nb_syms , dtype = int )
         y = np.resize(y, (nb_syms, R))
+        bits_hat = np.zeros(nb_syms, dtype=int)  # Default value, all bits=0. TO CHANGE!
+
 
         # TO DO: generate the reference waveforms used for the correlation
         # hint: look at what is done in modulate() in chain.py
 
         # TO DO: compute the correlations with the two reference waveforms (r0 and r1)
-
+        for k in range(nb_syms):
+            r0=0
+            r1=0
+            for b in range(R):
+                r1+=y[k,b]*np.exp(-1j*2*np.pi*fd*b*(1/(B*R)))
+                r0+=y[k,b]*np.exp(1j*2*np.pi*fd*b*(1/(B*R)))
+            if(abs(r1)<abs(r0)):
+                bits_hat[k]=0
+            elif(abs(r1)>abs(r0)):
+                bits_hat[k]=1
+                
         # TO DO: performs the decision based on r0 and r1
-
-        bits_hat = np.zeros(nb_syms, dtype=int)  # Default value, all bits=0. TO CHANGE!
-
+            
+        
         return bits_hat
+
