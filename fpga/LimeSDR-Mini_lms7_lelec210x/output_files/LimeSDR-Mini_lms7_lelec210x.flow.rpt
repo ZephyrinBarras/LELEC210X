@@ -1,9 +1,13 @@
 Flow report for LimeSDR-Mini_lms7_lelec210x
 <<<<<<< classification
+<<<<<<< classification
 Fri Feb 16 13:48:18 2024
 =======
 Mon Nov 20 18:38:57 2023
 >>>>>>> all'
+=======
+Fri Feb 16 13:48:18 2024
+>>>>>>> fpga
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -45,10 +49,14 @@ refer to the applicable agreement for further details.
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
 <<<<<<< classification
+<<<<<<< classification
 ; Flow Status                        ; Successful - Fri Feb 16 13:47:37 2024       ;
 =======
 ; Flow Status                        ; Successful - Mon Nov 20 18:38:57 2023       ;
 >>>>>>> all'
+=======
+; Flow Status                        ; Successful - Fri Feb 16 13:47:37 2024       ;
+>>>>>>> fpga
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; LimeSDR-Mini_lms7_lelec210x                 ;
 ; Top-level Entity Name              ; lms7_trx_top                                ;
@@ -56,10 +64,14 @@ refer to the applicable agreement for further details.
 ; Device                             ; 10M16SAU169C8G                              ;
 ; Timing Models                      ; Final                                       ;
 <<<<<<< classification
+<<<<<<< classification
 ; Total logic elements               ; 13,570 / 15,840 ( 86 % )                    ;
 =======
 ; Total logic elements               ; 13,597 / 15,840 ( 86 % )                    ;
 >>>>>>> all'
+=======
+; Total logic elements               ; 13,570 / 15,840 ( 86 % )                    ;
+>>>>>>> fpga
 ;     Total combinational functions  ; 9,392 / 15,840 ( 59 % )                     ;
 ;     Dedicated logic registers      ; 10,651 / 15,840 ( 67 % )                    ;
 ; Total registers                    ; 10723                                       ;
@@ -79,10 +91,14 @@ refer to the applicable agreement for further details.
 ; Option            ; Setting                     ;
 +-------------------+-----------------------------+
 <<<<<<< classification
+<<<<<<< classification
 ; Start date & time ; 02/16/2024 13:41:53         ;
 =======
 ; Start date & time ; 11/20/2023 18:35:13         ;
 >>>>>>> all'
+=======
+; Start date & time ; 02/16/2024 13:41:53         ;
+>>>>>>> fpga
 ; Main task         ; Compilation                 ;
 ; Revision Name     ; LimeSDR-Mini_lms7_lelec210x ;
 +-------------------+-----------------------------+
@@ -94,10 +110,14 @@ refer to the applicable agreement for further details.
 ; Assignment Name                      ; Value                                                            ; Default Value               ; Entity Name         ; Section Id     ;
 +--------------------------------------+------------------------------------------------------------------+-----------------------------+---------------------+----------------+
 <<<<<<< classification
+<<<<<<< classification
 ; COMPILER_SIGNATURE_ID                ; 186416513908.170808731206492                                     ; --                          ; --                  ; --             ;
 =======
 ; COMPILER_SIGNATURE_ID                ; 225373658531911.170050171332611                                  ; --                          ; --                  ; --             ;
 >>>>>>> all'
+=======
+; COMPILER_SIGNATURE_ID                ; 186416513908.170808731206492                                     ; --                          ; --                  ; --             ;
+>>>>>>> fpga
 ; EDA_OUTPUT_DATA_FORMAT               ; Vhdl                                                             ; --                          ; --                  ; eda_simulation ;
 ; EDA_SIMULATION_TOOL                  ; ModelSim-Altera (VHDL)                                           ; <None>                      ; --                  ; --             ;
 ; ENABLE_SIGNALTAP                     ; Off                                                              ; --                          ; --                  ; --             ;
@@ -175,10 +195,14 @@ refer to the applicable agreement for further details.
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 <<<<<<< classification
+<<<<<<< classification
+=======
+>>>>>>> fpga
 ; Analysis & Synthesis ; 00:02:04     ; 1.0                     ; 5088 MB             ; 00:01:42                           ;
 ; Fitter               ; 00:03:30     ; 1.3                     ; 5768 MB             ; 00:03:17                           ;
 ; Timing Analyzer      ; 00:00:33     ; 1.9                     ; 4942 MB             ; 00:00:44                           ;
 ; Total                ; 00:06:07     ; --                      ; --                  ; 00:05:43                           ;
+<<<<<<< classification
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -215,6 +239,20 @@ refer to the applicable agreement for further details.
 ; EDA Netlist Writer   ; zephyrin-ThinkPad-E14 ; Ubuntu 22.04.3 ; 22         ; x86_64         ;
 +----------------------+-----------------------+----------------+------------+----------------+
 >>>>>>> all'
+=======
++----------------------+--------------+-------------------------+---------------------+------------------------------------+
+
+
++------------------------------------------------------------------------------------+
+; Flow OS Summary                                                                    ;
++----------------------+------------------+------------+------------+----------------+
+; Module Name          ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
++----------------------+------------------+------------+------------+----------------+
+; Analysis & Synthesis ; DESKTOP-ENS7210  ; Windows 10 ; 10.0       ; x86_64         ;
+; Fitter               ; DESKTOP-ENS7210  ; Windows 10 ; 10.0       ; x86_64         ;
+; Timing Analyzer      ; DESKTOP-ENS7210  ; Windows 10 ; 10.0       ; x86_64         ;
++----------------------+------------------+------------+------------+----------------+
+>>>>>>> fpga
 
 
 ------------

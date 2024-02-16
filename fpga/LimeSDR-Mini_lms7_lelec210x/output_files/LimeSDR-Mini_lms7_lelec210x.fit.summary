@@ -1,8 +1,12 @@
 <<<<<<< classification
+<<<<<<< classification
 Fitter Status : Successful - Fri Feb 16 13:47:37 2024
 =======
 Fitter Status : Successful - Mon Nov 20 18:38:19 2023
 >>>>>>> all'
+=======
+Fitter Status : Successful - Fri Feb 16 13:47:37 2024
+>>>>>>> fpga
 Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 Revision Name : LimeSDR-Mini_lms7_lelec210x
 Top-level Entity Name : lms7_trx_top
@@ -10,10 +14,14 @@ Family : MAX 10
 Device : 10M16SAU169C8G
 Timing Models : Final
 <<<<<<< classification
+<<<<<<< classification
 Total logic elements : 13,570 / 15,840 ( 86 % )
 =======
 Total logic elements : 13,597 / 15,840 ( 86 % )
 >>>>>>> all'
+=======
+Total logic elements : 13,570 / 15,840 ( 86 % )
+>>>>>>> fpga
     Total combinational functions : 9,392 / 15,840 ( 59 % )
     Dedicated logic registers : 10,651 / 15,840 ( 67 % )
 Total registers : 10723
