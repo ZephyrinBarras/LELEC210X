@@ -43,12 +43,45 @@ def show_confusion_matrix(y_predict, y_true, classnames, title=""):
         yticklabels=classnames,
         ax = plt.gca()
     )
-    plt.xlabel("True label")
-    plt.ylabel("Predicted label")
+    plt.xlabel("Vraie étiquette")
+    plt.ylabel("Étiquette prédite")
     plt.title(title)
     plt.show()
     return None
 
+def show_confusion_matrix_with_save(y_predict, y_true, classnames, title="", filename="confusion_matrix"):
+    """
+    From target labels and prediction arrays, sort them appropriately and plot confusion matrix.
+    The arrays can contain either ints or str quantities, as long as classnames contains all the elements present in them.
+    """
+    # # Reorder the prediction array
+    # labels = np.zeros_like(y_predict)
+    # for i in np.arange(len(classnames)):
+    #     mask = [None]*len(y_predict)
+    #     for j in np.arange(len(mask)):
+    #         mask[j] = (y_predict[j] == classnames[i])
+    #     labels[mask] = mode(y_true2[mask])[0]
+
+    plt.figure(figsize=(3,3))
+    confmat = confusion_matrix(
+        y_true, y_predict
+    )
+    heatmap(
+        confmat.T,
+        square=True,
+        annot=True,
+        fmt="d",
+        cbar=False,
+        xticklabels=classnames,
+        yticklabels=classnames,
+        ax = plt.gca()
+    )
+    plt.xlabel("Vraie étiquette")
+    plt.ylabel("Étiquette prédite")
+    plt.title(title)
+    plt.savefig("{}.png".format(confusion_matrix))
+    plt.show()
+    return None
 
 def plot_audio(audio, audio_down, fs=44100, fs_down=11025):
     """

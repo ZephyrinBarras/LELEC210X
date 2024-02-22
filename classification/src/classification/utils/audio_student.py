@@ -413,7 +413,7 @@ class Feature_vector_DS:
         :param cls_index: Class name and index.
         """
         audio = self.get_audiosignal(cls_index)
-        AudioUtil.play(audio)
+        # AudioUtil.play(audio) La fonction plante
         plt.figure(figsize=(4, 3))
         plt.imshow(
             AudioUtil.melspectrogram(audio, Nmel=self.nmel, Nft=self.Nft),
@@ -424,6 +424,32 @@ class Feature_vector_DS:
         plt.colorbar()
         plt.title(audio)
         plt.title(self.dataset.__getname__(cls_index))
+        plt.xlabel("Temps")
+        plt.ylabel("Fréquence (mel)")
+        plt.show()
+
+    def display_with_save(self, cls_index: Tuple[str, int]):
+        """
+        Play sound and display i'th item in dataset.
+
+        :param cls_index: Class name and index.
+        """
+        audio = self.get_audiosignal(cls_index)
+        # AudioUtil.play(audio) La fonction plante
+        plt.figure(figsize=(4, 3))
+        plt.imshow(
+            AudioUtil.melspectrogram(audio, Nmel=self.nmel, Nft=self.Nft),
+            cmap="jet",
+            origin="lower",
+            aspect="auto",
+        )
+        plt.colorbar()
+        plt.title(audio)
+        plt.title(self.dataset.__getname__(cls_index))
+        plt.xlabel("Temps")
+        plt.ylabel("Fréquence (mel)")
+
+        plt.savefig("{}.png".format(self.dataset.__getname__(cls_index)))
         plt.show()
 
     def mod_data_aug(self, data_aug) -> None:
