@@ -3,7 +3,6 @@ import os
 import numpy as np
 import matplotlib.pyplot as plt
 
-"Machine learning tools"
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis as LDA
@@ -12,10 +11,11 @@ from sklearn.decomposition import PCA
 import pickle
 import numpy as np
 
-from classification.src.classification.utils.plots import plot_specgram, show_confusion_matrix, plot_decision_boundaries
-from classification.src.classification.utils.utils import accuracy
-from classification.src.classification.datasets import Dataset
-#from classification.src.classification.utils.audio_student import AudioUtil, Feature_vector_DS
+from classification.utils.plots import plot_specgram, show_confusion_matrix, plot_decision_boundaries
+from classification.utils.utils import accuracy
+from classification.datasets import Dataset
+
+# from classification.src.classification.utils.audio_student import AudioUtil, Feature_vector_DS
 
 # import torch
 # from DL_model import *
@@ -48,9 +48,9 @@ e = pickle.load(open("./" + "fire1.pickle", 'rb'))
 f = pickle.load(open("./" + "fire2" + ".pickle", 'rb'))
 g = pickle.load(open("./" + "handsaw1" + ".pickle", 'rb'))
 h = pickle.load(open("./" + 'helicopter' + ".pickle", 'rb'))
-print(a[1])
-data1_list = []
-data2_list = []
+
+data1_list = []  # Toutes les données côté à côte
+data2_list = []  # Tous les tag de chaque fichier côte à côte
 
 # Variables contenant les données
 data_variables = [a, b, c, d, e, f, g, h]
@@ -64,61 +64,20 @@ for data_variable in data_variables:
         data1_list.append(data_variable[0][i])
         data2_list.append(data_variable[1][i])
 
-print(len(data1_list))
-
-begin_n_trees = 75
-end_n_trees = 150
-step_n_trees = 5
-
-range_n_trees = range(begin_n_trees, end_n_trees, step_n_trees)
-
-begin_pca = 5
-end_pca = 200
-step_pca = 5
-
-range_pca = range(begin_pca, end_pca, step_pca)
-
-# 10 pour que ça prenne moins de temps
-k_splits_cross_validation = 5
-
-precis = np.zeros((len(range_n_trees), len(range_pca)))
-ecart_type = np.zeros((len(range_n_trees), len(range_pca)))
+print(data2_list)
 
 pickle.dump([data1_list, data2_list], open("./all.pickle", 'wb'))
 
-accuracy_knn = np.zeros(k_splits_cross_validation)
+model = RandomForestClassifier(n_estimators=100, min_samples_split=2)
 
-kf = StratifiedKFold(n_splits=k_splits_cross_validation, shuffle=True)
+pca = PCA(n_components=35, whiten=True)
+X_learn_reduced = pca.fit_transform(np.array(data1_list))
 
-for i in range(begin_n_trees, end_n_trees, step_n_trees):
-    model = RandomForestClassifier(n_estimators=i, min_samples_split=2)
-    for j in range(begin_pca, end_pca, step_pca):
-        for k, idx in enumerate(kf.split(data1_list, data2_list)):
-            (idx_learn, idx_val) = idx
+model.fit(X_learn_reduced, np.array(data2_list))
 
-            pca = PCA(n_components=j, whiten=True)
-            X_learn_reduced = pca.fit_transform(np.array(data1_list)[idx_learn])
-            X_val_reduced = pca.transform(np.array(data1_list)[idx_val])
+print(model.predict(pca.transform([data1_list[0]])))
 
-            model.fit(X_learn_reduced, np.array(data2_list)[idx_learn])
-
-            prediction_knn = model.predict(X_val_reduced)
-            accuracy_knn[k] = accuracy(prediction_knn, np.array(data2_list)[idx_val])
-
-        temp_mean = np.mean(accuracy_knn)
-        temp_ecart_type = np.std(accuracy_knn)
-
-        precis[(i - begin_n_trees) // step_n_trees][(j - begin_pca) // step_pca] = temp_mean
-        ecart_type[(i - begin_n_trees) // step_n_trees][(j - begin_pca) // step_pca] = temp_ecart_type
-
-        print("i : {}, j : {}, accuracy : {}, écart-type = {}".format(i,j, temp_mean, temp_ecart_type))
-
-print("Accuracy:")
-print(precis)
-
-print("Écart-type:")
-print(ecart_type)
-
-# plt.figure()
-# plt.imshow(100 * precis, cmap='jet', origin='lower')
-# plt.show()
+filename = 'random_forest_Q1_parameters.pickle'
+model_dir = "data/models/"
+pickle.dump(model, open(model_dir + filename, 'wb'))
+pickle.dump(pca, open(model_dir + "pca_Q1_parameters", 'wb'))
