@@ -7,6 +7,7 @@
 
 #ifndef INC_SPECTROGRAM_H_
 #define INC_SPECTROGRAM_H_
+extern int vmax_global;
 
 #include "arm_math.h"
 
