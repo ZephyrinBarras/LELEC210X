@@ -12,6 +12,7 @@
 # or its authorized distributors. Please refer to the applicable 
 # agreement for further details.
 
+<<<<<<< HEAD
 <<<<<<< classification
 <<<<<<< classification
 # ACDS 18.1 625 win32 2024.02.16.14:03:31
@@ -21,6 +22,9 @@
 =======
 # ACDS 18.1 625 win32 2024.02.16.14:03:31
 >>>>>>> fpga
+=======
+# ACDS 18.1 625 win32 2024.02.16.14:03:31
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 # ----------------------------------------
 # Auto-generated simulation script rivierapro_setup.tcl
 # ----------------------------------------
@@ -121,6 +125,7 @@ if ![info exists QSYS_SIMDIR] {
 }
 
 if ![info exists QUARTUS_INSTALL_DIR] { 
+<<<<<<< HEAD
 <<<<<<< classification
 <<<<<<< classification
   set QUARTUS_INSTALL_DIR "C:/intelfpga_lite/quartus/quartus/"
@@ -130,6 +135,9 @@ if ![info exists QUARTUS_INSTALL_DIR] {
 =======
   set QUARTUS_INSTALL_DIR "C:/intelfpga_lite/quartus/quartus/"
 >>>>>>> fpga
+=======
+  set QUARTUS_INSTALL_DIR "C:/intelfpga_lite/quartus/quartus/"
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 }
 
 if ![info exists USER_DEFINED_COMPILE_OPTIONS] { 

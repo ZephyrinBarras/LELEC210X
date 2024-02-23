@@ -14,6 +14,7 @@ vcmplx2mag
 <<<<<<< classification
 Z0 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
 Z1 !s110 1708088641
+<<<<<<< HEAD
 =======
 Z0 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
 Z1 !s110 1699952178
@@ -22,12 +23,15 @@ Z1 !s110 1699952178
 Z0 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
 Z1 !s110 1708088641
 >>>>>>> fpga
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 !i10b 1
 !s100 @Le:jSbZG4O8ZJ0YDj9>32
 Ik7O;OGPI8n60o;kf@]LBj2
 Z2 VDg1SIo80bB@j0V0VzS_@n1
 Z3 !s105 packet_presence_detection_sv_unit
 S1
+<<<<<<< HEAD
 <<<<<<< classification
 <<<<<<< classification
 Z4 dC:/Users/barra/OneDrive/Bureau/LELEC210X/fpga/LimeSDR-Mini_lms7_lelec210x/ip/packet_presence_detection/testbench
@@ -40,6 +44,10 @@ Z5 w1699952099
 Z4 dC:/Users/barra/OneDrive/Bureau/LELEC210X/fpga/LimeSDR-Mini_lms7_lelec210x/ip/packet_presence_detection/testbench
 Z5 w1708088610
 >>>>>>> fpga
+=======
+Z4 dC:/Users/barra/OneDrive/Bureau/LELEC210X/fpga/LimeSDR-Mini_lms7_lelec210x/ip/packet_presence_detection/testbench
+Z5 w1708088610
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 Z6 8./packet_presence_detection_tb_gen_tb/simulation/submodules/packet_presence_detection.sv
 Z7 F./packet_presence_detection_tb_gen_tb/simulation/submodules/packet_presence_detection.sv
 L0 24
@@ -47,6 +55,7 @@ Z8 OV;L;10.5b;63
 r1
 !s85 0
 31
+<<<<<<< HEAD
 <<<<<<< classification
 <<<<<<< classification
 Z9 !s108 1708088641.000000
@@ -56,6 +65,9 @@ Z9 !s108 1699952178.000000
 =======
 Z9 !s108 1708088641.000000
 >>>>>>> fpga
+=======
+Z9 !s108 1708088641.000000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 Z10 !s107 ./packet_presence_detection_tb_gen_tb/simulation/submodules/packet_presence_detection.sv|
 Z11 !s90 -reportprogress|300|-sv|./packet_presence_detection_tb_gen_tb/simulation/submodules/packet_presence_detection.sv|-L|altera_common_sv_packages|-work|packet_presence_detection_0|
 !i113 1
@@ -114,6 +126,7 @@ DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
 Z14 !s110 1699952178
 !i10b 1
 !s100 i:C6i=iEZS>?CA?2?Em=<0
+<<<<<<< HEAD
 <<<<<<< classification
 <<<<<<< classification
 Z15 !s11b Dg1SIo80bB@j0V0VzS_@n1
@@ -129,6 +142,11 @@ Z15 !s11b Dg1SIo80bB@j0V0VzS_@n1
 Imlfe38>7bbVhlAK1Foz?>1
 R2
 >>>>>>> fpga
+=======
+Z15 !s11b Dg1SIo80bB@j0V0VzS_@n1
+Imlfe38>7bbVhlAK1Foz?>1
+R2
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 S1
 Z16 d/home/zephyrin/Documents/Unif/Q1M1/Project/project-2103-2102-a/fpga/LimeSDR-Mini_lms7_lelec210x/ip/packet_presence_detection/testbench
 Z17 w1699952099
@@ -136,6 +154,7 @@ R6
 R7
 !i122 0
 L0 90 119
+<<<<<<< HEAD
 <<<<<<< classification
 <<<<<<< classification
 Z18 OV;L;2020.1;71
@@ -145,6 +164,9 @@ R8
 =======
 Z18 OV;L;2020.1;71
 >>>>>>> fpga
+=======
+Z18 OV;L;2020.1;71
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 r1
 !s85 0
 31
@@ -155,8 +177,11 @@ R11
 R12
 R13
 vlong_shift
+<<<<<<< HEAD
 <<<<<<< classification
 <<<<<<< classification
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 R14
 !i10b 1
 !s100 Um>1nhU0oLCzi5fWOPcY00
@@ -178,6 +203,7 @@ R19
 !s90 -reportprogress|300|./packet_presence_detection_tb_gen_tb/simulation/submodules/long_shift.v|-work|packet_presence_detection_0|
 !i113 1
 Z21 o-work packet_presence_detection_0
+<<<<<<< HEAD
 =======
 R1
 =======
@@ -208,6 +234,8 @@ Z15 o-work packet_presence_detection_0
 =======
 Z21 o-work packet_presence_detection_0
 >>>>>>> fpga
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 R13
 vpacket_presence_detection
 R0
@@ -237,8 +265,11 @@ vshort_shift
 R14
 !i10b 1
 !s100 ^eb:m9I9bCQTQKelRB4?61
+<<<<<<< HEAD
 <<<<<<< classification
 <<<<<<< classification
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 R15
 IREhI2;W79zR_TMeWm5aSF3
 R2
@@ -249,6 +280,7 @@ F./packet_presence_detection_tb_gen_tb/simulation/submodules/short_shift.v
 !i122 1
 R20
 R18
+<<<<<<< HEAD
 =======
 R2
 =======
@@ -269,6 +301,8 @@ R8
 R20
 R18
 >>>>>>> fpga
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 r1
 !s85 0
 31
@@ -276,6 +310,7 @@ R19
 !s107 ./packet_presence_detection_tb_gen_tb/simulation/submodules/short_shift.v|
 !s90 -reportprogress|300|./packet_presence_detection_tb_gen_tb/simulation/submodules/short_shift.v|-work|packet_presence_detection_0|
 !i113 1
+<<<<<<< HEAD
 <<<<<<< classification
 <<<<<<< classification
 R21
@@ -285,4 +320,7 @@ R15
 =======
 R21
 >>>>>>> fpga
+=======
+R21
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 R13

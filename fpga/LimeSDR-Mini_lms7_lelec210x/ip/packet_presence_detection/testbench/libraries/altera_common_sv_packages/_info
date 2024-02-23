@@ -14,6 +14,7 @@ Xavalon_utilities_pkg
 <<<<<<< classification
 Z0 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
 Z1 !s110 1708088641
+<<<<<<< HEAD
 =======
 Z0 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
 Z1 !s110 1699952178
@@ -22,11 +23,14 @@ Z1 !s110 1699952178
 Z0 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
 Z1 !s110 1708088641
 >>>>>>> fpga
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 !i10b 1
 !s100 7Z6I@>cG<^^zXcl1Q`88O0
 I9HlKon>426g5Ozio7mS442
 V9HlKon>426g5Ozio7mS442
 S1
+<<<<<<< HEAD
 <<<<<<< classification
 <<<<<<< classification
 Z2 dC:/Users/barra/OneDrive/Bureau/LELEC210X/fpga/LimeSDR-Mini_lms7_lelec210x/ip/packet_presence_detection/testbench
@@ -39,6 +43,10 @@ Z4 w1699952099
 Z2 dC:/Users/barra/OneDrive/Bureau/LELEC210X/fpga/LimeSDR-Mini_lms7_lelec210x/ip/packet_presence_detection/testbench
 Z3 w1708088610
 >>>>>>> fpga
+=======
+Z2 dC:/Users/barra/OneDrive/Bureau/LELEC210X/fpga/LimeSDR-Mini_lms7_lelec210x/ip/packet_presence_detection/testbench
+Z3 w1708088610
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 8./packet_presence_detection_tb_gen_tb/simulation/submodules/avalon_utilities_pkg.sv
 F./packet_presence_detection_tb_gen_tb/simulation/submodules/avalon_utilities_pkg.sv
 L0 40
@@ -46,6 +54,7 @@ Z4 OV;L;10.5b;63
 r1
 !s85 0
 31
+<<<<<<< HEAD
 <<<<<<< classification
 <<<<<<< classification
 Z5 !s108 1708088641.000000
@@ -55,6 +64,9 @@ Z6 !s108 1699952178.000000
 =======
 Z5 !s108 1708088641.000000
 >>>>>>> fpga
+=======
+Z5 !s108 1708088641.000000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 !s107 ./packet_presence_detection_tb_gen_tb/simulation/submodules/avalon_utilities_pkg.sv|
 !s90 -reportprogress|300|-sv|./packet_presence_detection_tb_gen_tb/simulation/submodules/avalon_utilities_pkg.sv|-work|altera_common_sv_packages|
 !i113 1

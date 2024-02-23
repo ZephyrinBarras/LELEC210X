@@ -12,6 +12,7 @@
 # or its authorized distributors. Please refer to the applicable 
 # agreement for further details.
 
+<<<<<<< HEAD
 <<<<<<< classification
 <<<<<<< classification
 # ACDS 18.1 625 win32 2024.02.16.14:03:31
@@ -21,6 +22,9 @@
 =======
 # ACDS 18.1 625 win32 2024.02.16.14:03:31
 >>>>>>> fpga
+=======
+# ACDS 18.1 625 win32 2024.02.16.14:03:31
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 
 # ----------------------------------------
 # vcs - auto-generated simulation script
@@ -102,6 +106,7 @@
 # within the Quartus project, and generate a unified
 # script which supports all the Altera IP within the design.
 # ----------------------------------------
+<<<<<<< HEAD
 <<<<<<< classification
 <<<<<<< classification
 # ACDS 18.1 625 win32 2024.02.16.14:03:31
@@ -111,10 +116,14 @@
 =======
 # ACDS 18.1 625 win32 2024.02.16.14:03:31
 >>>>>>> fpga
+=======
+# ACDS 18.1 625 win32 2024.02.16.14:03:31
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 # ----------------------------------------
 # initialize variables
 TOP_LEVEL_NAME="packet_presence_detection_tb_gen_tb"
 QSYS_SIMDIR="./../../"
+<<<<<<< HEAD
 <<<<<<< classification
 <<<<<<< classification
 QUARTUS_INSTALL_DIR="C:/intelfpga_lite/quartus/quartus/"
@@ -124,6 +133,9 @@ QUARTUS_INSTALL_DIR="/home/zephyrin/intelFPGA_lite/18.1/quartus/"
 =======
 QUARTUS_INSTALL_DIR="C:/intelfpga_lite/quartus/quartus/"
 >>>>>>> fpga
+=======
+QUARTUS_INSTALL_DIR="C:/intelfpga_lite/quartus/quartus/"
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 SKIP_FILE_COPY=0
 SKIP_SIM=0
 USER_DEFINED_ELAB_OPTIONS=""

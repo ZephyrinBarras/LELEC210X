@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <<<<<<< classification
 <<<<<<< classification
 Analysis & Synthesis Status : Successful - Fri Feb 16 13:44:05 2024
@@ -7,6 +8,9 @@ Analysis & Synthesis Status : Successful - Mon Nov 20 18:36:25 2023
 =======
 Analysis & Synthesis Status : Successful - Fri Feb 16 13:44:05 2024
 >>>>>>> fpga
+=======
+Analysis & Synthesis Status : Successful - Fri Feb 16 13:44:05 2024
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 Revision Name : LimeSDR-Mini_lms7_lelec210x
 Top-level Entity Name : lms7_trx_top

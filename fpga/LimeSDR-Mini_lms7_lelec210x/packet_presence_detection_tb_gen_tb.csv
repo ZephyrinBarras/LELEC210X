@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <<<<<<< classification
 <<<<<<< classification
 # system info packet_presence_detection_tb_gen_tb on 2024.02.16.14:03:30
@@ -7,16 +8,23 @@
 =======
 # system info packet_presence_detection_tb_gen_tb on 2024.02.16.14:03:30
 >>>>>>> fpga
+=======
+# system info packet_presence_detection_tb_gen_tb on 2024.02.16.14:03:30
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 system_info:
 name,value
 DEVICE,10M16SAU169C8G
 DEVICE_FAMILY,MAX 10
+<<<<<<< HEAD
 <<<<<<< classification
 <<<<<<< classification
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 GENERATION_ID,1708088608
 #
 #
 # Files generated for packet_presence_detection_tb_gen_tb on 2024.02.16.14:03:30
+<<<<<<< HEAD
 =======
 GENERATION_ID,1699952099
 #
@@ -29,6 +37,8 @@ GENERATION_ID,1708088608
 #
 # Files generated for packet_presence_detection_tb_gen_tb on 2024.02.16.14:03:30
 >>>>>>> fpga
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 files:
 filepath,kind,attributes,module,is_top
 ip/packet_presence_detection/testbench/packet_presence_detection_tb_gen_tb/simulation/packet_presence_detection_tb_gen_tb.v,VERILOG,,packet_presence_detection_tb_gen_tb,true

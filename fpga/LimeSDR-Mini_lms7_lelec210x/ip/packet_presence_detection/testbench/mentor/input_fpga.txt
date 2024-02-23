@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 <<<<<<< classification
 <<<<<<< classification
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 fff000
 000fff
 000000
@@ -10,6 +13,7 @@ fff000
 000000
 000000
 000fff
+<<<<<<< HEAD
 fff000
 000fff
 fff000
@@ -31,6 +35,12 @@ fff000
 000000
 000000
 >>>>>>> all'
+=======
+fff000
+000fff
+fff000
+000fff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 000fff
 000000
 000fff
@@ -55,9 +65,19 @@ fff000
 ffffff
 fff000
 000fff
+<<<<<<< HEAD
 =======
 >>>>>>> fpga
 000000
+=======
+000000
+000fff
+000000
+fff000
+000000
+000fff
+ffffff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 000fff
 000000
 fff000
@@ -81,6 +101,8 @@ fff000
 000000
 <<<<<<< classification
 000000
+000000
+ffffff
 ffffff
 ffffff
 ffffff
@@ -88,7 +110,10 @@ ffffff
 ffffff
 000fff
 000fff
+<<<<<<< HEAD
 <<<<<<< classification
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 000000
 ffffff
 000fff
@@ -103,6 +128,7 @@ fff000
 >>>>>>> fpga
 000000
 000000
+<<<<<<< HEAD
 000fff
 000fff
 fff000
@@ -125,6 +151,12 @@ ffffff
 000000
 ffffff
 000000
+=======
+000000
+000fff
+000fff
+fff000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 fff000
 =======
 >>>>>>> all'
@@ -155,14 +187,21 @@ ffffff
 <<<<<<< classification
 ffffff
 000000
+<<<<<<< HEAD
 000000
 000fff
+=======
+ffffff
+000000
+fff000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 000fff
 000fff
 000fff
 000fff
 000000
 fff000
+<<<<<<< HEAD
 <<<<<<< classification
 ffffff
 000000
@@ -184,9 +223,26 @@ ffffff
 000fff
 =======
 >>>>>>> fpga
+=======
+ffffff
+000000
+000fff
+000000
+fff000
+fff000
+ffffff
+fff000
+ffffff
+ffffff
+000000
+000000
+000fff
+000fff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 000fff
 000000
 000fff
+<<<<<<< HEAD
 000000
 fff000
 000000
@@ -204,10 +260,17 @@ fff000
 ffffff
 fff000
 =======
+=======
+000fff
+000000
+fff000
+ffffff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 000000
 000000
 >>>>>>> fpga
 ffffff
+<<<<<<< HEAD
 ffffff
 ffffff
 000000
@@ -218,564 +281,520 @@ ffffff
 000fff
 <<<<<<< classification
 000fff
-fff000
-000fff
-fff000
-000000
-000000
-=======
-000000
-=======
->>>>>>> fpga
-ffffff
-000fff
-000fff
-000000
-ffffff
-000fff
-<<<<<<< classification
-ffffff
-ffffff
->>>>>>> all'
-=======
->>>>>>> fpga
-000fff
-000fff
-000fff
-000fff
-fff000
-fff000
-000fff
-fff000
-fff000
-fff000
-ffffff
-<<<<<<< classification
-000000
-ffffff
-000000
-fff000
-fff000
-fff000
-000fff
-fff000
-000000
-<<<<<<< classification
-ffffff
-=======
-fff000
-000000
->>>>>>> all'
-fff000
-fff000
-000000
-000fff
-ffffff
-<<<<<<< classification
-ffffff
-=======
-fff000
-000000
-000000
-000fff
-000fff
->>>>>>> fpga
-fff000
-000000
-000fff
-fff000
-000fff
-000fff
-000000
-<<<<<<< classification
-ffffff
-ffffff
-fff000
-fff000
-fff000
-000000
-fff000
-=======
-000fff
-=======
-000000
->>>>>>> fpga
-000000
-ffffff
-ffffff
-000000
-ffffff
-000000
-fff000
-<<<<<<< classification
-ffffff
->>>>>>> all'
-000fff
-000fff
-ffffff
-000000
-fff000
-000000
-<<<<<<< classification
-000fff
-000fff
-ffffff
-ffffff
-=======
->>>>>>> all'
-000fff
-000000
-=======
-000fff
-fff000
->>>>>>> fpga
-ffffff
-000000
-000fff
-000000
-fff000
-fff000
-ffffff
-fff000
-<<<<<<< classification
-fff000
-=======
->>>>>>> all'
-ffffff
-ffffff
-000000
-000000
-000fff
-000fff
-<<<<<<< classification
-000fff
-000fff
-fff000
-fff000
-ffffff
-000000
-ffffff
-ffffff
-ffffff
-fff000
-ffffff
-000fff
-000000
-fff000
-000000
-000000
-ffffff
-fff000
-000000
-ffffff
-=======
-000fff
-000fff
-000fff
-000000
-fff000
-ffffff
-000000
-000000
-ffffff
-000000
-000000
-000fff
-<<<<<<< classification
-fff000
->>>>>>> all'
-fff000
-=======
->>>>>>> fpga
-000000
-000fff
-000fff
-ffffff
-<<<<<<< classification
-000fff
-ffffff
-000000
 fff000
 =======
 000000
-ffffff
-<<<<<<< classification
 000000
->>>>>>> all'
-ffffff
-fff000
-000000
-fff000
-=======
-ffffff
->>>>>>> fpga
-ffffff
-<<<<<<< classification
-000000
-=======
-000fff
-ffffff
-<<<<<<< classification
->>>>>>> all'
-fff000
-ffffff
-fff000
-ffffff
-<<<<<<< classification
-000fff
-fff000
-fff000
-000000
-=======
-fff000
-ffffff
-fff000
->>>>>>> all'
-000fff
-000fff
-<<<<<<< classification
-000000
-000fff
-000000
-ffffff
-fff000
-fff000
-000000
-fff000
-000000
-=======
-ffffff
-=======
-000000
-000000
-fff000
-ffffff
-000fff
-000fff
-fff000
->>>>>>> fpga
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 000fff
 fff000
 000000
-000000
-000fff
-000fff
-000fff
-000fff
-fff000
-<<<<<<< classification
-000000
-fff000
-ffffff
->>>>>>> all'
-fff000
-ffffff
-000000
-<<<<<<< classification
-fff000
-000000
-000000
-000fff
-ffffff
-000000
-=======
-000fff
-000fff
-000000
-000000
-=======
-fff000
->>>>>>> fpga
-000fff
-fff000
-fff000
-fff000
-ffffff
-000000
-ffffff
-000000
-fff000
-<<<<<<< classification
->>>>>>> all'
-000fff
-fff000
-000fff
-<<<<<<< classification
-000000
-=======
->>>>>>> all'
-ffffff
-=======
-fff000
-fff000
-000fff
->>>>>>> fpga
-fff000
-000000
-ffffff
-fff000
-ffffff
-000000
-<<<<<<< classification
-fff000
-<<<<<<< classification
-000000
-000fff
-=======
-fff000
-=======
-000000
-000fff
->>>>>>> fpga
-ffffff
-ffffff
-fff000
-000000
-000fff
-fff000
-000fff
-000fff
-000000
-ffffff
-ffffff
-fff000
-<<<<<<< classification
->>>>>>> all'
-000000
-ffffff
-=======
-fff000
->>>>>>> fpga
-fff000
-000000
-fff000
-000fff
-<<<<<<< classification
-<<<<<<< classification
-=======
-=======
-ffffff
->>>>>>> fpga
-000000
-fff000
-000000
->>>>>>> all'
-000fff
-<<<<<<< classification
-ffffff
-<<<<<<< classification
-=======
-000fff
->>>>>>> fpga
-ffffff
-ffffff
-000000
-ffffff
-=======
-000fff
-fff000
-000000
-ffffff
-000000
-000fff
-ffffff
-ffffff
-fff000
-fff000
-fff000
-fff000
-ffffff
-000fff
-000fff
-000fff
-fff000
-<<<<<<< classification
->>>>>>> all'
-ffffff
-000fff
-fff000
-fff000
-fff000
-000000
-fff000
-<<<<<<< classification
-ffffff
-ffffff
-ffffff
-ffffff
-000fff
-000000
-000fff
-ffffff
-000000
-fff000
-000fff
-000000
-000000
-ffffff
-000000
-000000
-000000
-000fff
-000000
-000fff
-=======
-fff000
-ffffff
-000000
-ffffff
-ffffff
-ffffff
-fff000
-ffffff
-000fff
-000000
->>>>>>> fpga
-fff000
-000000
-000000
-ffffff
-fff000
-000000
-<<<<<<< classification
-000fff
-fff000
-ffffff
-fff000
-fff000
-ffffff
-=======
-=======
-ffffff
-fff000
-000000
->>>>>>> fpga
-000fff
-000fff
-ffffff
-000fff
-ffffff
-000000
-fff000
-ffffff
-fff000
-000000
-fff000
-ffffff
-000000
-fff000
-fff000
-ffffff
-000fff
-fff000
-fff000
-000000
-000fff
->>>>>>> all'
-000000
-<<<<<<< classification
-fff000
-ffffff
-fff000
-000000
-ffffff
-ffffff
-000000
-000fff
-<<<<<<< classification
-ffffff
-000fff
-=======
-=======
-000fff
-000000
->>>>>>> fpga
-000fff
-000000
-ffffff
->>>>>>> all'
-fff000
-fff000
-000000
-<<<<<<< classification
-<<<<<<< classification
-=======
-=======
-fff000
-000000
-fff000
->>>>>>> fpga
-ffffff
-000000
->>>>>>> all'
-fff000
-000000
-000000
-000fff
-ffffff
-<<<<<<< classification
-=======
-000000
-000fff
-000fff
-000000
-ffffff
-<<<<<<< classification
->>>>>>> all'
-ffffff
-ffffff
-ffffff
-000fff
-ffffff
-<<<<<<< classification
-=======
-fff000
-000000
-fff000
-000000
->>>>>>> fpga
-000fff
-000000
-ffffff
-ffffff
-000fff
-000000
-000fff
-=======
->>>>>>> all'
-fff000
-000fff
-000fff
-ffffff
-ffffff
-ffffff
-000000
-ffffff
-<<<<<<< classification
-ffffff
-fff000
-ffffff
-=======
-ffffff
-ffffff
-000000
-fff000
-ffffff
-ffffff
-ffffff
-ffffff
->>>>>>> all'
-000fff
-000000
-<<<<<<< classification
-000000
-<<<<<<< classification
-ffffff
+<<<<<<< HEAD
 000000
 =======
 000000
 =======
 >>>>>>> fpga
+ffffff
+000fff
+000fff
+000000
+ffffff
+000fff
+<<<<<<< classification
+ffffff
+ffffff
+>>>>>>> all'
+=======
+>>>>>>> fpga
+000fff
+000fff
+000fff
+000fff
+fff000
+fff000
+000fff
+fff000
+fff000
+fff000
+=======
+000fff
+000fff
+ffffff
+000000
+ffffff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+ffffff
+<<<<<<< classification
+000000
+ffffff
+000000
+fff000
+fff000
+fff000
+000fff
+fff000
+000000
+<<<<<<< classification
+ffffff
+=======
+fff000
+000000
+>>>>>>> all'
+fff000
+fff000
+000000
+<<<<<<< HEAD
+000fff
+ffffff
+<<<<<<< classification
+ffffff
+=======
+fff000
+000000
+000000
+000fff
+000fff
+>>>>>>> fpga
+fff000
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+000000
+000fff
+fff000
+ffffff
+000fff
+000fff
+<<<<<<< HEAD
+000000
+<<<<<<< classification
+ffffff
+ffffff
+=======
+fff000
+000fff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+fff000
+fff000
+fff000
+000000
+<<<<<<< HEAD
+fff000
+=======
+000fff
+=======
+000000
+>>>>>>> fpga
+000000
+ffffff
+ffffff
+000000
+ffffff
+000000
+fff000
+<<<<<<< classification
+ffffff
+>>>>>>> all'
+000fff
+000fff
+ffffff
+000000
+=======
+000000
+000fff
+000fff
+000fff
+000fff
+fff000
+fff000
+000fff
+fff000
+fff000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+fff000
+000000
+<<<<<<< classification
+000fff
+000fff
+ffffff
+000000
+ffffff
+<<<<<<< HEAD
+=======
+>>>>>>> all'
+000fff
+000000
+=======
+000fff
+fff000
+>>>>>>> fpga
+ffffff
+000000
+000fff
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+000000
+fff000
+fff000
+fff000
+<<<<<<< HEAD
+<<<<<<< classification
+=======
+000fff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+fff000
+=======
+>>>>>>> all'
+ffffff
+ffffff
+000000
+<<<<<<< HEAD
+000000
+000fff
+000fff
+<<<<<<< classification
+000fff
+000fff
+fff000
+fff000
+ffffff
+000000
+ffffff
+ffffff
+ffffff
+fff000
+ffffff
+000fff
+000000
+fff000
+000000
+000000
+ffffff
+fff000
+000000
+ffffff
+=======
+000fff
+000fff
+000fff
+000000
+fff000
+=======
+ffffff
+fff000
+ffffff
+000000
+000000
+000fff
+ffffff
+ffffff
+fff000
+000000
+000fff
+fff000
+000fff
+000fff
+000000
+ffffff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+ffffff
+000000
+000000
+ffffff
+000000
+000000
+000fff
+<<<<<<< classification
+fff000
+>>>>>>> all'
+fff000
+<<<<<<< HEAD
+=======
+>>>>>>> fpga
+000000
+000fff
+000fff
+ffffff
+<<<<<<< classification
+000fff
+ffffff
+000000
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+fff000
+=======
+000000
+ffffff
+<<<<<<< classification
+000000
+<<<<<<< HEAD
+>>>>>>> all'
+ffffff
+fff000
+000000
+fff000
+=======
+ffffff
+>>>>>>> fpga
+ffffff
+<<<<<<< classification
+000000
+=======
+000fff
+ffffff
+<<<<<<< classification
+>>>>>>> all'
+=======
+fff000
+000fff
+ffffff
+000000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+fff000
+000000
+000fff
+000fff
+ffffff
+fff000
+ffffff
+<<<<<<< classification
+000fff
+fff000
+fff000
+000000
+<<<<<<< HEAD
+=======
+fff000
+ffffff
+fff000
+>>>>>>> all'
+000fff
+000fff
+<<<<<<< classification
+=======
+ffffff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+000000
+000fff
+000000
+ffffff
+fff000
+fff000
+<<<<<<< HEAD
+000000
+fff000
+000000
+=======
+ffffff
+=======
+000000
+000000
+fff000
+ffffff
+000fff
+000fff
+fff000
+>>>>>>> fpga
+000fff
+fff000
+000000
+000000
+000fff
+000fff
+000fff
+=======
+fff000
+fff000
+ffffff
+000fff
+000fff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+000fff
+fff000
+<<<<<<< classification
+000000
+fff000
+ffffff
+<<<<<<< HEAD
+>>>>>>> all'
+fff000
+ffffff
+000000
+<<<<<<< classification
+fff000
+000000
+000000
+000fff
+=======
+000000
+ffffff
+ffffff
+ffffff
+fff000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+ffffff
+000000
+=======
+000fff
+<<<<<<< HEAD
+000fff
+000000
+000000
+=======
+fff000
+>>>>>>> fpga
+000fff
+fff000
+fff000
+fff000
+ffffff
+000000
+ffffff
+000000
+fff000
+<<<<<<< classification
+>>>>>>> all'
+000fff
+fff000
+000fff
+<<<<<<< classification
+000000
+=======
+>>>>>>> all'
+ffffff
+=======
+fff000
+fff000
+000fff
+>>>>>>> fpga
+fff000
+000000
+ffffff
+fff000
+ffffff
+000000
+<<<<<<< classification
+fff000
+<<<<<<< classification
+000000
+000fff
+=======
+fff000
+=======
+000000
+000fff
+>>>>>>> fpga
+ffffff
+ffffff
+fff000
+000000
+000fff
+fff000
+=======
+000000
+fff000
+000000
+000000
+ffffff
+fff000
+000000
+ffffff
+fff000
+000000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+000fff
+000fff
+000000
+ffffff
+000fff
+ffffff
+<<<<<<< HEAD
+fff000
+<<<<<<< classification
+>>>>>>> all'
+=======
+000000
+fff000
+ffffff
+fff000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+000000
+fff000
+ffffff
+<<<<<<< HEAD
+=======
+fff000
+>>>>>>> fpga
+=======
+000000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+fff000
+000000
+fff000
+<<<<<<< HEAD
+000fff
+<<<<<<< classification
+<<<<<<< classification
+=======
+=======
+ffffff
+>>>>>>> fpga
+=======
+ffffff
+000fff
+fff000
+fff000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+000000
+fff000
+000000
+>>>>>>> all'
+000fff
+<<<<<<< classification
+ffffff
+<<<<<<< classification
+=======
+000fff
+<<<<<<< HEAD
+>>>>>>> fpga
+ffffff
+ffffff
+000000
+ffffff
+=======
+000fff
+fff000
+000000
+ffffff
+000000
+000fff
+ffffff
+ffffff
+fff000
+fff000
+fff000
+fff000
+ffffff
+000fff
+000fff
+000fff
+fff000
+<<<<<<< classification
+>>>>>>> all'
+ffffff
+000fff
+fff000
+fff000
+fff000
+000000
+fff000
+<<<<<<< classification
+ffffff
+ffffff
+ffffff
+ffffff
+000fff
+000000
 000fff
 ffffff
 000000
@@ -785,9 +804,256 @@ fff000
 000000
 ffffff
 000000
+=======
+000000
+000fff
+000000
+ffffff
+fff000
+fff000
+000000
+fff000
+000000
+fff000
+ffffff
+000000
+fff000
 000000
 000000
 000fff
+ffffff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+000000
+000fff
+000000
+<<<<<<< HEAD
+000fff
+=======
+fff000
+ffffff
+000000
+ffffff
+ffffff
+ffffff
+fff000
+ffffff
+000fff
+000000
+>>>>>>> fpga
+fff000
+000000
+000000
+ffffff
+fff000
+000000
+<<<<<<< classification
+000fff
+fff000
+ffffff
+fff000
+fff000
+ffffff
+=======
+=======
+ffffff
+fff000
+000000
+>>>>>>> fpga
+000fff
+000fff
+ffffff
+=======
+ffffff
+fff000
+000000
+fff000
+000000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+000fff
+000000
+ffffff
+fff000
+<<<<<<< HEAD
+ffffff
+fff000
+000000
+fff000
+=======
+000fff
+000fff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+ffffff
+000000
+fff000
+fff000
+ffffff
+<<<<<<< HEAD
+000fff
+fff000
+fff000
+000000
+000fff
+>>>>>>> all'
+000000
+<<<<<<< classification
+fff000
+ffffff
+fff000
+000000
+ffffff
+ffffff
+000000
+000fff
+<<<<<<< classification
+ffffff
+000fff
+=======
+=======
+000fff
+000000
+>>>>>>> fpga
+000fff
+000000
+ffffff
+>>>>>>> all'
+fff000
+fff000
+000000
+<<<<<<< classification
+<<<<<<< classification
+=======
+=======
+fff000
+000000
+fff000
+>>>>>>> fpga
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+ffffff
+000000
+>>>>>>> all'
+fff000
+000000
+000000
+000fff
+ffffff
+<<<<<<< HEAD
+<<<<<<< classification
+=======
+000000
+000fff
+000fff
+000000
+ffffff
+<<<<<<< classification
+>>>>>>> all'
+ffffff
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+ffffff
+ffffff
+000fff
+ffffff
+<<<<<<< classification
+=======
+fff000
+000000
+fff000
+<<<<<<< HEAD
+000000
+>>>>>>> fpga
+000fff
+000000
+ffffff
+ffffff
+000fff
+000000
+000fff
+=======
+>>>>>>> all'
+fff000
+000fff
+000fff
+ffffff
+ffffff
+ffffff
+000000
+ffffff
+<<<<<<< classification
+=======
+ffffff
+ffffff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+ffffff
+ffffff
+<<<<<<< HEAD
+=======
+ffffff
+ffffff
+000000
+fff000
+ffffff
+ffffff
+ffffff
+ffffff
+>>>>>>> all'
+000fff
+=======
+000fff
+000000
+000fff
+ffffff
+000000
+fff000
+000fff
+000000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+000000
+<<<<<<< classification
+000000
+<<<<<<< classification
+ffffff
+000000
+=======
+000000
+<<<<<<< HEAD
+=======
+>>>>>>> fpga
+000fff
+ffffff
+=======
+000000
+000fff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+000000
+000fff
+fff000
+<<<<<<< HEAD
+000fff
+000000
+000000
+ffffff
+=======
+000000
+000000
+ffffff
+fff000
+000000
+000fff
+fff000
+ffffff
+fff000
+fff000
+ffffff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+000000
+fff000
+ffffff
+fff000
+000000
+000000
+000fff
+<<<<<<< HEAD
 000000
 000fff
 fff000
@@ -808,11 +1074,16 @@ ffffff
 =======
 fff000
 >>>>>>> fpga
-fff000
+=======
 ffffff
+000fff
+fff000
 000000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 fff000
 ffffff
+ffffff
+<<<<<<< HEAD
 <<<<<<< classification
 <<<<<<< classification
 =======
@@ -822,14 +1093,26 @@ fff000
 >>>>>>> all'
 000fff
 fff000
+=======
+ffffff
+ffffff
 000fff
+ffffff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+000fff
+ffffff
+ffffff
 000fff
 000000
+<<<<<<< HEAD
 ffffff
 fff000
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 000fff
 <<<<<<< classification
 fff000
+<<<<<<< HEAD
 =======
 =======
 fff000
@@ -853,6 +1136,9 @@ fff000
 >>>>>>> fpga
 000000
 fff000
+=======
+000fff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 ffffff
 <<<<<<< classification
 >>>>>>> all'
@@ -861,8 +1147,11 @@ ffffff
 000000
 =======
 ffffff
+<<<<<<< HEAD
 >>>>>>> fpga
 ffffff
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 ffffff
 fff000
 fff000
@@ -872,9 +1161,14 @@ fff000
 000fff
 ffffff
 ffffff
+<<<<<<< HEAD
 <<<<<<< classification
+=======
+000fff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 000000
 000000
+<<<<<<< HEAD
 000000
 fff000
 fff000
@@ -891,18 +1185,26 @@ ffffff
 000fff
 ffffff
 000fff
+=======
+ffffff
+000000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 ffffff
 ffffff
 000fff
 000000
 000fff
+<<<<<<< HEAD
 fff000
 000fff
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 ffffff
 000000
 000000
 ffffff
 ffffff
+<<<<<<< HEAD
 fff000
 ffffff
 000fff
@@ -912,6 +1214,10 @@ fff000
 ffffff
 000000
 ffffff
+=======
+000fff
+fff000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 000fff
 ffffff
 000000
@@ -919,41 +1225,54 @@ ffffff
 ffffff
 ffffff
 000fff
+<<<<<<< HEAD
 fff000
 000fff
 000fff
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 000000
 ffffff
-fff000
-000fff
-fff000
-000fff
-ffffff
-fff000
-000fff
-fff000
-000000
-000fff
-000000
-000000
-ffffff
-ffffff
-fff000
-fff000
-000000
-000fff
-000000
-000fff
-ffffff
-ffffff
-000000
-000000
-000000
-fff000
 fff000
 000fff
 fff000
+000fff
+ffffff
 fff000
+000fff
+fff000
+000000
+000fff
+000000
+000000
+ffffff
+ffffff
+fff000
+fff000
+000000
+000fff
+000000
+000fff
+<<<<<<< HEAD
+ffffff
+ffffff
+=======
+ffffff
+ffffff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+000000
+000000
+000000
+fff000
+fff000
+000fff
+<<<<<<< HEAD
+fff000
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+fff000
+fff000
+000000
 000000
 000000
 <<<<<<< classification
@@ -962,7 +1281,10 @@ fff000
 ffffff
 fff000
 fff000
+<<<<<<< HEAD
 >>>>>>> fpga
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 00c00c
 00c00c
 00c00c
@@ -993,6 +1315,7 @@ fff000
 00c00c
 00c00c
 00c00c
+<<<<<<< HEAD
 <<<<<<< classification
 <<<<<<< classification
 =======
@@ -1005,15 +1328,21 @@ ff500a
 ff500a
 >>>>>>> all'
 00aff5
+=======
+00aff5
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 ff500a
 00aff5
 ff500a
 00aff5
 00aff5
+<<<<<<< HEAD
 <<<<<<< classification
 =======
 00aff5
 >>>>>>> fpga
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 ff500a
 ff500a
 ff5ff5
@@ -1021,6 +1350,7 @@ ff500a
 ff5ff5
 ff500a
 00aff5
+<<<<<<< HEAD
 ff5ff5
 <<<<<<< classification
 <<<<<<< classification
@@ -1096,6 +1426,17 @@ ff500a
 <<<<<<< classification
 00a00a
 >>>>>>> all'
+=======
+ff5ff5
+00a00a
+00a00a
+00a00a
+00a00a
+00a00a
+00a00a
+00a00a
+ff500a
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 00aff5
 00aff5
 =======
@@ -1144,10 +1485,22 @@ ff5ff5
 ff500a
 ff500a
 00a00a
-00aff5
-00aff5
 00a00a
+<<<<<<< HEAD
 00aff5
+=======
+ff500a
+00a00a
+ff500a
+ff5ff5
+00a00a
+ff5ff5
+00aff5
+00aff5
+ff5ff5
+00a00a
+00a00a
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 ff500a
 00a00a
 00aff5
@@ -1166,8 +1519,8 @@ ff5ff5
 ff500a
 >>>>>>> fpga
 ff500a
-00a00a
 00aff5
+<<<<<<< HEAD
 00aff5
 00a00a
 00aff5
@@ -2081,6 +2434,35 @@ ffffff
 000000
 fff000
 >>>>>>> all'
+=======
+ff500a
+ff5ff5
+ff5ff5
+00a00a
+ff500a
+ff500a
+ff5ff5
+ff5ff5
+00aff5
+ff5ff5
+ff5ff5
+00a00a
+00a00a
+ff5ff5
+00aff5
+ff5ff5
+ff5ff5
+ff500a
+ff500a
+00a00a
+00aff5
+00aff5
+00a00a
+00aff5
+ff500a
+00a00a
+00aff5
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 000fff
 fff000
 000fff
@@ -2088,6 +2470,7 @@ fff000
 ffffff
 fff000
 000000
+<<<<<<< HEAD
 <<<<<<< classification
 ffffff
 000fff
@@ -2110,8 +2493,15 @@ fff000
 ffffff
 <<<<<<< classification
 ffffff
+=======
+000fff
 fff000
+000fff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 fff000
+000fff
+fff000
+<<<<<<< HEAD
 fff000
 <<<<<<< classification
 fff000
@@ -2125,9 +2515,12 @@ ffffff
 000000
 000fff
 000000
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 000fff
 fff000
 000000
+<<<<<<< HEAD
 ffffff
 <<<<<<< classification
 >>>>>>> all'
@@ -2194,6 +2587,9 @@ ffffff
 <<<<<<< classification
 000000
 000fff
+=======
+000fff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 fff000
 ffffff
 ffffff
@@ -2214,6 +2610,7 @@ ffffff
 ffffff
 000fff
 ffffff
+<<<<<<< HEAD
 000000
 =======
 >>>>>>> fpga
@@ -2243,10 +2640,30 @@ ffffff
 ffffff
 000fff
 ffffff
+=======
+fff000
+fff000
+000000
+fff000
+000fff
+000000
+000fff
+fff000
+fff000
+000000
+000fff
+ffffff
+ffffff
+fff000
+000fff
+ffffff
+000fff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 000000
 000fff
 000fff
 ffffff
+<<<<<<< HEAD
 000000
 fff000
 <<<<<<< classification
@@ -2256,9 +2673,13 @@ ffffff
 >>>>>>> fpga
 000fff
 000000
+=======
+000fff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 ffffff
 000fff
 000000
+<<<<<<< HEAD
 000fff
 ffffff
 <<<<<<< classification
@@ -2290,22 +2711,50 @@ ffffff
 000fff
 000000
 000fff
+=======
+fff000
+000000
+fff000
+000fff
+000000
+000fff
+000fff
+000000
+fff000
+000fff
+000fff
+fff000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 fff000
 fff000
 000fff
 <<<<<<< classification
 fff000
 fff000
+<<<<<<< HEAD
 =======
 >>>>>>> fpga
 000000
 000000
 000000
+=======
+fff000
+ffffff
+000fff
+ffffff
+fff000
+fff000
+ffffff
+ffffff
+000fff
+fff000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 000fff
 000000
 <<<<<<< classification
 ffffff
 ffffff
+<<<<<<< HEAD
 000000
 ffffff
 000fff
@@ -2314,24 +2763,39 @@ fff000
 ffffff
 =======
 ffffff
+=======
+000fff
+fff000
+000000
+ffffff
+fff000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 fff000
 000000
 >>>>>>> all'
 000fff
-000000
-000000
+ffffff
 fff000
 <<<<<<< classification
 =======
 fff000
 000fff
 ffffff
+<<<<<<< HEAD
 fff000
 =======
 >>>>>>> fpga
+=======
+000fff
+fff000
+fff000
+000000
+ffffff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 000fff
 >>>>>>> all'
 fff000
+<<<<<<< HEAD
 000fff
 fff000
 000fff
@@ -2341,239 +2805,398 @@ fff000
 <<<<<<< classification
 fff000
 <<<<<<< classification
+=======
+ffffff
+fff000
+ffffff
+fff000
+fff000
+000fff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 000000
 000fff
+fff000
 000fff
+<<<<<<< HEAD
 =======
 ffffff
 =======
->>>>>>> fpga
-000000
-000000
-000fff
-000000
-ffffff
-ffffff
-000000
-ffffff
-000fff
-000000
-fff000
-ffffff
-000fff
-000000
-000000
-<<<<<<< classification
->>>>>>> all'
-000fff
-fff000
-000000
-000fff
-<<<<<<< classification
-ffffff
-=======
-fff000
-fff000
-000fff
-fff000
-000000
-fff000
 >>>>>>> fpga
 000000
 000000
-000000
-fff000
-fff000
-ffffff
 000fff
-fff000
+000000
 =======
 000fff
+000000
 000fff
-fff000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+ffffff
 000000
 000fff
 ffffff
 000000
+<<<<<<< HEAD
+ffffff
+000fff
+000000
+=======
+000fff
 000000
 000000
-fff000
+000000
+000fff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 fff000
 ffffff
 000fff
+000000
+000000
+<<<<<<< HEAD
 <<<<<<< classification
 >>>>>>> all'
+000fff
+fff000
+000000
+000fff
+<<<<<<< classification
+ffffff
 =======
+fff000
+fff000
+000fff
+fff000
+000000
 fff000
 >>>>>>> fpga
-000fff
+000000
+000000
+000000
+fff000
+fff000
 ffffff
 000fff
 fff000
-<<<<<<< classification
-<<<<<<< classification
-ffffff
-ffffff
 =======
+=======
+000000
+ffffff
+000000
+000fff
+000fff
+000000
+000fff
+000fff
+000000
+000000
+000000
+000fff
+000fff
+000000
+000fff
+000000
+000000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+000fff
+000fff
+fff000
+000000
+000fff
+ffffff
+000000
+<<<<<<< HEAD
+000000
+000000
+fff000
+fff000
+=======
+000fff
+000fff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+ffffff
+000fff
+<<<<<<< classification
 >>>>>>> all'
 =======
-ffffff
-ffffff
->>>>>>> fpga
-000000
-ffffff
-ffffff
-ffffff
-000fff
-ffffff
-ffffff
-000000
-<<<<<<< classification
-000fff
-=======
->>>>>>> all'
-000fff
-000fff
-000fff
-ffffff
-ffffff
-<<<<<<< classification
-<<<<<<< classification
 fff000
-000fff
-000fff
-000fff
-000fff
-000fff
-000fff
-000fff
-000000
-000000
-fff000
-=======
-000000
-fff000
-fff000
-000fff
-000fff
-000000
->>>>>>> all'
-000fff
-000000
-000fff
-fff000
-fff000
-ffffff
-<<<<<<< classification
-fff000
-=======
-000000
-=======
-fff000
-000fff
-000fff
-000fff
-000fff
-000fff
-000fff
-000fff
->>>>>>> fpga
-000000
->>>>>>> all'
-000fff
-000000
-<<<<<<< classification
-<<<<<<< classification
-000fff
-ffffff
-fff000
-ffffff
-fff000
-fff000
-000fff
-=======
-fff000
+<<<<<<< HEAD
 >>>>>>> fpga
 000fff
-ffffff
-000fff
-ffffff
-000000
-<<<<<<< classification
 =======
-=======
-000fff
 fff000
->>>>>>> fpga
-ffffff
-fff000
-ffffff
-fff000
-000fff
-ffffff
 000000
-000fff
-ffffff
-fff000
-ffffff
-fff000
-fff000
-000fff
-000fff
-<<<<<<< classification
-fff000
-fff000
-fff000
->>>>>>> all'
-000fff
-000000
-000fff
-<<<<<<< classification
-ffffff
-fff000
-fff000
-fff000
-=======
-=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 ffffff
 000fff
-ffffff
-000000
-000fff
-000000
->>>>>>> fpga
-000fff
-ffffff
->>>>>>> all'
 fff000
-fff000
-fff000
-fff000
-000fff
-fff000
-000fff
-000fff
-000fff
 <<<<<<< classification
 <<<<<<< classification
 ffffff
-=======
-000000
-000000
-000fff
-000000
->>>>>>> all'
-fff000
-000000
-000fff
-<<<<<<< classification
-fff000
-000000
+<<<<<<< HEAD
+ffffff
 =======
 >>>>>>> all'
 =======
 ffffff
+ffffff
+>>>>>>> fpga
+000000
+ffffff
+ffffff
+ffffff
+000fff
+=======
 fff000
+000fff
+fff000
+000000
+ffffff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+ffffff
+ffffff
+000000
+<<<<<<< HEAD
+<<<<<<< classification
+000fff
+=======
+>>>>>>> all'
+000fff
+000fff
+000fff
+ffffff
+ffffff
+<<<<<<< classification
+<<<<<<< classification
+fff000
+000fff
+000fff
+000fff
+000fff
+000fff
+000fff
+000fff
+000000
+000000
+fff000
+=======
+000000
+fff000
+fff000
+000fff
+000fff
+000000
+>>>>>>> all'
+000fff
+000000
+000fff
+=======
+000000
+ffffff
+ffffff
+fff000
+fff000
+000000
+000fff
+000fff
+ffffff
+fff000
+ffffff
+000000
+000000
+ffffff
+fff000
+fff000
+000fff
+000000
+000fff
+000000
+ffffff
+ffffff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+fff000
+ffffff
+fff000
+<<<<<<< HEAD
+ffffff
+<<<<<<< classification
+fff000
+=======
+000000
+=======
+fff000
+000fff
+000fff
+000fff
+000fff
+000fff
+000fff
+000fff
+>>>>>>> fpga
+000000
+>>>>>>> all'
+000fff
+000000
+<<<<<<< classification
+<<<<<<< classification
+000fff
+ffffff
+=======
+000fff
+ffffff
+ffffff
+fff000
+000fff
+ffffff
+ffffff
+000000
+000fff
+fff000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+fff000
+fff000
+<<<<<<< HEAD
+fff000
+000fff
+=======
+fff000
+>>>>>>> fpga
+=======
+000fff
+000fff
+fff000
+000fff
+000000
+fff000
+fff000
+000000
+000000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+000fff
+ffffff
+000fff
+ffffff
+ffffff
+ffffff
+000000
+000000
+000000
+<<<<<<< classification
+=======
+=======
+000fff
+fff000
+<<<<<<< HEAD
+>>>>>>> fpga
+ffffff
+=======
+000000
+000000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+fff000
+ffffff
+fff000
+000fff
+ffffff
+<<<<<<< HEAD
+000000
+=======
+ffffff
+000fff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+000fff
+ffffff
+fff000
+ffffff
+<<<<<<< HEAD
+fff000
+fff000
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+000fff
+ffffff
+000fff
+<<<<<<< HEAD
+<<<<<<< classification
+fff000
+fff000
+fff000
+>>>>>>> all'
+000fff
+000000
+000fff
+<<<<<<< classification
+=======
+ffffff
+000fff
+fff000
+ffffff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+ffffff
+fff000
+fff000
+fff000
+=======
+=======
+ffffff
+<<<<<<< HEAD
+000fff
+ffffff
+000000
+000fff
+=======
+fff000
+000fff
+ffffff
+ffffff
+000000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+000000
+>>>>>>> fpga
+000fff
+ffffff
+<<<<<<< HEAD
+>>>>>>> all'
+fff000
+fff000
+fff000
+fff000
+000fff
+fff000
+000fff
+000fff
+000fff
+<<<<<<< classification
+<<<<<<< classification
+ffffff
+=======
+000000
+000000
+=======
+ffffff
+ffffff
+000fff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+000fff
+000000
+>>>>>>> all'
+fff000
+<<<<<<< HEAD
+000000
+000fff
+<<<<<<< classification
+fff000
+000000
+=======
+>>>>>>> all'
+=======
+ffffff
+fff000
+=======
+000fff
+000fff
+ffffff
+000000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 000000
 000fff
 fff000
@@ -2582,26 +3205,56 @@ fff000
 000fff
 ffffff
 fff000
+<<<<<<< HEAD
 fff000
 000fff
+=======
+000000
+ffffff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 fff000
+000000
+000000
 fff000
 ffffff
+<<<<<<< HEAD
 000000
 <<<<<<< classification
 <<<<<<< classification
 fff000
 ffffff
 fff000
+=======
+ffffff
+ffffff
+ffffff
+ffffff
+000000
+000fff
+000fff
+000000
+000fff
+ffffff
+000fff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 fff000
+000000
 fff000
+<<<<<<< HEAD
 fff000
 ffffff
 fff000
+=======
+000fff
+000000
+000fff
+000fff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 fff000
 ffffff
 =======
 000000
+<<<<<<< HEAD
 000fff
 000fff
 000000
@@ -2634,42 +3287,108 @@ ffffff
 000000
 000fff
 000000
+=======
+000fff
+000000
 fff000
+fff000
+000000
+000fff
+ffffff
+000fff
+fff000
+000000
+000000
+000fff
+fff000
+000fff
+000000
+ffffff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+fff000
+fff000
+fff000
+000000
 000fff
 fff000
 000fff
 fff000
 fff000
+000fff
 ffffff
 000000
+<<<<<<< HEAD
 000fff
 =======
+=======
+000000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+fff000
+ffffff
+fff000
+<<<<<<< HEAD
+fff000
+=======
+000fff
+fff000
+ffffff
+000000
+000000
+000fff
+000fff
+000fff
+000fff
+000fff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+fff000
 fff000
 ffffff
 fff000
 fff000
-fff000
-fff000
 ffffff
 fff000
-fff000
-ffffff
-fff000
+<<<<<<< HEAD
 000000
 000000
 fff000
 ffffff
 ffffff
+=======
+ffffff
+000000
+000fff
+000fff
+ffffff
+fff000
+000000
+ffffff
+000000
+ffffff
+ffffff
+fff000
+000000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+000fff
+000000
+ffffff
+000fff
+<<<<<<< HEAD
+ffffff
+ffffff
+=======
+000000
+fff000
+000fff
+ffffff
+fff000
+ffffff
+fff000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 000fff
 ffffff
 ffffff
 000fff
-ffffff
-ffffff
-000fff
-ffffff
-ffffff
-000fff
+<<<<<<< HEAD
 000fff
 ffffff
 >>>>>>> fpga
@@ -2685,11 +3404,27 @@ ffffff
 000000
 000fff
 ffffff
+=======
+000000
+000000
+fff000
 000fff
 fff000
+000fff
+fff000
+000fff
 ffffff
 000000
+000000
+000fff
+fff000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+000fff
 ffffff
+fff000
+000000
+ffffff
+<<<<<<< HEAD
 000000
 000fff
 000000
@@ -2699,11 +3434,24 @@ ffffff
 >>>>>>> all'
 ffffff
 000000
+=======
+000fff
+000000
+fff000
+ffffff
+000fff
+ffffff
+ffffff
+fff000
+fff000
+fff000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 fff000
 fff000
 <<<<<<< classification
 <<<<<<< classification
 000000
+ffffff
 ffffff
 000000
 =======
@@ -2716,10 +3464,17 @@ fff000
 000000
 ffffff
 fff000
+ffffff
+fff000
+fff000
+ffffff
+ffffff
+000fff
 000fff
 000fff
 000000
 fff000
+<<<<<<< HEAD
 <<<<<<< classification
 =======
 fff000
@@ -2739,6 +3494,15 @@ ffffff
 >>>>>>> all'
 =======
 >>>>>>> fpga
+=======
+000fff
+fff000
+000fff
+000fff
+fff000
+000000
+000fff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 000000
 ffffff
 000000
@@ -2746,67 +3510,148 @@ fff000
 <<<<<<< classification
 <<<<<<< classification
 000000
+=======
+000fff
+<<<<<<< HEAD
+>>>>>>> all'
+ffffff
+=======
+000000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+000fff
+ffffff
+fff000
+<<<<<<< HEAD
+<<<<<<< classification
+fff000
+=======
+ffffff
+fff000
+fff000
+000fff
+=======
+000000
+ffffff
+ffffff
+000000
+000000
+fff000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+ffffff
+fff000
+ffffff
+ffffff
+>>>>>>> fpga
+000fff
+000000
+ffffff
+<<<<<<< HEAD
+ffffff
+000000
+ffffff
+000000
+fff000
+000fff
+000fff
+000000
+<<<<<<< classification
+=======
+000000
+000fff
+fff000
+ffffff
+ffffff
+ffffff
+ffffff
+000fff
+000000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+fff000
+000000
+000000
+000000
+ffffff
+000000
+ffffff
+ffffff
+000fff
+<<<<<<< HEAD
 =======
 000fff
 >>>>>>> all'
-ffffff
 000fff
-ffffff
+000fff
 fff000
 <<<<<<< classification
-fff000
 =======
 ffffff
-fff000
-fff000
+000000
+000fff
 000fff
 ffffff
+000000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 fff000
 ffffff
-ffffff
->>>>>>> fpga
 000fff
 000000
 ffffff
-ffffff
-000000
-ffffff
+<<<<<<< HEAD
 000000
 fff000
-000fff
-000fff
-000000
-<<<<<<< classification
-fff000
-fff000
-000fff
 =======
 000fff
->>>>>>> all'
 000fff
-000fff
-fff000
-<<<<<<< classification
-fff000
 ffffff
+000fff
 000000
+000fff
 ffffff
 000000
 fff000
+000000
+000000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 ffffff
+ffffff
+ffffff
+000000
+000fff
+000000
+000fff
 fff000
 fff000
+<<<<<<< HEAD
 =======
 >>>>>>> all'
 =======
 >>>>>>> fpga
+=======
 000fff
+fff000
+fff000
+000000
+000000
+000000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+000fff
+000000
 ffffff
+ffffff
+<<<<<<< HEAD
 fff000
 <<<<<<< classification
 ffffff
 ffffff
 <<<<<<< classification
+=======
+000000
+ffffff
+000fff
+000000
+fff000
+ffffff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 000fff
 ffffff
 =======
@@ -2817,17 +3662,26 @@ fff000
 <<<<<<< classification
 >>>>>>> all'
 000000
+<<<<<<< HEAD
 ffffff
 000000
 =======
 >>>>>>> fpga
 fff000
 000fff
+=======
+fff000
+fff000
+000fff
+fff000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 000000
+fff000
 000000
 <<<<<<< classification
 <<<<<<< classification
 000fff
+<<<<<<< HEAD
 fff000
 =======
 ffffff
@@ -2835,8 +3689,13 @@ ffffff
 000fff
 >>>>>>> all'
 ffffff
+=======
 000fff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+000fff
+fff000
 000000
+<<<<<<< HEAD
 fff000
 000000
 fff000
@@ -2847,12 +3706,50 @@ fff000
 000000
 fff000
 ffffff
+=======
+000fff
+ffffff
+000000
+000000
+000000
+fff000
+fff000
+ffffff
+000fff
+fff000
+000fff
+ffffff
+000fff
+fff000
+ffffff
+ffffff
+000000
+ffffff
+ffffff
+000fff
+ffffff
+ffffff
+000000
+000fff
+000fff
+000fff
+ffffff
+ffffff
+fff000
+000fff
+000fff
+000fff
+000fff
+000fff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 000fff
 fff000
 000fff
 =======
 000000
+000000
 fff000
+<<<<<<< HEAD
 >>>>>>> fpga
 ffffff
 fff000
@@ -2865,26 +3762,49 @@ ffffff
 000000
 000fff
 >>>>>>> all'
+=======
+000fff
+000000
+000fff
+fff000
+ffffff
+fff000
+ffffff
+fff000
+000fff
+ffffff
+000000
+000fff
+ffffff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 fff000
 ffffff
 000000
 000000
 fff000
 fff000
+fff000
+000fff
+000fff
 ffffff
 ffffff
 000000
+<<<<<<< HEAD
 ffffff
 <<<<<<< classification
 000000
 000fff
 ffffff
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 000fff
+000000
 000fff
 fff000
 fff000
 ffffff
 fff000
+<<<<<<< HEAD
 000fff
 =======
 fff000
@@ -2900,10 +3820,18 @@ ffffff
 fff000
 ffffff
 000000
-000fff
-000000
+=======
 fff000
+fff000
+fff000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+000fff
+fff000
+000fff
+000fff
+000fff
 ffffff
+<<<<<<< HEAD
 ffffff
 000000
 000000
@@ -2919,8 +3847,22 @@ fff000
 000000
 fff000
 fff000
+=======
+fff000
+000000
+000fff
+fff000
+000000
+000fff
+ffffff
+fff000
+fff000
+000fff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+fff000
 fff000
 ffffff
+<<<<<<< HEAD
 ffffff
 000000
 000fff
@@ -2955,11 +3897,26 @@ ffffff
 =======
 fff000
 000fff
+=======
 000000
+fff000
 ffffff
+fff000
+fff000
+fff000
+fff000
+ffffff
+fff000
+fff000
+ffffff
+fff000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+000000
+000000
 fff000
 >>>>>>> fpga
 ffffff
+<<<<<<< HEAD
 000000
 000fff
 000000
@@ -2967,49 +3924,111 @@ ffffff
 000fff
 ffffff
 000fff
+=======
+ffffff
+000fff
+ffffff
+ffffff
+000fff
+ffffff
+ffffff
+000fff
+ffffff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 ffffff
 000fff
 000fff
-000fff
 ffffff
+000000
+000fff
+000000
+ffffff
+<<<<<<< HEAD
 ffffff
 ffffff
 ffffff
 000fff
 =======
+=======
+000000
+fff000
+fff000
+000000
+ffffff
+000000
+000fff
+ffffff
+000fff
+fff000
+ffffff
+000000
+ffffff
+000000
+000fff
+000000
+fff000
+000000
+ffffff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 ffffff
 =======
 >>>>>>> fpga
 fff000
+<<<<<<< HEAD
 000000
 000000
 000000
-000fff
+=======
 fff000
-fff000
-ffffff
-000fff
-fff000
-000000
-000000
-fff000
-fff000
-fff000
-ffffff
-ffffff
-000000
 000fff
 000000
+ffffff
+fff000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+000fff
+000fff
+000000
+fff000
+fff000
+000fff
+000fff
+000fff
+ffffff
+000fff
+fff000
 000000
 000000
+fff000
+<<<<<<< HEAD
+fff000
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+fff000
+ffffff
 000000
 ffffff
 000000
+fff000
+ffffff
+<<<<<<< HEAD
+000000
+000fff
+000000
+000000
+000000
+000000
+=======
+fff000
+fff000
+000fff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+ffffff
 fff000
 000000
 ffffff
 ffffff
 ffffff
+<<<<<<< HEAD
 000fff
 fff000
 000000
@@ -3035,22 +4054,101 @@ ffffff
 ffffff
 000fff
 =======
+=======
+000000
+ffffff
+000000
+fff000
+000fff
+000fff
+000000
+000fff
+fff000
+ffffff
+fff000
+fff000
+000fff
+000000
+000000
+000000
+fff000
+ffffff
+000fff
+fff000
+000fff
+ffffff
+fff000
+fff000
+ffffff
+000000
+000000
+fff000
+fff000
 ffffff
 ffffff
+000000
+ffffff
+000000
+000fff
+ffffff
+000fff
+000fff
+fff000
+fff000
+ffffff
+fff000
+000fff
+000000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+ffffff
+fff000
+ffffff
+<<<<<<< HEAD
 ffffff
 >>>>>>> fpga
 ffffff
 000fff
 000fff
+=======
+000000
+000fff
+000000
+fff000
+000000
+000000
+000000
+000fff
+fff000
+fff000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 ffffff
 <<<<<<< classification
 <<<<<<< classification
 000fff
+<<<<<<< HEAD
 ffffff
-000000
 000000
 =======
 fff000
+000000
+000000
+fff000
+fff000
+fff000
+ffffff
+ffffff
+000000
+000fff
+000000
+000000
+000000
+000000
+ffffff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+000000
+=======
+fff000
+<<<<<<< HEAD
 >>>>>>> all'
 fff000
 =======
@@ -3080,12 +4178,62 @@ fff000
 000000
 fff000
 000000
+=======
+000000
+ffffff
+ffffff
+ffffff
+000fff
+fff000
+000000
+ffffff
+000fff
+ffffff
+000fff
+000fff
+ffffff
+000000
+000fff
+000000
+000fff
+ffffff
+000fff
+ffffff
+000fff
+000fff
+000fff
+ffffff
+ffffff
+ffffff
+ffffff
+000fff
+ffffff
+000fff
+ffffff
+000fff
+000fff
+ffffff
+000fff
+ffffff
+000000
+000000
+fff000
+ffffff
+000fff
+fff000
+000000
+fff000
+000000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 ffffff
 <<<<<<< classification
 >>>>>>> all'
 =======
 000fff
+<<<<<<< HEAD
 >>>>>>> fpga
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 000000
 019019
 019019
@@ -3125,12 +4273,20 @@ febfeb
 feb014
 febfeb
 febfeb
+<<<<<<< HEAD
+=======
+014014
+feb014
+febfeb
+febfeb
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 feb014
 014014
 febfeb
 014014
 febfeb
 febfeb
+<<<<<<< HEAD
 =======
 014feb
 014014
@@ -3174,6 +4330,8 @@ febfeb
 014014
 febfeb
 febfeb
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 feb014
 feb014
 014014
@@ -3181,7 +4339,10 @@ febfeb
 014feb
 feb014
 014014
+<<<<<<< HEAD
 >>>>>>> all'
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 feb014
 feb014
 feb014
@@ -3191,8 +4352,12 @@ feb014
 febfeb
 febfeb
 014014
+<<<<<<< HEAD
 <<<<<<< classification
 <<<<<<< classification
+014014
+014feb
+=======
 014014
 014feb
 feb014
@@ -3202,8 +4367,40 @@ feb014
 feb014
 014feb
 feb014
+014feb
+febfeb
+febfeb
+014014
+febfeb
+feb014
+febfeb
+febfeb
+014014
+014014
+014feb
+014014
+014014
+febfeb
+014014
+feb014
+014feb
+014014
+feb014
+febfeb
+014014
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+feb014
+014feb
+feb014
+014feb
+<<<<<<< HEAD
+feb014
+014feb
+feb014
 =======
 febfeb
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 014feb
 feb014
 feb014
@@ -3221,6 +4418,7 @@ feb014
 febfeb
 feb014
 febfeb
+<<<<<<< HEAD
 febfeb
 014014
 014014
@@ -3228,11 +4426,14 @@ febfeb
 =======
 >>>>>>> fpga
 014feb
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 feb014
 014feb
 feb014
 014feb
 febfeb
+<<<<<<< HEAD
 <<<<<<< classification
 >>>>>>> all'
 014feb
@@ -3266,19 +4467,6 @@ feb014
 014014
 feb014
 febfeb
-014014
-feb014
-014feb
-014feb
-014feb
-febfeb
-feb014
-014feb
-feb014
-014feb
-febfeb
-<<<<<<< classification
-<<<<<<< classification
 014014
 feb014
 014feb
@@ -3290,8 +4478,23 @@ feb014
 feb014
 014feb
 febfeb
+<<<<<<< classification
+<<<<<<< classification
+014014
+feb014
+014feb
+014feb
+014feb
+febfeb
+feb014
+014feb
+feb014
+014feb
+febfeb
 =======
 >>>>>>> fpga
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 ffffff
 000fff
 000fff
@@ -3300,6 +4503,7 @@ ffffff
 ffffff
 000000
 000fff
+<<<<<<< HEAD
 <<<<<<< classification
 000000
 fff000
@@ -3740,6 +4944,11 @@ ffffff
 000fff
 ffffff
 000fff
+=======
+000000
+fff000
+fff000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 fff000
 000000
 000000
@@ -3777,6 +4986,7 @@ fff000
 <<<<<<< classification
 ffffff
 ffffff
+<<<<<<< HEAD
 fff000
 000fff
 fff000
@@ -3823,6 +5033,27 @@ ffffff
 ffffff
 >>>>>>> fpga
 000fff
+=======
+000000
+000fff
+fff000
+000000
+000000
+000fff
+000fff
+000000
+ffffff
+000fff
+000000
+000fff
+000fff
+000000
+ffffff
+000000
+fff000
+000fff
+000000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 000000
 ffffff
 000fff
@@ -3837,6 +5068,7 @@ fff000
 000fff
 000000
 fff000
+<<<<<<< HEAD
 >>>>>>> all'
 000000
 fff000
@@ -3846,7 +5078,14 @@ ffffff
 <<<<<<< classification
 =======
 ffffff
+=======
 fff000
+fff000
+000000
+000000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+fff000
+ffffff
 000fff
 fff000
 >>>>>>> all'
@@ -3862,13 +5101,21 @@ fff000
 000000
 000fff
 ffffff
+<<<<<<< HEAD
 000000
 =======
+=======
+fff000
+fff000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 000fff
 >>>>>>> all'
 000fff
+<<<<<<< HEAD
 =======
 fff000
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 000fff
 000000
 ffffff
@@ -3877,6 +5124,7 @@ ffffff
 fff000
 ffffff
 000fff
+<<<<<<< HEAD
 000000
 000000
 ffffff
@@ -3885,10 +5133,16 @@ ffffff
 000000
 fff000
 000000
+=======
+fff000
+000000
+fff000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 000fff
 ffffff
 <<<<<<< classification
 000fff
+<<<<<<< HEAD
 000fff
 000fff
 =======
@@ -3914,9 +5168,20 @@ fff000
 >>>>>>> all'
 000fff
 =======
+=======
+fff000
+ffffff
+fff000
+000fff
+ffffff
+000000
+fff000
+000fff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 000fff
 000000
 000fff
+<<<<<<< HEAD
 ffffff
 000fff
 fff000
@@ -3931,10 +5196,17 @@ fff000
 000000
 =======
 ffffff
+=======
+000fff
+000fff
+000fff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 ffffff
 000fff
+ffffff
 000fff
 000000
+<<<<<<< HEAD
 ffffff
 fff000
 000000
@@ -3950,12 +5222,33 @@ fff000
 ffffff
 000000
 ffffff
+=======
+000fff
+000000
+fff000
+fff000
+000fff
+ffffff
+fff000
+ffffff
+fff000
+ffffff
+000fff
+000000
+000fff
+fff000
+000000
+000fff
+000000
+000000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 000fff
 ffffff
 <<<<<<< classification
 000000
 000fff
 ffffff
+<<<<<<< HEAD
 ffffff
 =======
 fff000
@@ -3990,10 +5283,32 @@ ffffff
 000000
 >>>>>>> fpga
 000fff
-000fff
+=======
+fff000
+fff000
+ffffff
+ffffff
+fff000
 ffffff
 000fff
+fff000
+fff000
+ffffff
+000000
 000fff
+fff000
+000000
+ffffff
+fff000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+000fff
+000000
+fff000
+ffffff
+000000
+000fff
+000fff
+<<<<<<< HEAD
 fff000
 fff000
 000fff
@@ -4035,11 +5350,36 @@ fff000
 ffffff
 000fff
 000fff
+=======
+000000
+fff000
+000000
+000fff
+000fff
+000fff
+000fff
+ffffff
+fff000
+000000
+fff000
+fff000
+fff000
+000000
+fff000
+fff000
+000000
+ffffff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 ffffff
 fff000
 ffffff
+fff000
+fff000
+fff000
+fff000
 000000
 000fff
+<<<<<<< HEAD
 000fff
 000fff
 ffffff
@@ -4057,13 +5397,24 @@ fff000
 >>>>>>> all'
 =======
 >>>>>>> fpga
+=======
+ffffff
+000fff
+ffffff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 000fff
 ffffff
 fff000
+<<<<<<< HEAD
+=======
+000000
+000000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 fff000
 000fff
 <<<<<<< classification
 fff000
+<<<<<<< HEAD
 <<<<<<< classification
 000fff
 000fff
@@ -4078,11 +5429,17 @@ fff000
 =======
 =======
 >>>>>>> fpga
+=======
+000000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 ffffff
+fff000
+000fff
 000fff
 000000
 000000
 fff000
+<<<<<<< HEAD
 000000
 000fff
 000fff
@@ -4101,8 +5458,19 @@ ffffff
 fff000
 <<<<<<< classification
 >>>>>>> all'
+=======
+ffffff
+fff000
+fff000
+fff000
+000000
+ffffff
+fff000
+fff000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 000000
 fff000
+<<<<<<< HEAD
 000fff
 000fff
 <<<<<<< classification
@@ -4111,9 +5479,15 @@ ffffff
 000fff
 ffffff
 fff000
+=======
+ffffff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 fff000
 000fff
+fff000
+000000
 ffffff
+<<<<<<< HEAD
 =======
 fff000
 fff000
@@ -4122,10 +5496,21 @@ fff000
 ffffff
 ffffff
 fff000
+=======
+000fff
+000000
+ffffff
+000fff
+fff000
+ffffff
+ffffff
+ffffff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 000fff
 >>>>>>> fpga
 000fff
 000000
+<<<<<<< HEAD
 000000
 000000
 <<<<<<< classification
@@ -4134,18 +5519,43 @@ fff000
 000000
 ffffff
 000000
-ffffff
-fff000
-fff000
-fff000
 =======
 fff000
-ffffff
+000fff
+000000
+fff000
+000000
+fff000
 000000
 000fff
 ffffff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+ffffff
+fff000
+000fff
+fff000
+<<<<<<< HEAD
+fff000
+=======
+=======
+000fff
+ffffff
+ffffff
+000fff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 fff000
 ffffff
+000000
+<<<<<<< HEAD
+000fff
+=======
+fff000
+000fff
+000000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+ffffff
+ffffff
+<<<<<<< HEAD
 ffffff
 ffffff
 000000
@@ -4153,29 +5563,57 @@ fff000
 000fff
 000000
 >>>>>>> all'
+=======
+fff000
+ffffff
+000fff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 000000
 fff000
 000000
 ffffff
+<<<<<<< HEAD
 ffffff
 <<<<<<< classification
-fff000
+=======
 000fff
-000fff
-000000
-000000
-000000
-000000
-fff000
-fff000
-000fff
-000000
-000000
-000000
-fff000
-000fff
-fff000
 ffffff
+000000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+fff000
+000000
+000fff
+<<<<<<< HEAD
+000fff
+=======
+ffffff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+000000
+000fff
+000000
+000000
+<<<<<<< HEAD
+=======
+000000
+ffffff
+000fff
+000fff
+000fff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+000000
+fff000
+fff000
+000fff
+000000
+<<<<<<< HEAD
+000000
+000000
+fff000
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+000fff
+ffffff
+<<<<<<< HEAD
 ffffff
 fff000
 000000
@@ -4196,48 +5634,113 @@ fff000
 fff000
 000fff
 000000
+=======
+000fff
+fff000
+000000
+ffffff
+ffffff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 000000
 000000
 fff000
 000fff
+ffffff
+ffffff
+<<<<<<< HEAD
+fff000
+=======
+000fff
+000fff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+000000
+ffffff
+fff000
+000000
+<<<<<<< HEAD
+000fff
+000fff
+000fff
+=======
+000000
+fff000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+000000
 fff000
 ffffff
+<<<<<<< HEAD
+000fff
+=======
+000000
+ffffff
+000fff
 ffffff
 fff000
 000000
 ffffff
 000000
-000fff
-000fff
-000fff
-000000
-000fff
-ffffff
 fff000
+000fff
+fff000
+000000
+ffffff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+000fff
+ffffff
 ffffff
 000fff
-000fff
 ffffff
-ffffff
-000fff
 fff000
 >>>>>>> fpga
 000000
 000fff
+<<<<<<< HEAD
 fff000
 <<<<<<< classification
 ffffff
 >>>>>>> all'
+=======
+000fff
+ffffff
+000fff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 000fff
 000fff
+<<<<<<< HEAD
 000000
 000fff
 ffffff
 <<<<<<< classification
 fff000
+=======
+fff000
+000fff
+000fff
+000fff
+000fff
+000fff
+000fff
+fff000
+000fff
+000fff
+fff000
+fff000
+000fff
+ffffff
+000000
+000fff
+000fff
+000fff
 ffffff
 000fff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+ffffff
+fff000
+fff000
 000fff
+ffffff
+000fff
+<<<<<<< HEAD
 ffffff
 ffffff
 000fff
@@ -4250,9 +5753,24 @@ ffffff
 fff000
 000000
 000fff
+=======
+000000
+000000
+fff000
+000000
+000fff
+000fff
+000000
+ffffff
+000000
+ffffff
+fff000
+fff000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 fff000
 <<<<<<< classification
 fff000
+<<<<<<< HEAD
 000fff
 000000
 000fff
@@ -4268,11 +5786,42 @@ fff000
 ffffff
 fff000
 >>>>>>> all'
+=======
+ffffff
+ffffff
+fff000
+000fff
+000fff
 000000
+000000
+000000
+000000
+fff000
+fff000
+000fff
+000000
+000000
+000000
+fff000
+000fff
+fff000
+ffffff
+ffffff
+fff000
+000000
+ffffff
+000000
+000fff
+000fff
+000fff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+000000
+000fff
 ffffff
 000000
 fff000
 ffffff
+<<<<<<< HEAD
 <<<<<<< classification
 <<<<<<< classification
 =======
@@ -4288,28 +5837,55 @@ ffffff
 >>>>>>> all'
 000fff
 000000
-fff000
+=======
+000fff
+000fff
+ffffff
+ffffff
+000fff
 fff000
 000000
+000fff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
+fff000
+fff000
+000fff
+000000
+<<<<<<< HEAD
 <<<<<<< classification
 ffffff
 <<<<<<< classification
 fff000
 000000
 000000
+=======
+000fff
+000fff
+000000
+fff000
+ffffff
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 000fff
 =======
 >>>>>>> all'
 fff000
 000000
 ffffff
+<<<<<<< HEAD
 <<<<<<< classification
 =======
+=======
+fff000
+000000
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 000000
 000fff
 fff000
 ffffff
+<<<<<<< HEAD
 >>>>>>> fpga
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 ffffff
 000000
 000000
@@ -4641,7 +6217,10 @@ ff5ff2
 002ff4
 000004
 ffaffc
+<<<<<<< HEAD
 <<<<<<< classification
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 002001
 009009
 ff9ffe
@@ -4716,6 +6295,7 @@ fff006
 ff5ffd
 ff7ffe
 fff007
+<<<<<<< HEAD
 =======
 000fff
 000000
@@ -5121,6 +6701,8 @@ ffc005
 fe4fef
 006feb
 >>>>>>> all'
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 080080
 080080
 080080
@@ -5151,7 +6733,10 @@ fe4fef
 080080
 080080
 080080
+<<<<<<< HEAD
 <<<<<<< classification
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 066066
 066f99
 066066
@@ -5162,6 +6747,7 @@ f99066
 066f99
 f99f99
 066f99
+<<<<<<< HEAD
 =======
 f99f99
 066066
@@ -5179,15 +6765,24 @@ f99f99
 066f99
 066066
 f99066
+=======
+f99f99
+f99f99
+066f99
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 066066
 066066
 f99066
 f99066
+<<<<<<< HEAD
 <<<<<<< classification
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 f99f99
 066f99
 066066
 066f99
+<<<<<<< HEAD
 =======
 f99066
 f99066
@@ -5198,14 +6793,22 @@ f99066
 f99066
 f99f99
 066f99
+=======
+f99066
+f99f99
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 066066
 f99066
 f99066
 f99066
 f99f99
+<<<<<<< HEAD
 f99f99
 066f99
 <<<<<<< classification
+=======
+066f99
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 066f99
 f99066
 066066
@@ -5223,6 +6826,7 @@ f99f99
 066066
 f99f99
 066f99
+<<<<<<< HEAD
 =======
 066066
 066f99
@@ -5232,11 +6836,16 @@ f99f99
 066f99
 f99066
 >>>>>>> all'
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 066f99
 066066
 f99066
 f99f99
+<<<<<<< HEAD
 <<<<<<< classification
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 f99066
 f99066
 066066
@@ -6057,6 +7666,7 @@ ffeffe
 001fff
 000ffd
 000003
+<<<<<<< HEAD
 =======
 f99f99
 =======
@@ -7039,6 +8649,8 @@ ffeffe
 000ffd
 000003
 >>>>>>> fpga
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 100100
 100100
 100100
@@ -7069,10 +8681,14 @@ ffeffe
 100100
 100100
 100100
+<<<<<<< HEAD
 <<<<<<< classification
 f330cc
 f33f33
 <<<<<<< classification
+=======
+f33f33
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 f330cc
 0cc0cc
 0cc0cc
@@ -7106,6 +8722,7 @@ f330cc
 0cc0cc
 f330cc
 0cc0cc
+<<<<<<< HEAD
 =======
 0ccf33
 0ccf33
@@ -7125,6 +8742,11 @@ f330cc
 0ccf33
 0ccf33
 <<<<<<< classification
+=======
+0cc0cc
+0ccf33
+0ccf33
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 f33f33
 f330cc
 0cc0cc
@@ -7141,6 +8763,7 @@ f33f33
 0cc0cc
 f330cc
 f33f33
+<<<<<<< HEAD
 <<<<<<< classification
 0ccf33
 0ccf33
@@ -7181,6 +8804,14 @@ f330cc
 f33f33
 f330cc
 <<<<<<< classification
+=======
+0ccf33
+0ccf33
+f330cc
+f33f33
+f330cc
+f330cc
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 0ccf33
 0cc0cc
 f33f33
@@ -7324,6 +8955,7 @@ fff001
 ffcffe
 ffdffe
 000ffc
+<<<<<<< HEAD
 =======
 0cc0cc
 f33f33
@@ -7649,6 +9281,10 @@ ffc004
 000ffe
 ffdffe
 <<<<<<< classification
+=======
+001fff
+ffdffe
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 ffeffc
 003003
 ffe000
@@ -8315,6 +9951,7 @@ ff7004
 fff010
 012ffc
 ff900f
+<<<<<<< HEAD
 =======
 000fff
 =======
@@ -9137,6 +10774,8 @@ fff010
 012ffc
 ff900f
 >>>>>>> fpga
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 500500
 500500
 500500
@@ -9167,6 +10806,7 @@ ff900f
 500500
 500500
 500500
+<<<<<<< HEAD
 <<<<<<< classification
 <<<<<<< classification
 c00c00
@@ -9174,11 +10814,16 @@ c00c00
 =======
 400c00
 >>>>>>> all'
+=======
+c00c00
+c00c00
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 400400
 400c00
 c00400
 c00c00
 400c00
+<<<<<<< HEAD
 <<<<<<< classification
 400c00
 400400
@@ -9216,12 +10861,15 @@ c00c00
 =======
 >>>>>>> fpga
 400c00
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 400c00
 400400
 400c00
 400400
 c00400
 c00400
+<<<<<<< HEAD
 >>>>>>> all'
 400400
 c00c00
@@ -9258,6 +10906,10 @@ c00400
 =======
 c00c00
 >>>>>>> fpga
+=======
+400400
+c00c00
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 400c00
 400400
 400c00
@@ -9281,6 +10933,7 @@ c00400
 c00400
 400c00
 400400
+<<<<<<< HEAD
 >>>>>>> all'
 c00c00
 400c00
@@ -9304,6 +10957,11 @@ c00c00
 c00400
 >>>>>>> fpga
 400400
+=======
+c00c00
+c00400
+400400
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 400c00
 400c00
 c00400
@@ -9320,7 +10978,10 @@ c00c00
 400c00
 c00c00
 400c00
+<<<<<<< HEAD
 >>>>>>> all'
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 c00400
 400400
 c00c00
@@ -9333,12 +10994,15 @@ c00400
 c00400
 400c00
 c00400
+<<<<<<< HEAD
 <<<<<<< classification
 <<<<<<< classification
 400c00
 c00400
 =======
 >>>>>>> fpga
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 400400
 005ff4
 00800e
@@ -9348,7 +11012,10 @@ c00400
 feeffa
 003009
 00e00a
+<<<<<<< HEAD
 <<<<<<< classification
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
 001005
 fff002
 ff5002
@@ -9741,6 +11408,7 @@ ff4fe9
 00bfff
 ff9008
 01100a
+<<<<<<< HEAD
 =======
 002002
 00b005
@@ -10175,3 +11843,5 @@ ff4fe9
 ff9008
 01100a
 >>>>>>> fpga
+=======
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4

@@ -47,6 +47,7 @@ will mean that process piping (`|` is a pipe) will not be possibly anymore.
 <<<<<<< classification
 <<<<<<< refs/remotes/assistant/main
 
+<<<<<<< HEAD
 :warning: Please make sure to use the correct number of Mel vectors and the correct length. A default value is automatically set, but you change it
 to match the one you are using! See `poetry run classify --help`.
 
@@ -106,3 +107,6 @@ we provide tools to perform that automatically: `poetry run split-audio "<my_aud
 >>>>>>> all'
 =======
 >>>>>>> all'
+=======
+to match the one you are using! See `poetry run classify --help`.
+>>>>>>> f8717eab10a623c99aed00ec1fefe190bf979cb4
