@@ -7,9 +7,11 @@
 
 #ifndef INC_SPECTROGRAM_H_
 #define INC_SPECTROGRAM_H_
-extern int vmax_global;
+
 
 #include "arm_math.h"
+
+extern q15_t vmax_global;
 
 static inline float q15_to_float(q15_t x)
 {

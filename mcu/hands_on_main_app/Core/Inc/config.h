@@ -11,10 +11,14 @@
 #define MAIN_APP 0
 #define EVAL_RADIO 1
 
+#define BIBLIO_NOISE 0
+#define PYTHAGORE_NOISE 1
+
 #define RUN_CONFIG MAIN_APP
+#define THRESHOLD_MOD BIBLIO_NOISE
 
 // Radio parameters
-#define ENABLE_RADIO 1
+#define ENABLE_RADIO 0
 
 // General UART enable/disable (disable for low-power operation)
 #define ENABLE_UART 1

@@ -81,7 +81,9 @@ static void encode_packet(uint8_t *packet, uint32_t* packet_cnt) {
 static void send_spectrogram() {
 	uint8_t packet[PACKET_LENGTH];
 	printf("value\t%d\n",vmax_global);
-	if (vmax_global<1000){
+	q15_t bound;
+	if (THRESHOLD_MOD) bound = 300; else bound = 70;
+	if (vmax_global<bound){
 		return;
 	}
 	vmax_global=0;
@@ -94,7 +96,7 @@ static void send_spectrogram() {
 	S2LP_Send(packet, PACKET_LENGTH);
 	stop_cycle_count("Send packet");
 	start_cycle_count();
-	print_encoded_packet(packet);
+	//print_encoded_packet(packet);
 	stop_cycle_count("print encoded packet");
 }
 
@@ -111,15 +113,15 @@ static void ADC_Callback(int buf_cplt) {
 		Error_Handler();
 	}
 	ADCDataRdy[buf_cplt] = 1;
-	start_cycle_count();
+	//start_cycle_count();
 	Spectrogram_Format((q15_t *)ADCData[buf_cplt]);
 	Spectrogram_Compute((q15_t *)ADCData[buf_cplt], mel_vectors[cur_melvec]);
 	cur_melvec++;
-	stop_cycle_count("spectrogram");
+	//stop_cycle_count("spectrogram");
 	ADCDataRdy[buf_cplt] = 0;
 
 	if (rem_n_bufs == 0) {
-		print_spectrogram();
+		//print_spectrogram();
 		send_spectrogram();
 	}
 }
