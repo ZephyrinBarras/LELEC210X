@@ -84,7 +84,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 }
 
 static void acquire_and_send_packet() {
-	if (StartADCAcq(N_MELVECS) != HAL_OK) {
+	if (StartADCAcq() != HAL_OK) {	//retire argument
 		DEBUG_PRINT("Error while enabling the DMA\r\n");
 	}
 	while (!IsADCFinished()) {
@@ -107,11 +107,9 @@ void run(void)
 	  }
 	  btn_press = 0;
 #if (CONTINUOUS_ACQ == 1)
-	  while (!btn_press) {
 		  //start_cycle_count();
 		  acquire_and_send_packet();
 		  //stop_cycle_count("acq");
-	  }
 	  btn_press = 0;
 #elif (CONTINUOUS_ACQ == 0 )
 	  //start_cycle_count();

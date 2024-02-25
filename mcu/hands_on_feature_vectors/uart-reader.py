@@ -33,10 +33,10 @@ dt = np.dtype(np.uint16).newbyteorder("<")
 INIT CLASSIFICATION
 
 """
-model_knn = pickle.load(open("/home/zephyrin/Desktop/project-2103-2102-a/classification/data/models/model.pickle", 'rb')) # Write your path to the model here!
+"""model_knn = pickle.load(open("/home/zephyrin/Desktop/project-2103-2102-a/classification/data/models/model.pickle", 'rb')) # Write your path to the model here!
 
 normalize = True
-pca = pickle.load(open("/home/zephyrin/Desktop/project-2103-2102-a/classification/data/models/pca", 'rb'))
+pca = pickle.load(open("/home/zephyrin/Desktop/project-2103-2102-a/classification/data/models/pca", 'rb'))"""
 
 
 
@@ -45,6 +45,7 @@ pca = pickle.load(open("/home/zephyrin/Desktop/project-2103-2102-a/classificatio
 def parse_buffer(line):
     line = line.strip()
     if line.startswith(PRINT_PREFIX):
+        print("line\t"+line[len(PRINT_PREFIX) :])
         return bytes.fromhex(line[len(PRINT_PREFIX) :])
     else:
         print(line)
@@ -56,11 +57,12 @@ def reader(port=None):
     while True:
         line = ""
         while not line.endswith("\n"):
-            line += ser.read_until(b"\n", size=2 * N_MELVECS * MELVEC_LENGTH).decode(
+            print(ser.read_until(b"\n", size=2  * MELVEC_LENGTH).decode(
+                "ascii"
+            ))
+            line += ser.read_until(b"\n", size=2  * MELVEC_LENGTH).decode(
                 "ascii"
             )
-            print(line)
-        line = line.strip()
         buffer = parse_buffer(line)
         if buffer is not None:
             buffer_array = np.frombuffer(buffer, dtype=dt)
