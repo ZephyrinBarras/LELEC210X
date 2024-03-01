@@ -11,6 +11,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.ensemble import RandomForestClassifier
 from classification.utils.utils import accuracy
 
+import librosa
 import argparse
 
 import matplotlib.pyplot as plt
@@ -50,15 +51,37 @@ def parse_buffer(line):
         print(line)
         return None
 
+def melcalcul(y):
+    L = len(y)
+    Nft=512
+    y = y[: L - L % Nft]
+    L = len(y)
+    "Reshape the signal with a piece for each row"
+    audiomat = np.reshape(y, (L // Nft, Nft))
+    audioham = audiomat * np.hamming(Nft)  # Windowing. Hamming, Hanning, Blackman,..
+    z = np.reshape(audioham, -1)  # y windowed by pieces
+    "FFT row by row"
+    stft = np.fft.fft(audioham, axis=1)
+    stft = np.abs(
+    stft[:, : Nft // 2].T)   # Taking only positive frequencies and computing the magnitude
+    
+    Nmel = 20
+    "Obtain the Hz2Mel transformation matrix"
+    mels = librosa.filters.mel(n_fft=Nft, n_mels=Nmel)
+    mels = mels[:, :-1]
+    melspec = np.dot(mels, stft)
+    return melspec
 
+    
 def reader(port=None):
     ser = serial.Serial(port=port, baudrate=115200)
     while True:
         line = ""
         while not line.endswith("\n"):
-            line += ser.read_until(b"\n", size=2 * N_MELVECS * MELVEC_LENGTH).decode(
+            line += ser.read_until(b"\n", size=512).decode(
                 "ascii"
             )
+            melcalcul(line)
             print(line)
         line = line.strip()
         buffer = parse_buffer(line)
