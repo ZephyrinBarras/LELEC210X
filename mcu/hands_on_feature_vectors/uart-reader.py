@@ -34,10 +34,10 @@ dt = np.dtype(np.uint16).newbyteorder("<")
 INIT CLASSIFICATION
 
 """
-model_knn = pickle.load(open("/home/zephyrin/Desktop/project-2103-2102-a/classification/data/models/model.pickle", 'rb')) # Write your path to the model here!
+model_knn = pickle.load(open("C:/Users/valer/Documents/Master1/Projetmaster/classification/data/models/random_forest_Q1_parameters.pickle", 'rb')) # Write your path to the model here!
 
 normalize = True
-pca = pickle.load(open("/home/zephyrin/Desktop/project-2103-2102-a/classification/data/models/pca", 'rb'))
+pca = pickle.load(open("C:/Users/valer/Documents/Master1/Projetmaster/classification/data/models/pca_Q1_parameters", 'rb'))
 
 
 
@@ -81,7 +81,7 @@ def reader(port=None):
             line += ser.read_until(b"\n", size=512).decode(
                 "ascii"
             )
-            melcalcul(line)
+            #melcalcul(line)
             print(line)
         line = line.strip()
         buffer = parse_buffer(line)
