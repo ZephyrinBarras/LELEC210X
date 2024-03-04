@@ -29,7 +29,7 @@ int StartADCAcq() {											//supression arg nombre de buffer => main
 }
 
 int IsADCFinished(void) {
-	return (rem_n_bufs == 0);
+	return (0);
 }
 /*
 static void StopADCAcq() {
