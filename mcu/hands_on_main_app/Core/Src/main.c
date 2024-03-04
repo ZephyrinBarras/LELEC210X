@@ -84,7 +84,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 }
 
 static void acquire_and_send_packet() {
-	if (StartADCAcq(N_MELVECS) != HAL_OK) {
+	if (StartADCAcq() != HAL_OK) {	//retire argument
 		DEBUG_PRINT("Error while enabling the DMA\r\n");
 	}
 	while (!IsADCFinished()) {
@@ -107,11 +107,9 @@ void run(void)
 	  }
 	  btn_press = 0;
 #if (CONTINUOUS_ACQ == 1)
-	  while (!btn_press) {
 		  //start_cycle_count();
 		  acquire_and_send_packet();
 		  //stop_cycle_count("acq");
-	  }
 	  btn_press = 0;
 #elif (CONTINUOUS_ACQ == 0 )
 	  //start_cycle_count();
@@ -238,11 +236,11 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_MSI;
-  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV4;
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
   {
     Error_Handler();
   }

@@ -9,7 +9,7 @@
 #define ADC_BUF_SIZE SAMPLES_PER_MELVEC
 
 
-int StartADCAcq(int32_t n_bufs);
+int StartADCAcq();
 int IsADCFinished(void);
 
 extern ADC_HandleTypeDef hadc1;

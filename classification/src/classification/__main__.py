@@ -44,10 +44,10 @@ def main(
 
             melvecs = payload_to_melvecs(payload, melvec_length, n_melvecs)
             #logger.info(f"Parsed payload into Mel vectors: {melvecs}")
-            "logger.info(str(len(melvecs))+str( len(melvecs[0])))
+            #logger.info(str(len(melvecs))+str( len(melvecs[0])))
             #logger.info("ananas")
             melvecs = melvecs.reshape(-1)
-            "logger.info(f"Parsed payload into Mel vectors: {melvecs}")
+            #logger.info(f"Parsed payload into Mel vectors: {melvecs}")
             mp = pca.transform([melvecs[:-20]])
             #logger.info(f"Parsed payload into Mel vectors: {mp}")
             classe = model.predict(mp)

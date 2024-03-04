@@ -15,7 +15,9 @@
 q15_t buf    [  SAMPLES_PER_MELVEC  ]; // Windowed samples
 q15_t buf_fft[2*SAMPLES_PER_MELVEC  ]; // Double size (real|imag) buffer needed for arm_rfft_q15
 q15_t buf_tmp[  SAMPLES_PER_MELVEC/2]; // Intermediate buffer for arm_mat_mult_fast_q15
-vmax_global=0;
+q15_t vmax_global=0;
+q15_t volume_noise_mean = 0;
+q15_t first = 5*MELVEC_LENGTH;
 
 // Convert 12-bit DC ADC samples to Q1.15 fixed point signal and remove DC component
 void Spectrogram_Format(q15_t *buf)
@@ -81,7 +83,9 @@ void Spectrogram_Compute(q15_t *samples, q15_t *melvec)
 	q15_t vmax;
 	uint32_t pIndex=0;
 
+
 	arm_absmax_q15(buf_fft, SAMPLES_PER_MELVEC, &vmax, &pIndex);
+
 	if (vmax>vmax_global){
 		vmax_global=vmax;
 	}
