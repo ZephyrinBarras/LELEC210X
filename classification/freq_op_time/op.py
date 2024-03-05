@@ -12,16 +12,20 @@ def ope(n):
     return (n*log10(n))
 
 def plot_op_time():
-    time = np.linspace(0.2,1,1000)
+    time = np.linspace(0.02,0.1,1000)
     echan = time*BASE_FREQ
     print(time)
     print(ope(echan)/time)
+    plt.xlabel("time slice [s]")
+    plt.ylabel("operation/sec")
     plt.plot(time, ope(echan)/time)
     plt.show()
 
 def plot_op_freq():
     freq = np.linspace(5000,20000,1000)
     echan = BASE_TIME*freq
+    plt.xlabel("fréquence d'échantillonage [Hz]")
+    plt.ylabel("operation/sec")
     plt.plot(freq, ope(echan)/BASE_TIME)
     plt.show()
 

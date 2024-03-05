@@ -90,6 +90,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 }
 
 void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef *hadc) {
+	print_buffer2(ADCDblBuffer[0], SAMPLES_PER_MELVEC);
 	Spectrogram_Format((q15_t *)ADCDblBuffer[0]);
 	Spectrogram_Compute((q15_t *)ADCDblBuffer[0], mel_vectors[cur_melvec]);
 	cur_melvec++;
@@ -97,6 +98,7 @@ void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef *hadc) {
 }
 
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc) {
+	print_buffer2(ADCDblBuffer[1], SAMPLES_PER_MELVEC);
 	Spectrogram_Format((q15_t *)ADCDblBuffer[1]);
 	Spectrogram_Compute((q15_t *)ADCDblBuffer[1], mel_vectors[cur_melvec]);
 	cur_melvec++;
@@ -104,7 +106,6 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc) {
 	{
 		HAL_TIM_Base_Stop(&htim3);
 		HAL_ADC_Stop_DMA(&hadc1);
-		print_buffer(mel_vectors_flat, N_MELVECS * MELVEC_LENGTH);
 		cur_melvec = 0;
 	}
 	bounce = 0;
@@ -150,7 +151,13 @@ void print_buffer(volatile uint16_t *buffer, size_t len) {
 	hex_encode(hex_encoded_buffer, (uint8_t*)buffer, sizeof(uint16_t) * len);
 	printf("DF:HEX:%s\r\n", hex_encoded_buffer);
 }
-
+void print_buffer2(volatile uint16_t *buffer, size_t len) {
+	printf("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n");
+	for (int i = 0; i<len; i++){
+		printf("%d\t", buffer[i]);
+	}
+	printf("\nXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n");
+}
 /* USER CODE END 0 */
 
 /**
