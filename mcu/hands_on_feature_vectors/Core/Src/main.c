@@ -67,6 +67,7 @@ static q15_t *mel_vectors[N_MELVECS];
 static q15_t mel_vectors_flat[N_MELVECS * MELVEC_LENGTH];
 
 char hex_encoded_buffer[sizeof(q15_t) * 2 * N_MELVECS * MELVEC_LENGTH + 1];
+char hex_buf[sizeof(q15_t) * 2*SAMPLES_PER_MELVEC+1];
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -152,11 +153,10 @@ void print_buffer(volatile uint16_t *buffer, size_t len) {
 	printf("DF:HEX:%s\r\n", hex_encoded_buffer);
 }
 void print_buffer2(volatile uint16_t *buffer, size_t len) {
-	printf("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n");
+	hex_encode(hex_buf,(uint8_t*)buffer, sizeof(uint16_t) * len);
 	for (int i = 0; i<len; i++){
-		printf("%d\t", buffer[i]);
+		printf("DF:HEX:%s\r\n", hex_buf);
 	}
-	printf("\nXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n");
 }
 /* USER CODE END 0 */
 
