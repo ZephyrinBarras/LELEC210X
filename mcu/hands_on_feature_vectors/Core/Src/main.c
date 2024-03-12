@@ -46,7 +46,7 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-#define DEBUG 0
+//#define DEBUG 0
 #define DEBUG_PRINT(...) do{ if (DEBUG) printf(__VA_ARGS__ ); } while( 0 )
 /* USER CODE END PM */
 
@@ -62,12 +62,13 @@ volatile uint16_t* ADCDblBuffer[2] = {&ADCBuffer[0], &ADCBuffer[SAMPLES_PER_MELV
 
 static volatile uint8_t cur_melvec = 0;
 
-static q15_t *mel_vectors[N_MELVECS];
+//static q15_t *mel_vectors[N_MELVECS];
 // Contiguous array in memory
-static q15_t mel_vectors_flat[N_MELVECS * MELVEC_LENGTH];
+//static q15_t mel_vectors_flat[N_MELVECS * MELVEC_LENGTH];
 
 char hex_encoded_buffer[sizeof(q15_t) * 2 * N_MELVECS * MELVEC_LENGTH + 1];
 char hex_buf[sizeof(q15_t) * 2*SAMPLES_PER_MELVEC+1];
+uint16_t data_to_print[2*SAMPLES_PER_MELVEC];
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -75,6 +76,7 @@ void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
 void hex_encode(char* s, const uint8_t* buf, size_t len);
 void print_buffer(volatile uint16_t *buffer, size_t len);
+void print_buffer2(volatile uint16_t *buffer, size_t len);
 uint32_t get_signal_power(uint16_t *buffer, size_t len);
 void start_cycle_count();
 void stop_cycle_count(char *s);
@@ -91,17 +93,24 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 }
 
 void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef *hadc) {
-	print_buffer2(ADCDblBuffer[0], SAMPLES_PER_MELVEC);
-	Spectrogram_Format((q15_t *)ADCDblBuffer[0]);
-	Spectrogram_Compute((q15_t *)ADCDblBuffer[0], mel_vectors[cur_melvec]);
+	//print_buffer2(ADCDblBuffer[0], SAMPLES_PER_MELVEC);
+	//Spectrogram_Format((q15_t *)ADCDblBuffer[0]);
+	//Spectrogram_Compute((q15_t *)ADCDblBuffer[0], mel_vectors[cur_melvec]);
+	for (uint16_t i = 0; i<SAMPLES_PER_MELVEC; i++){
+		data_to_print[i]= ADCBuffer[i];
+	}
 	cur_melvec++;
-	DEBUG_PRINT("Half DMA.\r\n");
+	printf("half DMA!!\n");
 }
 
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc) {
-	print_buffer2(ADCDblBuffer[1], SAMPLES_PER_MELVEC);
-	Spectrogram_Format((q15_t *)ADCDblBuffer[1]);
-	Spectrogram_Compute((q15_t *)ADCDblBuffer[1], mel_vectors[cur_melvec]);
+
+	//Spectrogram_Format((q15_t *)ADCDblBuffer[1]);
+	//Spectrogram_Compute((q15_t *)ADCDblBuffer[1], mel_vectors[cur_melvec]);
+	for (uint16_t i = SAMPLES_PER_MELVEC; i<2*SAMPLES_PER_MELVEC; i++){
+			data_to_print[i]= ADCBuffer[i];
+		}
+	print_buffer2(data_to_print, 2*SAMPLES_PER_MELVEC);
 	cur_melvec++;
 	if (cur_melvec == N_MELVECS)
 	{
@@ -110,7 +119,7 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc) {
 		cur_melvec = 0;
 	}
 	bounce = 0;
-	DEBUG_PRINT("All DMA.\r\n");
+	printf("all DMA--\n");
 }
 
 // Starts the cycle counter
@@ -154,9 +163,7 @@ void print_buffer(volatile uint16_t *buffer, size_t len) {
 }
 void print_buffer2(volatile uint16_t *buffer, size_t len) {
 	hex_encode(hex_buf,(uint8_t*)buffer, sizeof(uint16_t) * len);
-	for (int i = 0; i<len; i++){
-		printf("DF:HEX:%s\r\n", hex_buf);
-	}
+	printf("DF:HEX:%s\r\n", hex_buf);
 }
 /* USER CODE END 0 */
 
@@ -177,10 +184,10 @@ int main(void)
 
   /* USER CODE BEGIN Init */
   // Reshape the contiguous memory array in a 2D array.
-  for (int i = 0; i < N_MELVECS; i++)
+  /*for (int i = 0; i < N_MELVECS; i++)
   {
 	  mel_vectors[i] = &mel_vectors_flat[i*MELVEC_LENGTH];
-  }
+  }*/
   /* USER CODE END Init */
 
   /* Configure the system clock */
