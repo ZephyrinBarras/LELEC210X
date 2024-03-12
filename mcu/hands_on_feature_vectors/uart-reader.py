@@ -26,6 +26,9 @@ FREQ_SAMPLING = 10200
 MELVEC_LENGTH = 20
 N_MELVECS = 20
 
+# TODO: à vérifier
+fs_down = 11025  # Target sampling frequency
+
 dt = np.dtype(np.uint16).newbyteorder("<")
 
 """
@@ -51,9 +54,84 @@ def parse_buffer(line):
         return None
 
 
-def melcalcul(y):
+def remove_dc_component(signal):
+    mean_value = np.mean(signal)  # Calculer la moyenne du signal
+    return signal - mean_value
+
+
+def specgram(y, Nft=512):
+    """Build the spectrogram of a downsample and filtered (low-pass to avoid aliasing) sound record.
+
+    Args:
+      y (array of float): sound record after filtering (low pass filter to avoid aliasing) and downsampling.
+      Nft (int): number of sample by fft
+
+    Returns:
+      stft (array of float): short time fourier transform
+    """
+
+    # Homemade computation of stft
+    "Crop the signal such that its length is a multiple of Nft"
+    L = len(y)  # 512
+    y = y[: L - L % Nft]
+    L = len(y)  #
+    print("Taille de y", L)  # 512
+
+    "Reshape the signal with a piece for each row"
+    audiomat = np.reshape(y, (L // Nft, Nft))
+    audioham = audiomat * np.hamming(Nft)  # Windowing. Hamming, Hanning, Blackman,..
+    z = np.reshape(audioham, -1)  # y windowed by pieces
+    "FFT row by row"
+    stft = np.fft.fft(audioham, axis=1)
+    stft = np.abs(
+        stft[:, : Nft // 2].T
+    )  # Taking only positive frequencies and computing the magnitude
+
+    return stft
+
+
+def melspecgram(x, Nmel=N_MELVECS, Nft=512, fs=44100, fs_down=11025):
+    """Get a audio record as input. Apply a low-pass filter then downsample before transforming the signal in melspectogram.
+
+    Args:
+      x (array de float): sound record
+      Nmel (int): number of mels class --> TODO : je mettrais plutôt 20 = N_MELVECS
+      Nft (int): number of sample by fft
+      fs (int): frequency of the sampling
+      fs_down (int): frequecy after the downsampling
+
+    Returns:
+      melspec (array of int): Melspectogram of the STFT
+    """
+
+    "Obtain the Hz2Mel transformation matrix"
+    # y = resample(x)
+
+    mels = librosa.filters.mel(sr=fs_down, n_fft=Nft, n_mels=Nmel)
+    mels = mels[:, :-1]
+    mels = mels / np.max(mels)
+    """    
+    "Plot de la matrice de transformation"
+    plt.figure(figsize=(5, 4))
+    plt.imshow(mels, aspect="auto", origin="lower")
+    plt.colorbar()
+    plt.title("Hz2Mel transformation matrix")
+    plt.xlabel("$N_{FT}$")
+    plt.ylabel("$N_{Mel}$")
+    plt.show()
+    """
+
+    stft = specgram(x, Nft=Nft)
+    print("=====================================")
+    print("Fonction de calcul du mel spectrogamme :")
+    print("Dimensions de la matrice de transfo (la matrice est correcte) :", "({},{})".format(len(mels), len(mels[0])),
+          "Dimensions de la matrice de stft :", "({},{})".format(len(stft), len(stft[0])))
+    melspec = np.dot(mels, stft)
+    return melspec
+
+
+def melcalcul(y, Nft=512):
     L = len(y)
-    Nft = 512
     y = y[: L - L % Nft]
     L = len(y)
     "Reshape the signal with a piece for each row"
@@ -65,9 +143,10 @@ def melcalcul(y):
     stft = np.abs(
         stft[:, : Nft // 2].T)  # Taking only positive frequencies and computing the magnitude
 
-    Nmel = 20
+    Nmel = MELVEC_LENGTH * N_MELVECS  # Normalement, Nmel = N_MELVECS (c'est littéralement la même chose)
     "Obtain the Hz2Mel transformation matrix"
-    mels = librosa.filters.mel(n_fft=Nft, n_mels=Nmel)
+    # Pas sûr que le sampling rate soit de 1/10000 --> TODO : vérifier
+    mels = librosa.filters.mel(sr=fs_down, n_fft=Nft, n_mels=Nmel)
     mels = mels[:, :-1]
     melspec = np.dot(mels, stft)
     return melspec
@@ -189,13 +268,18 @@ if __name__ == "__main__":
         i = 0
 
         for sample in input_stream:
-            print("here")
             msg_counter += 1
 
             print(sample)
-            print("Taille du sample", len(sample))
-            print("Coucou")
+            print("Taille du sample reçu", len(sample))
 
+            # Calcul du spectrogramme mel avec la fonction melcalcul / melspecgram
+            signal_without_DC_component = remove_dc_component(sample)
+            spectrogram = np.log(np.abs( melspecgram(signal_without_DC_component) ))
+            print(spectrogram)
+            print("Dimensions du spectrogramme mel :", "({},{})".format(len(spectrogram), len(spectrogram[0])))
+
+            """ A décommenter si le MCU envoie des spectrogrammes (et pas les données brutes)        
             # print("MEL Spectrogram #{}".format(msg_counter))
             sgram = sample.reshape((N_MELVECS, MELVEC_LENGTH)).T
             ncol = int(1000 * 10200 / (1e3 * 512))
@@ -204,7 +288,7 @@ if __name__ == "__main__":
             sgram = np.nan_to_num(sgram, nan=1e-16)
             fv = sgram.reshape(-1)  # spectrogramme mis en une seule ligne
             # print("must be 400 or change code")
-            # print(len(fv))
+            # print(len(fv))"""
 
             ### TO COMPLETE - Eventually normalize and reduce feature vector dimensionality
 
@@ -218,19 +302,32 @@ if __name__ == "__main__":
             '''
 
             # Enregistre chaque spectrogramme dans deux tableaux (un tableau pour les données et un tableau pour les classes)
-            add_to_save_data(fv, "helicopter")
+            # add_to_save_data(fv, "helicopter")
             print("added")
 
+            """ A decommenter pour enregistrer les données dans un fichier pickle au bout de 120 spectrogrammes reçus
             # Au bout de 120 spectrogrammes, enregistre les données dans un fichier pickle.
             if i == 120:
                 pickle.dump([sound_record, classe_record], open("./helicopter.pickle", 'wb'))
                 print("Fichier enregistré")
-            i += 1
+            i += 1"""
 
-            # print(melvec.reshape((N_MELVECS, MELVEC_LENGTH)).T)
+            # print(spectrogram.reshape((N_MELVECS, MELVEC_LENGTH)).T)
 
-            plot_specgram(sample.reshape((N_MELVECS, MELVEC_LENGTH)).T, ax=plt.gca(), is_mel=True,
-                          title="MEL Spectrogram #{}".format(msg_counter), xlabel="Mel vector")
+
+            print("Temps de l'enregistrement :", len(sample) / fs_down, "s")
+
+            # J'ai enlevé la transposée pour que le spectrogramme soit dans le bon sens
+            plot_specgram(spectrogram.reshape((N_MELVECS, MELVEC_LENGTH)), ax=plt.gca(), is_mel=True,
+                          title="MEL Spectrogram #{}".format(msg_counter), xlabel="Mel vector", tf=len(sample) / fs_down)
             plt.draw()
             plt.pause(0.05)
             plt.clf()
+
+
+            # print("MEL Spectrogram #{}".format(msg_counter))
+            """
+            if input("Fin ?") == "o":
+                break
+            else:
+                continue"""

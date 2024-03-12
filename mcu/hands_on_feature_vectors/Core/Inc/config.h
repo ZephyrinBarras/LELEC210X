@@ -10,7 +10,7 @@
 
 
 // Spectrogram parameters
-#define SAMPLES_PER_MELVEC 512
+#define SAMPLES_PER_MELVEC 512 * 20
 #define MELVEC_LENGTH 20
 #define N_MELVECS 20
 
