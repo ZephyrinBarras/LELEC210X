@@ -16,6 +16,7 @@ static volatile uint8_t cur_melvec = 0;
 static q15_t mel_vectors[MELVEC_LENGTH];
 
 static uint32_t packet_cnt = 0;
+uint8_t remain = 0;
 
 static volatile int32_t rem_n_bufs = 0;
 
@@ -77,8 +78,13 @@ static void send_spectrogram() {
 	uint8_t packet[PACKET_LENGTH];
 	q15_t bound;
 	if (THRESHOLD_MOD) bound = 300; else bound = 70;
-	if (vmax_global<bound){
+	if (vmax_global<bound && remain == 0){
 		return;
+	}
+	if (remain ==0){
+		remain = N_MELVECS-1;
+	}else{
+		remain --;
 	}
 	vmax_global=0;
 	start_cycle_count();
