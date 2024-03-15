@@ -112,7 +112,7 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc) {
 		}
 	print_buffer2(data_to_print, 2*SAMPLES_PER_MELVEC);
 	cur_melvec++;
-	if (cur_melvec == N_MELVECS)
+	if (cur_melvec == NBR_MESURES)
 	{
 		HAL_TIM_Base_Stop(&htim3);
 		HAL_ADC_Stop_DMA(&hadc1);

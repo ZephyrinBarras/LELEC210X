@@ -13,7 +13,7 @@
 #define SAMPLES_PER_MELVEC 512*20
 #define MELVEC_LENGTH 20
 #define N_MELVECS 20
-#define NBR_MESURES = 129	//time = samples_per_melvec/fs*NBR_mesures (~2m pour l'instant)
+#define NBR_MESURES 260	//time = samples_per_melvec/fs*NBR_mesures (~2m pour l'instant)
 
 
 #endif /* INC_CONFIG_H_ */
