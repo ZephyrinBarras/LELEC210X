@@ -41,6 +41,11 @@ def myfct(feature_vector,n_melvecs, melvec_length, counter):
     plt.draw()
     plt.pause(0.01)
     plt.clf()"""
+
+def send(classe):
+    hostname = "http://lelec210x.sipr.ucl.ac.be/lelec210x/"
+    key = "QMJf02nSY3SvesXt1I8Vi9bKZT520NmM4LpIhHNN"
+    response = requests.post(f"{hostname}/leaderboard/submit/{key}/{classe}")
     
 
 
@@ -144,19 +149,25 @@ def main(
                 
 
 
-                plot_specgram(data.reshape((20, 20)).T, ax=plt.gca(), is_mel=True,
+                """plot_specgram(data.reshape((20, 20)).T, ax=plt.gca(), is_mel=True,
                           title="MEL Spectrogram", xlabel="Mel vector", tf=512 / 11000)
                 plt.draw()
                 plt.pause(0.05)
-                plt.clf()
+                plt.clf()"""
                 data = full((20, 20), nan)
             
+
+                
+
+                
+
+                
+
 
             first=1
             #logger.info(f"Parsed payload into Mel vectors: {melvecs}")
             #logger.info(str(len(melvecs))+str( len(melvecs[0])))
             #logger.info("ananas")
-            plt.clf()
             #melvecs1 = melvecs.reshape(-1)
             #logger.info(f"Parsed payload into Mel vectors: {melvecs}")
             #mp = pca.transform([melvecs1[:-20]])
