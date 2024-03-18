@@ -41,6 +41,7 @@ mcu/Debug/
 mcu/Release/
 mcu/.settings/
 mcu/*.launch
+mcu/.metadata/
 
 # Telecom
 
