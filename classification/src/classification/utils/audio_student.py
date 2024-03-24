@@ -305,7 +305,7 @@ class Feature_vector_DS:
         dataset,
         Nft=512,
         nmel=20,
-        duration=500,
+        duration=1000,
         shift_pct=0.4,
         normalize=False,
         data_aug=None,
