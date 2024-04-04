@@ -12,6 +12,7 @@
 #include "utils.h"
 #include "arm_absmax_q15.h"
 
+
 q15_t buf    [  SAMPLES_PER_MELVEC  ]; // Windowed samples
 q15_t buf_fft[2*SAMPLES_PER_MELVEC  ]; // Double size (real|imag) buffer needed for arm_rfft_q15
 q15_t buf_tmp[  SAMPLES_PER_MELVEC/2]; // Intermediate buffer for arm_mat_mult_fast_q15
@@ -134,5 +135,7 @@ void Spectrogram_Compute(q15_t *samples, q15_t *melvec)
 	arm_mat_init_q15(&fftmag_inst, SAMPLES_PER_MELVEC/2, 1, buf);
 	arm_mat_init_q15(&melvec_inst, MELVEC_LENGTH, 1, melvec);
 
-	arm_mat_mult_fast_q15(&hz2mel_inst, &fftmag_inst, &melvec_inst, buf_tmp);
+	arm_mat_mult_fast_q15(&hz2mel_inst, &fftmag_inst, &melvec_inst, buf_tmp); //ici que ça va se jouer pour la sparse matrix
+	// lien du truc qui a l'air d'être ok https://community.arm.com/arm-community-blogs/b/high-performance-computing-blog/posts/new-sparse-functions-in-armpl-23-04
+	// example https://developer.arm.com/documentation/101004/2304/Sparse-Linear-Algebra/Example-of-SpMV-usage?lang=en
 }
