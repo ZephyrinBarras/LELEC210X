@@ -26,13 +26,16 @@ FREQ_SAMPLING = 10200
 MELVEC_LENGTH = 20  # hauteur (longueur de chaque vecteur)
 N_MELVECS = 20 # Nombre de vecteurs mel
 
-fs_down = 11025  # Target sampling frequency
+fs_down_old = 11025  # Target sampling frequency
+fs_down = 11111.11
 
 dt = np.dtype(np.uint16).newbyteorder("<")
 
 """
 
 INIT CLASSIFICATION
+
+"""
 
 """
 model_knn = pickle.load(
@@ -42,7 +45,7 @@ model_knn = pickle.load(
 normalize = True
 pca = pickle.load(
     open("C:/Users/valer/Documents/Master1/Projetmaster/classification/data/models/pca_Q1_parameters", 'rb'))
-
+"""
 
 def parse_buffer(line):
     line = line.strip()
@@ -248,10 +251,12 @@ if __name__ == "__main__":
         global_sample = []
 
         for sample in input_stream:
-            # 130 paquets envoyés par le MCU en taille 512 * 40
+            # 260 paquets envoyés par le MCU en taille 512 * 40
             # Jouer avec les paramètres Nft et N_MELVECS tant que leur produit est inférieur à 512 * 40
 
-            number_of_packets = 130  # A changer en fonction du code du MCU
+            number_of_packets = 260  # A changer en fonction du code du MCU (config.h)
+            # Dans les faits, il y a peut-être 259 paquets envoyés
+
             msg_counter += 1
 
             print("--------------------")
@@ -268,7 +273,7 @@ if __name__ == "__main__":
             print("Taille de global_sample", taille)
             print("--------------------")
 
-            if msg_counter == number_of_packets ** 20:
+            if msg_counter == number_of_packets:
                 pickle.dump(["birds", global_sample], open("./birds_globalsample.pickle", 'wb'))
                 print("Fichier enregistré")
 

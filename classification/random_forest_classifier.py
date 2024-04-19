@@ -77,7 +77,8 @@ model.fit(X_learn_reduced, np.array(data2_list))
 
 print(model.predict(pca.transform([data1_list[0]])))
 
-filename = 'random_forest_Q1_parameters.pickle'
+"""filename = 'random_forest_Q1_parameters.pickle'
 model_dir = "data/models/"
 pickle.dump(model, open(model_dir + filename, 'wb'))
 pickle.dump(pca, open(model_dir + "pca_Q1_parameters", 'wb'))
+"""
