@@ -142,7 +142,7 @@ def main(
                 #print(data)
                 data = imp.fit_transform(data)
                 #print(data)
-                mp = pca.transform([data.reshape(-1)[:-20]])
+                mp = pca.transform([data.reshape(-1)])
                 plt.imshow(data)
                 classe = model.predict(mp)
                 print(classe)
