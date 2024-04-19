@@ -20,8 +20,8 @@ from sklearn.impute import SimpleImputer
 from .utils import payload_to_melvecs
 
 load_dotenv()
-pca = pickle.load(open("classification/data/models/pca_Q1_parameters","rb"))
-model = pickle.load(open("classification/data/models/random_forest_Q1_parameters.pickle","rb"))
+pca = pickle.load(open("classification/data/models/pca_vite","rb"))
+model = pickle.load(open("classification/data/models/model_vite","rb"))
 
 plt.figure()
 #plt.show()
