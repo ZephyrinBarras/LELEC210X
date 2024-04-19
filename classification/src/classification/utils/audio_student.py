@@ -57,7 +57,7 @@ class AudioUtil:
         sign = sig/np.sqrt(np.sum(np.abs(sig) ** 2))
         C = np.sqrt(10 ** (target_dB / 10))
         sign *= C
-        return (sign, sr)
+        return audio
 
     def resample(audio, newsr=11025) -> Tuple[ndarray, int]:
         """
@@ -67,7 +67,7 @@ class AudioUtil:
         :param newsr: The target sampling frequency.
         """
         sig, sr = audio
-        sig, sr2 = AudioUtil.filter(audio,(signal.firwin(numtaps=100, cutoff=min(newsr*2,sr) // 2, window="hamming", fs=sr)))
+        sig, sr2 = AudioUtil.filter(audio,(signal.firwin(numtaps=100, cutoff=min(newsr,sr) // 2, window="hamming", fs=sr)))
         resig = signal.resample(sig, sr)
         
         ### TO COMPLETE
@@ -271,14 +271,14 @@ class AudioUtil:
         :param Nft: The number of points of the FFT.
         :param fs2: The sampling frequency.
         """
-        sig, sr = AudioUtil.resample(audio)
+        sig, sr = AudioUtil.resample(audio, newsr=fs2)
         sig = sig[: len(sig) - len(sig) % Nft]
         audiomat = np.reshape(sig, (len(sig) // Nft, Nft))
         audioham = audiomat * np.hamming(Nft)
         z = np.reshape(audioham, -1)
         stft = np.fft.fft(audioham, axis=1)
         stft = np.abs(stft[:, : Nft // 2].T)
-        melspec = np.dot(AudioUtil.get_hz2mel(), stft)
+        melspec = np.dot(AudioUtil.get_hz2mel(fs2=fs2,Nft=Nft), stft)
         return np.abs(melspec)
         
         
@@ -328,12 +328,13 @@ class Feature_vector_DS:
         normalize=False,
         data_aug=None,
         pca=None,
+        fs = 11025
     ):
         self.dataset = dataset
         self.Nft = Nft
         self.nmel = nmel
         self.duration = duration  # ms
-        self.sr = 11025
+        self.sr = fs
         self.shift_pct = shift_pct  # percentage of total
         self.normalize = normalize
         self.data_aug = data_aug
@@ -360,7 +361,7 @@ class Feature_vector_DS:
 
         audio_file = self.dataset[cls_index] 
         aud = AudioUtil.open(audio_file)
-        aud = AudioUtil.resample(aud, self.sr)
+        #aud = AudioUtil.resample(aud, self.sr)
         aud = AudioUtil.time_shift(aud, self.shift_pct)
         aud = AudioUtil.pad_trunc(aud, self.duration)
         if self.data_aug is not None:
@@ -379,8 +380,8 @@ class Feature_vector_DS:
             if "scaling" in self.data_aug:
                 aud = AudioUtil.scaling(aud, scaling_limit=5)
 
-        # aud = AudioUtil.normalize(aud, target_dB=10)
-        aud = (aud[0]/np.max(np.abs(aud[0])), aud[1])
+        aud = AudioUtil.normalize(aud, target_dB=10)
+        #aud = (aud[0]/np.max(np.abs(aud[0])), aud[1])
         return aud
 
     def __getitem__(self, cls_index: Tuple[str, int]) -> Tuple[ndarray, int]:
@@ -391,7 +392,7 @@ class Feature_vector_DS:
         """
 
         aud = self.get_audiosignal(cls_index)
-        sgram = AudioUtil.melspectrogram(aud, Nmel=self.nmel, Nft=self.Nft)
+        sgram = AudioUtil.melspectrogram(aud, Nmel=self.nmel, Nft=self.Nft, fs2=self.sr)
         if self.data_aug is not None:
             if "aug_sgram" in self.data_aug:
                 sgram = AudioUtil.spectro_aug_timefreq_masking(
@@ -413,10 +414,11 @@ class Feature_vector_DS:
         :param cls_index: Class name and index.
         """
         audio = self.get_audiosignal(cls_index)
+
         # AudioUtil.play(audio) La fonction plante
         plt.figure(figsize=(4, 3))
         plt.imshow(
-            AudioUtil.melspectrogram(audio, Nmel=self.nmel, Nft=self.Nft),
+            AudioUtil.melspectrogram(audio, Nmel=self.nmel, Nft=self.Nft, fs2=self.sr),
             cmap="jet",
             origin="lower",
             aspect="auto",
@@ -438,7 +440,7 @@ class Feature_vector_DS:
         # AudioUtil.play(audio) La fonction plante
         plt.figure(figsize=(4, 3))
         plt.imshow(
-            AudioUtil.melspectrogram(audio, Nmel=self.nmel, Nft=self.Nft),
+            AudioUtil.melspectrogram(audio, Nmel=self.nmel, Nft=self.Nft, fs2=self.sr),
             cmap="jet",
             origin="lower",
             aspect="auto",

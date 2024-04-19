@@ -154,9 +154,13 @@ def main(
     input_stream = reader()
     for msg in input_stream:
         try:
-            sender, payload = unwrapper.unwrap_packet(msg)
+            sender,packet_number, payload = unwrapper.unwrap_packet(msg)
+
             logger.debug(f"From {sender}, received packet: {payload.hex()}")
-            output.write(PRINT_PREFIX + payload.hex() + "\n")
+            nbr_p = hex(packet_number)[2:]
+            nbr_p = nbr_p.zfill(5)
+            nbr_p = "0x" + nbr_p
+            output.write(PRINT_PREFIX+nbr_p+ payload.hex() + "\n")
             output.flush()
 
         except packet.InvalidPacket as e:

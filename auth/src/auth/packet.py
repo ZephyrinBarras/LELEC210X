@@ -82,4 +82,7 @@ class PacketUnwrapper:
             if self.senders_last_serial[sender] >= serial:
                 raise InvalidPacket(f"Serial number non-incrementing ({serial}).")
             self.senders_last_serial[sender] = serial
-        return (sender, packet[HEADER_LEN:-TAG_LEN])
+            print("packet:")
+            print(len(packet[HEADER_LEN:-TAG_LEN]))
+            print()
+        return (sender, self.senders_last_serial[sender], packet[HEADER_LEN:-TAG_LEN])
