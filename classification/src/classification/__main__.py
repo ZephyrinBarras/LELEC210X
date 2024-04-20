@@ -176,6 +176,6 @@ def main(
                 plt.draw()
                 plt.pause(0.05)
                 plt.clf()
-                #send(classe)
+                send(classe)
                 data = full((20, 20), nan)
                 main()

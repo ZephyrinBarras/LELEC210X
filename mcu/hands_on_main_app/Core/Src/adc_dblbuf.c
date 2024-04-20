@@ -77,7 +77,7 @@ static void encode_packet(uint8_t *packet, uint32_t* packet_cnt) {
 static void send_spectrogram() {
 	uint8_t packet[PACKET_LENGTH];
 	q15_t bound;
-	if (THRESHOLD_MOD) bound = 300; else bound = 70;
+	if (THRESHOLD_MOD) bound = 500; else bound = 70;
 	if (vmax_global<bound && remain == 0){
 		return;
 	}
