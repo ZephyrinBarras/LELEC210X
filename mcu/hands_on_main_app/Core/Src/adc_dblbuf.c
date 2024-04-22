@@ -80,9 +80,6 @@ static void encode_packet(uint8_t *packet, uint32_t* packet_cnt) {
 
 static void send_spectrogram() {
 	uint8_t packet[PACKET_LENGTH];
-	if (vmax_global<500){
-		return;
-	}
 	vmax_global=0;
 
 	start_cycle_count();
