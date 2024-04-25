@@ -108,6 +108,7 @@ void Spectrogram_Compute(q15_t *samples, q15_t *melvec)
 
 	// STEP 3.4: Denormalize the vector
 	//           Complexity: O(N)
+
 	//           Number of cycles: <TODO>
 
 	for (int i=0; i < SAMPLES_PER_MELVEC/2; i++)
@@ -128,11 +129,23 @@ void Spectrogram_Compute(q15_t *samples, q15_t *melvec)
 	// /!\ In order to avoid overflows completely the input signals should be scaled down. Scale down one of the input matrices by log2(numColsA) bits to avoid overflows,
 	// as a total of numColsA additions are computed internally for each output element. Because our hz2mel_mat matrix contains lots of zeros in its rows, this is not necessary.
 	
-	arm_matrix_instance_q15 hz2mel_inst, fftmag_inst, melvec_inst;
+	/*arm_matrix_instance_q15 hz2mel_inst, fftmag_inst, melvec_inst;
 
 	arm_mat_init_q15(&hz2mel_inst, MELVEC_LENGTH, SAMPLES_PER_MELVEC/2, hz2mel_mat);
 	arm_mat_init_q15(&fftmag_inst, SAMPLES_PER_MELVEC/2, 1, buf);
 	arm_mat_init_q15(&melvec_inst, MELVEC_LENGTH, 1, melvec);
 
-	arm_mat_mult_fast_q15(&hz2mel_inst, &fftmag_inst, &melvec_inst, buf_tmp);
+	arm_mat_mult_fast_q15(&hz2mel_inst, &fftmag_inst, &melvec_inst, buf_tmp);*/
+
+	q63_t result_temp[MELVEC_LENGTH];
+
+	for (uint8_t i = 0; i < MELVEC_LENGTH; i++){  // pour chaque ligne de hz2mel_mat :
+		uint8_t j = start_idx[i];
+		uint8_t l = length[i];
+		// dot product entre le vecteur de chaque ligne et le vecteur buf
+		arm_dot_prod_q15(hz2mel_mat + i*SAMPLES_PER_MELVEC/2 + j, buf + j, l, result_temp + i); // résultat sur 64 bits
+
+		melvec[i] = (q15_t) (result_temp[i] >> 15);
+
+	}
 }

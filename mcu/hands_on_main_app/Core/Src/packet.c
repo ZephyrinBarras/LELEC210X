@@ -15,44 +15,22 @@ const uint8_t AES_Key[16]  = {
 							0x00,0x00,0x00,0x00,
 							0x00,0x00,0x00,0x00};
 
-
 void tag_cbc_mac(uint8_t *tag, const uint8_t *msg, size_t msg_len) {
 	// Allocate a buffer of the key size to store the input and result of AES
 	// uint32_t[4] is 4*(32/8)= 16 bytes long
+    size_t size = msg_len+16-msg_len%16;
+    uint8_t data[size];
+    uint8_t result[size];
 
-	uint32_t statew2[4] = {0};
-	// state is a pointer to the start of the buffer
-	uint8_t *state2 = (uint8_t*) statew2;
-    size_t i;
-    //size must be multiple of 16, complete with 0 msg
-    /*uint8_t padding = 16-(msg_len%16);
-    uint8_t input[msg_len+padding];
-    for (size_t a =0; a<msg_len; a++){
-    	input[a]=msg[a];
-    	printf("%d\t",input[a]);
-    }
-    printf("\n");
-    HAL_CRYP_AESCBC_Encrypt(&hcryp, input, msg_len+padding, tag, 1000);*/
+    memcpy(data, msg, msg_len);
 
-    // TO DO : Complete the CBC-MAC_AES
-
-	for (i = 0; i < msg_len-16; i +=16){
-		for(size_t j = 0; j < 16; j++){
-			*(state2+j) = msg[i+j] ^ *(state2+j);
-		}
-		HAL_CRYP_AESECB_Encrypt(&hcryp, state2, 16, state2, 1000);
-	}
-	for(size_t k = i; k < msg_len; k++){
-		*(state2+k-i) = msg[k] ^ *(state2+k-i);
-	}
-	HAL_CRYP_AESECB_Encrypt(&hcryp, state2, 16, state2, 1000);
-
+    HAL_CRYP_AESCBC_Encrypt(&hcryp, data, size, result, 1000);
     // Copy the result of CBC-MAC-AES to the tag.
-    for (int j=0; j<16; j++) {
-        tag[j] = state2[j];
-    }
-    printf("end\n");
+	for (int j = 0; j<16; j++){
+		tag[j] =  result[msg_len+j-16];
+	}
 }
+
 // Assumes payload is already in place in the packet
 int make_packet(uint8_t *packet, size_t payload_len, uint8_t sender_id, uint32_t serial) {
     size_t packet_len = payload_len + PACKET_HEADER_LENGTH + PACKET_TAG_LENGTH;

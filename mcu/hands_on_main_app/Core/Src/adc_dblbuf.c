@@ -79,6 +79,7 @@ static void send_spectrogram() {
 	q15_t bound;
 	if (THRESHOLD_MOD) bound = 300; else bound = 70;
 	if (vmax_global<bound && remain == 0){
+		__WFI();
 		return;
 	}
 	if (remain ==0){
@@ -100,7 +101,6 @@ static void ADC_Callback(int buf_cplt) {
 	Spectrogram_Compute((q15_t *)ADCData[buf_cplt], mel_vectors);		//mel vector devient simple *20 delete
 	ADCDataRdy[buf_cplt] = 0;
 	send_spectrogram();
-
 }
 
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc)
