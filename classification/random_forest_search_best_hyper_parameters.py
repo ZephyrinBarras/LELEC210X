@@ -49,7 +49,7 @@ e = pickle.load(open("./" + "fire1.pickle", 'rb'))
 f = pickle.load(open("./" + "fire2" + ".pickle", 'rb'))
 g = pickle.load(open("./" + "handsaw1" + ".pickle", 'rb'))
 h = pickle.load(open("./" + 'helicopter' + ".pickle", 'rb'))
-print(a[1])
+#print(a[1])
 data1_list = []
 data2_list = []
 
@@ -65,7 +65,7 @@ for data_variable in data_variables:
         data1_list.append(data_variable[0][i])
         data2_list.append(data_variable[1][i])
 
-print(len(data1_list))
+#print(len(data1_list))
 
 begin_n_trees = 75
 end_n_trees = 150
@@ -91,6 +91,10 @@ accuracy_knn = np.zeros(k_splits_cross_validation)
 
 kf = StratifiedKFold(n_splits=k_splits_cross_validation, shuffle=True)
 
+np.set_printoptions(threshold=9)
+print(data1_list[0])
+print(len(data1_list[0]))
+exit()
 for i in range(begin_n_trees, end_n_trees, step_n_trees):
     model = RandomForestClassifier(n_estimators=i, min_samples_split=2)
     for j in range(begin_pca, end_pca, step_pca):

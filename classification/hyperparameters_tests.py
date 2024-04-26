@@ -25,7 +25,8 @@ from classification.datasets import Dataset
 
 MELVEC_LENGTH_DEFAULT = 20  # hauteur (longueur de chaque vecteur)
 N_MELVECS_DEFAULT = 20  # Nombre de vecteurs mel
-fs_down = 11025  # Target sampling frequency
+fs_down = 11111  # Target sampling frequency
+
 
 def compute_accuracy(prediction, target):
     """
@@ -52,10 +53,11 @@ def specgram(y, Nft=512, mellength=MELVEC_LENGTH_DEFAULT):
 
     # Homemade computation of stft
     "Crop the signal such that its length is a multiple of Nft"
-    y = y[: mellength * Nft]
-    # y = y[: L - L % Nft]
+    "Pas besoin de crop car je le fais au moment de l'appel de la fonction tout en bas dans la boucle"
+    #y = y[: mellength * Nft]
+
     L = len(y)
-    print("Taille de y :", L)
+    #print("Taille de y :", L)
 
     "Reshape the signal with a piece for each row"
     audiomat = np.reshape(y, (L // Nft, Nft))
@@ -67,10 +69,11 @@ def specgram(y, Nft=512, mellength=MELVEC_LENGTH_DEFAULT):
         stft[:, : Nft // 2].T
     )  # Taking only positive frequencies and computing the magnitude
 
-    return stft
+    # Enlever la dernière ligne pour que le produit matriciel fonctionne
+    return stft[:-1, :]
 
 
-def melspecgram(x, Nmel=N_MELVECS_DEFAULT, Nft=512, fs=44100, fs_down=11025):
+def melspecgram(x, Nmel=N_MELVECS_DEFAULT, mellength=MELVEC_LENGTH_DEFAULT, Nft=512, fs=44100, fs_down=11025):
     """Get a audio record as input. Apply a low-pass filter then downsample before transforming the signal in melspectogram.
 
     Args:
@@ -87,7 +90,10 @@ def melspecgram(x, Nmel=N_MELVECS_DEFAULT, Nft=512, fs=44100, fs_down=11025):
     "Obtain the Hz2Mel transformation matrix"
     # y = resample(x)
 
-    mels = librosa.filters.mel(sr=fs_down, n_fft=Nft, n_mels=Nmel)
+    # A décommenter si on veut la calculer ici (la fonction buggait donc j'utilise une matrice de transformation calculée précédemment)
+    # mels = librosa.filters.mel(sr=fs_down, n_fft=Nft, n_mels=Nmel)
+
+    mels = pickle.load(open("data/mel_matrix/{}_N_MELVECS_mel_matrix.pickle".format(Nmel), "rb"))
     mels = mels[:, :-1]
     mels = mels / np.max(mels)
     """    
@@ -101,44 +107,158 @@ def melspecgram(x, Nmel=N_MELVECS_DEFAULT, Nft=512, fs=44100, fs_down=11025):
     plt.show()
     """
 
-    stft = specgram(x, Nft=Nft)
-    print("=====================================")
+    stft = specgram(x, mellength=mellength, Nft=Nft)
+
+    """print("=====================================")
     print("Fonction de calcul du mel spectrogamme :")
     print("Dimensions de la matrice de transfo (la matrice est correcte) :", "({},{})".format(len(mels), len(mels[0])),
           "Dimensions de la matrice de stft :", "({},{})".format(len(stft), len(stft[0])))
+    """
     melspec = np.dot(mels, stft)
     return melspec
 
 
-dataset = Dataset("birds_globalsample.pickle")
-classnames = dataset.list_classes()
+a = pickle.load(open("data/raw_global_samples/birds_reformated_globalsample.pickle", "rb"))
+b = pickle.load(open("data/raw_global_samples/fire_reformated_globalsample.pickle", "rb"))
+c = pickle.load(open("data/raw_global_samples/handsaw_reformated_globalsample.pickle", "rb"))
+d = pickle.load(open("data/raw_global_samples/chainsaw_reformated_globalsample.pickle", "rb"))
+e = pickle.load(open("data/raw_global_samples/helicopter_reformated_globalsample.pickle", "rb"))
 
-print("Classes in the dataset:", classnames)
-
-# abss = np.arange(256, 2560, 256)  # ICI LA RANGE DU PARAM NFT OU FREQ
+print("Classes in the dataset:", ["birds", "fire", "handsaw", "chainsaw", "helicopter"])
 
 N_MELVECS_begin = 10
-N_MELVECS_end = 100
+N_MELVECS_end = 20
 N_MELVECS_step = 2
 
-MELVEC_LENGTH_begin = 10
-MELVEC_LENGTH_end = 100
+MELVEC_LENGTH_begin = 20
+MELVEC_LENGTH_end = 24
 MELVEC_LENGTH_step = 2
 
-
 N_MELVECS_arange = np.arange(N_MELVECS_begin, N_MELVECS_end, N_MELVECS_step)  # ICI LA RANGE DU PARAM NMEL
-MELVEC_LENGTH_arange = np.arange(MELVEC_LENGTH_begin, MELVEC_LENGTH_end, MELVEC_LENGTH_step)  # ICI LA RANGE DU PARAM MELVEC_LENGTH
+MELVEC_LENGTH_arange = np.arange(MELVEC_LENGTH_begin, MELVEC_LENGTH_end,
+                                 MELVEC_LENGTH_step)  # ICI LA RANGE DU PARAM MELVEC_LENGTH
 
 accuracy_matrix = np.zeros((len(N_MELVECS_arange), len(MELVEC_LENGTH_arange)))
 std_matrix = np.zeros((len(N_MELVECS_arange), len(MELVEC_LENGTH_arange)))
 
 for i in N_MELVECS_arange:
     for j in MELVEC_LENGTH_arange:
-        #TODO calculer les spectrogrammes à partir d'ici
 
-        signal_without_DC_component = remove_dc_component(sample)
-        spectrogram = np.log(np.abs(melspecgram(signal_without_DC_component, fs_down=10980)))
+        print("Nouvelle boucle pour : N_MELVECS = {}, MELVEC_LENGTH = {}".format(i, j))
 
+        # Retirer la composante continue de chaque signal pour chaque classe
+        a_signal_without_DC_component = remove_dc_component(a[1])
+        b_signal_without_DC_component = remove_dc_component(b[1])
+        c_signal_without_DC_component = remove_dc_component(c[1])
+        d_signal_without_DC_component = remove_dc_component(d[1])
+        e_signal_without_DC_component = remove_dc_component(e[1])
+
+        data1_list = [] # Liste contenant les spectrogrammes de toutes les classes
+
+        # Calculer les spectrogrammes
+        a_spec = []
+        size_a = len(a_signal_without_DC_component)
+        cropped_a_spec = a_signal_without_DC_component[:size_a - size_a % 512] # Tronquer le signal pour qu'il soit un multiple de 512
+        for m in range(0, len(cropped_a_spec), 512):
+            temp_spec = np.log(np.abs(melspecgram(cropped_a_spec[m:m + 512], Nmel=i, mellength=j, fs_down=fs_down)))
+            a_spec.append(temp_spec)
+
+        a_spec_reshaped = []
+        for k in range(0, len(a_spec) - (len(a_spec) % j), j): # Avancer par pas de j et tronquer le nombre de melvecs pour avoir un multiple de j
+            a_spec_reshaped.append(np.ravel(a_spec[k:k+j])) # Prendre des paquets de j spectrogrammes et les applatir en un seul vecteur de dimension 1
+
+        data1_list = a_spec_reshaped # Pour la suite, il faudra concaténer les autres classes à la suite de cette liste
+
+        """
+        "A décommenter pour vérifier le formatage des spectrogrammes"    
+        print("Taille de data1_list", len(data1_list))
+
+        print("Taille de a_spec_reshaped :", len(a_spec_reshaped))
+        #print(a_spec_reshaped[0])
+        print(len(a_spec_reshaped[0]))
+        print(size_a)
+        print("Taille de cropped_a_spec :", len(cropped_a_spec))
+        """
+        print("Spectrogrammes oiseau calculés !")
+
+
+        b_spec = []
+        size_b = len(b_signal_without_DC_component)
+        cropped_b_spec = b_signal_without_DC_component[:size_b - size_b % 512]
+        for m in range(0, len(cropped_b_spec), 512):
+            temp_spec = np.log(np.abs(melspecgram(cropped_b_spec[m:m + 512], Nmel=i, mellength=j, fs_down=fs_down)))
+            b_spec.append(temp_spec)
+
+        b_spec_reshaped = []
+        for k in range(0, len(b_spec) - (len(b_spec) % j), j): # Avancer par pas de j
+            b_spec_reshaped.append(np.ravel(b_spec[k:k+j])) # Prendre des paquets de j spectrogrammes et les applatir en un seul vecteur de dimension 1
+
+        data1_list = np.concatenate((data1_list, b_spec_reshaped))
+
+        print("Spectrogrammes feu calculés !")
+
+
+        c_spec = []
+        size_c = len(c_signal_without_DC_component)
+        cropped_c_spec = c_signal_without_DC_component[:size_c - size_c % 512]
+        for m in range(0, len(cropped_c_spec), 512):
+            temp_spec = np.log(np.abs(melspecgram(cropped_c_spec[m:m + 512], Nmel=i, mellength=j, fs_down=fs_down)))
+            c_spec.append(temp_spec)
+
+        c_spec_reshaped = []
+        for k in range(0, len(c_spec) - (len(c_spec) % j), j): # Avancer par pas de j
+            c_spec_reshaped.append(np.ravel(c_spec[k:k+j])) # Prendre des paquets de j spectrogrammes et les applatir en un seul vecteur de dimension 1
+
+        data1_list = np.concatenate((data1_list, c_spec_reshaped), axis=0)
+
+        print("Spectrogrammes scie calculés !")
+
+
+        d_spec = []
+        size_d = len(d_signal_without_DC_component)
+        cropped_d_spec = d_signal_without_DC_component[:size_d - size_d % 512]
+        for m in range(0, len(cropped_d_spec), 512):
+            temp_spec = np.log(np.abs(melspecgram(cropped_d_spec[m:m + 512], Nmel=i, mellength=j, fs_down=fs_down)))
+            d_spec.append(temp_spec)
+
+        d_spec_reshaped = []
+        for k in range(0, len(d_spec) - (len(d_spec) % j), j): # Avancer par pas de j
+            d_spec_reshaped.append(np.ravel(d_spec[k:k+j])) # Prendre des paquets de j spectrogrammes et les applatir en un seul vecteur de dimension 1
+
+        data1_list = np.concatenate((data1_list, d_spec_reshaped), axis=0)
+
+        print("Spectrogrammes tronçonneuse calculés !")
+
+
+        e_spec = []
+        size_e = len(e_signal_without_DC_component)
+        cropped_e_spec = e_signal_without_DC_component[:size_e - size_e % 512]
+        for m in range(0, len(cropped_e_spec) - (len(e_spec) % j), 512):
+            temp_spec = np.log(np.abs(melspecgram(cropped_e_spec[m:m + 512], Nmel=i, mellength=j, fs_down=fs_down)))
+            e_spec.append(temp_spec)
+
+        e_spec_reshaped = []
+        for k in range(0, len(e_spec) - (len(e_spec) % j), j): # Avancer par pas de j
+            e_spec_reshaped.append(np.ravel(e_spec[k:k+j])) # Prendre des paquets de j spectrogrammes et les applatir en un seul vecteur de dimension 1
+
+        data1_list = np.concatenate((data1_list, e_spec_reshaped), axis=0)
+
+        print("Spectrogrammes hélicoptère calculés !")
+
+        "Création de data2_list avec tous les labels"
+        data2_list = []
+        labels = ["birds", "fire", "handsaw", "chainsaw", "helicopter"]
+        for label in range(0, 5):
+            data2_list = np.concatenate((data2_list, [labels[label] for _ in range(len(a_spec_reshaped))]), axis=0)
+            # en partant du principe que len(a_spec_reshaped) = len(b_spec_reshaped) = len(c_spec_reshaped) = len(d_spec_reshaped) = len(e_spec_reshaped)
+
+
+        print("Data2_list longeur", len(data2_list))
+        #print(data2_list)
+        print("Longueur de tous les spectrogrammes : ", len(data1_list))
+        print("Nombre d'éléments dans le premier spectrogramme", len(data1_list[0]))
+
+        """
         myds = Feature_vector_DS(dataset, Nft=512, nmel=10, duration=950, shift_pct=0.0,
                                  fs=10980)  # METTRE i Á FS POUR FREQ OU NFT
         train_pct = 0.70
@@ -160,13 +280,12 @@ for i in N_MELVECS_arange:
                     featvec = myds[classname, idx]
                     X[s * nclass * naudio + class_idx * naudio + idx, :] = featvec
         np.save("data/feature_matrices/" + "feature_matrix_2D.npy", X)
-
         # X = np.load(fm_dir+"feature_matrix_2D.npy")
-
+        """
         "Labels"
-        y = class_ids_aug.copy()
+        # y = class_ids_aug.copy()
         # X_train, X_test, y_train, y_test = ...
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, stratify=y)  # random_state=1
+        X_train, X_test, y_train, y_test = train_test_split(data1_list, data2_list, test_size=0.3, stratify=data2_list)  # random_state=1
         n_splits = 5
         kf = StratifiedKFold(n_splits=n_splits, shuffle=True)
 
@@ -211,10 +330,8 @@ for i in N_MELVECS_arange:
         std_matrix[(i - N_MELVECS_begin) // N_MELVECS_step][(j - MELVEC_LENGTH_begin) // MELVEC_LENGTH_step] = temp_std
 
         print("N_MELVECS : {}, MELVEC_LENGTH : {}, accuracy : {}, std : {}".format(i, j, 100 * temp_mean, 100 * temp_std))
-
+        print("=====================================")
 
 ax = sns.heatmap(accuracy_matrix, linewidth=0.5)
 ax2 = sns.heatmap(std_matrix, linewidth=0.5)
 plt.show()
-
-

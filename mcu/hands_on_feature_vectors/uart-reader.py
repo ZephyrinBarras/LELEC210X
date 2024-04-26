@@ -274,7 +274,7 @@ if __name__ == "__main__":
             print("--------------------")
 
             if msg_counter == number_of_packets:
-                pickle.dump(["birds", global_sample], open("./birds_globalsample.pickle", 'wb'))
+                pickle.dump(["helicopter", global_sample], open("./helicopter_globalsample.pickle", 'wb'))
                 print("Fichier enregistré")
 
                 break
