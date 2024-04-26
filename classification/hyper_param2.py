@@ -116,19 +116,13 @@ e = pickle.load(open("data/raw_global_samples/helicopter_reformated_globalsample
 
 print("Classes in the dataset:", ["birds", "fire", "handsaw", "chainsaw", "helicopter"])
 
-pca_begin = 1
-pca_end = 50
-pca_step = 1
 
-pca_arange = np.arange(pca_begin,pca_end,pca_step)
-accuracy_matrix = np.zeros(len(pca_arange))
-std_matrix = np.zeros(len(pca_arange))
 
-a_signal_without_DC_component = remove_dc_component(a[1])
-b_signal_without_DC_component = remove_dc_component(b[1])
-c_signal_without_DC_component = remove_dc_component(c[1])
-d_signal_without_DC_component = remove_dc_component(d[1])
-e_signal_without_DC_component = remove_dc_component(e[1])
+a_signal_without_DC_component = a[1]
+b_signal_without_DC_component = b[1]
+c_signal_without_DC_component = c[1]
+d_signal_without_DC_component = d[1]
+e_signal_without_DC_component = e[1]
 
 data1_list = [] # Liste contenant les spectrogrammes de toutes les classes
 a_spec = []
@@ -136,7 +130,7 @@ size_a = len(a_signal_without_DC_component)
 cropped_a_spec = a_signal_without_DC_component[:size_a - size_a % 512] # Tronquer le signal pour qu'il soit un multiple de 512
 for m in range(0, len(cropped_a_spec), 512):
     a_spec.append(cropped_a_spec[m:m + 512])
-
+L = len(a_spec)
 data1_list = (a_spec)
 b_spec = []
 size_a = len(a_signal_without_DC_component)
@@ -174,23 +168,46 @@ data1_list = np.concatenate((data1_list,e_spec), axis=0)
 data2_list = []
 labels = ["birds", "fire", "handsaw", "chainsaw", "helicopter"]
 for label in range(0, 5):
-    data2_list = np.concatenate((data2_list, [labels[label] for _ in range(len(a_spec))]), axis=0)
+    data2_list = np.concatenate((data2_list, [labels[label] for _ in range(L)]), axis=0)
 # en partant du principe que len(a_spec_reshaped) = len(b_spec_reshaped) = len(c_spec_reshaped) = len(d_spec_reshaped) = len(e_spec_reshaped)
+print(data2_list.shape)
+data2_list = list(data2_list)
+"""del data2_list[2710]
+del data2_list[2522]
+del data2_list[2526]
+del data2_list[2569]
+del data2_list[2650]
+del data2_list[2531]
+del data2_list[2570]"""
 data1_list = np.array(data1_list)
 data2_list = np.array(data2_list)
 
-print(data1_list.shape, data2_list.shape)
+
+pca_begin = 1
+pca_end = 50
+pca_step = 1
+
+
 
 X_train, X_test, y_train, y_test = train_test_split(data1_list, data2_list, test_size=0.3, stratify=data2_list)  # random_state=1
 n_splits = 5
 kf = StratifiedKFold(n_splits=n_splits, shuffle=True)
+
+pca_arange = np.arange(pca_begin,pca_end,pca_step)
+accuracy_matrix = np.zeros((n_splits,len(pca_arange)))
+std_matrix = np.zeros((n_splits,len(pca_arange)))
+imp = SimpleImputer(missing_values=np.nan, strategy="constant",fill_value=0)
+count = 0
 for k, idx in enumerate(kf.split(X_train, y_train)):
     (idx_learn, idx_val) = idx
     X_val = copy.copy(data1_list[idx_val])
+    X_val_spec = []
     y_val = data2_list[idx_val]
     X_train = data1_list[idx_learn]
-    X_val = data2_list[idx_learn]
-    #ADD DEFECT
+    X_train_spec = []
+    y_train = data2_list[idx_learn]
+    #ADD DEFECT +conversion en mel  test
+    to_remove2 = []
     for i in range(len(X_val)):
         X_val[i] = X_val[i]*np.random.uniform(0.6,3)   #amplitude
         X_val[i] =X_val[i] + np.random.normal(0, np.random.random(), len(X_val[i]))   #noise
@@ -200,56 +217,111 @@ for k, idx in enumerate(kf.split(X_train, y_train)):
         factor = np.random.uniform(0.5,1.0)
         for j in range(debut, len(X_val[i])):
             X_val[i][j] =X_val[i][j] + X_val[i][j-debut]*factor #echo
-    
-
-
-
-
-
-    """for i in range(pca_begin,pca_end, pca_step):
         
+        x = X_val[i]-np.mean(X_val[i])
+        flag=True
+        for elem in x:
+            if elem!=0:
+                flag = False
+                break
+        if flag:
+            to_remove2.append(i)
+        x = x/(np.linalg.norm(x))
+        x= imp.fit_transform([x])
+        x=x[0]
 
-        print("Nouvelle boucle pour : N_Componenet = {}".format(i))
+        spec = np.ravel(np.log(np.abs(melspecgram(x, Nmel=20, mellength=20, fs_down=fs_down))))
+        X_val_spec.append(spec-np.mean(spec))
+    
+    #conversion en mel train
+    to_remove = []
+    for i in range(len(X_train)):
+        x = X_train[i]-np.mean(X_train[i])
+        flag=True
+        for elem in x:
+            if elem!=0:
+                flag = False
+                break
+        if flag:
+            to_remove.append(i)
+        x = x/np.linalg.norm(x)
+        x= imp.fit_transform([x])
+        x=x[0]
+        spec = np.ravel(np.log(np.abs(melspecgram(x, Nmel=20, mellength=20, fs_down=fs_down))))
+        X_train_spec.append(spec-np.mean(spec))
 
+    for index in to_remove:
+        del X_train_spec[index]
+        del y_train[index]
+    for index in to_remove:
+        del X_val_spec[index]
+        del y_val[index]
+    for n_compo in range(pca_begin,pca_end,1):
         n_trees = 100
         model = RandomForestClassifier(n_trees)
         accuracy = np.zeros((n_splits,))
-
-        # best pca = PCA(n_components=5,whiten=True)with n=7+1=8
-        imp = SimpleImputer(missing_values=np.nan, strategy='mean')
-        pca = PCA(n_components=i, whiten=True)
-
-        # [2] (optional) Data normalization
-        X_learn_normalised = X_train[idx_learn] / np.linalg.norm(X_train[idx_learn], axis=1, keepdims=True)
-        # print(len(X_learn_normalised))
-        X_val_normalised = X_train[idx_val] / np.linalg.norm(X_train[idx_val], axis=1, keepdims=True)
-        # print(len(X_val_normalised))
-
-        # [3] (optional) dimensionality reduction.
-        imp.fit(X_learn_normalised)
-        X_learn_normalised = imp.transform(X_learn_normalised) # Remplacer tous les NaN par la moyenne
-        X_learn_reduced = pca.fit_transform(X_learn_normalised)
-
-        imp.fit(X_val_normalised)
-        X_val_normalised = imp.transform(X_val_normalised)
-        X_val_reduced = pca.transform(X_val_normalised)
-        model.fit(X_learn_reduced, y_train_u[idx_learn])
+        pca = PCA(n_components=n_compo, whiten=True)
+        X_learn_reduced = pca.fit_transform(np.array(X_train_spec))
+        X_val_reduced = pca.transform(X_val_spec)
+        model.fit(X_learn_reduced, y_train)
         prediction = model.predict(X_val_reduced)
-        # print(len(prediction_knn))
-        accuracy[k] = compute_accuracy(prediction, y_train_u)
+        a = compute_accuracy(prediction, y_val)
+        accuracy_matrix[k][n_compo-pca_begin] = a
+        print(f"accuracy {n_compo}, {a}")
+        
+acc = np.zeros(n_splits)
+for i in range(n_compo-pca_begin):
+    print(accuracy_matrix[i:])
+    acc[i] = np.mean(accuracy_matrix[i:])
 
-        # accuracy est un tableau avec 5 élements car il y a 5 plis pour la validation croisée
-        # accuracy.mean() est la moyenne des 5 élements
-        # accuracy.std() est l'écart-type des 5 élements
-    temp_mean = np.mean(accuracy)
-    temp_std = np.std(accuracy)
+plt.plot(pca_arange, acc)
+plt.show()
 
-    # Remplir les matrices globales
-    accuracy_matrix[i-pca_begin] = temp_mean
-    std_matrix[i-pca_begin] = temp_std
 
-    print("N_Componenet : {}, accuracy : {}, std : {}".format(i, 100 * temp_mean, 100 * temp_std))
-    print("=====================================")
+"""for i in range(pca_begin,pca_end, pca_step):
+    
+
+    print("Nouvelle boucle pour : N_Componenet = {}".format(i))
+
+    n_trees = 100
+    model = RandomForestClassifier(n_trees)
+    accuracy = np.zeros((n_splits,))
+
+    # best pca = PCA(n_components=5,whiten=True)with n=7+1=8
+    imp = SimpleImputer(missing_values=np.nan, strategy='mean')
+    pca = PCA(n_components=i, whiten=True)
+
+    # [2] (optional) Data normalization
+    X_learn_normalised = X_train[idx_learn] / np.linalg.norm(X_train[idx_learn], axis=1, keepdims=True)
+    # print(len(X_learn_normalised))
+    X_val_normalised = X_train[idx_val] / np.linalg.norm(X_train[idx_val], axis=1, keepdims=True)
+    # print(len(X_val_normalised))
+
+    # [3] (optional) dimensionality reduction.
+    imp.fit(X_learn_normalised)
+    X_learn_normalised = imp.transform(X_learn_normalised) # Remplacer tous les NaN par la moyenne
+    X_learn_reduced = pca.fit_transform(X_learn_normalised)
+
+    imp.fit(X_val_normalised)
+    X_val_normalised = imp.transform(X_val_normalised)
+    X_val_reduced = pca.transform(X_val_normalised)
+    model.fit(X_learn_reduced, y_train_u[idx_learn])
+    prediction = model.predict(X_val_reduced)
+    # print(len(prediction_knn))
+    accuracy[k] = compute_accuracy(prediction, y_train_u)
+
+    # accuracy est un tableau avec 5 élements car il y a 5 plis pour la validation croisée
+    # accuracy.mean() est la moyenne des 5 élements
+    # accuracy.std() est l'écart-type des 5 élements
+temp_mean = np.mean(accuracy)
+temp_std = np.std(accuracy)
+
+# Remplir les matrices globales
+accuracy_matrix[i-pca_begin] = temp_mean
+std_matrix[i-pca_begin] = temp_std
+
+print("N_Componenet : {}, accuracy : {}, std : {}".format(i, 100 * temp_mean, 100 * temp_std))
+print("=====================================")
 
 plt.plot(pca_arange, accuracy_matrix, label="accuracy")
 plt.show()
