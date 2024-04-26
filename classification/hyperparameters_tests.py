@@ -27,6 +27,7 @@ from classification.datasets import Dataset
 MELVEC_LENGTH_DEFAULT = 20  # hauteur (longueur de chaque vecteur)
 N_MELVECS_DEFAULT = 20  # Nombre de vecteurs mel
 fs_down = 11111  # Target sampling frequency
+Nft = 512  # Number of samples by fft
 
 
 def compute_accuracy(prediction, target):
@@ -74,7 +75,7 @@ def specgram(y, Nft=512, mellength=MELVEC_LENGTH_DEFAULT):
     return stft[:-1, :]
 
 
-def melspecgram(x, Nmel=N_MELVECS_DEFAULT, mellength=MELVEC_LENGTH_DEFAULT, Nft=512, fs=44100, fs_down=11025):
+def melspecgram(x, Nmel=N_MELVECS_DEFAULT, mellength=MELVEC_LENGTH_DEFAULT, Nft=512, fs=44100, fs_down=11111):
     """Get a audio record as input. Apply a low-pass filter then downsample before transforming the signal in melspectogram.
 
     Args:
@@ -119,11 +120,47 @@ def melspecgram(x, Nmel=N_MELVECS_DEFAULT, mellength=MELVEC_LENGTH_DEFAULT, Nft=
     return melspec
 
 
+def turbo_lol_spectrograms(signal, i_melvec_length, j_n_melvecs, Nft=512, fs_down=11111) -> list:
+    """
+    Fonction qui calcule les vecteurs mel et les agrège en spectrogrammes
+    Args:
+        signal: signal audio d'entrée
+        i_melvec_length: longueur des vecteurs mel
+        j_n_melvecs: nombre de vecteurs mel à agréger pour former un spectrgrogramme
+        Nft: nombre d'échantillons audio par fft
+        fs_down: fréquence d'échantillonnage du signal
+
+    Returns: liste de spectrogrammes, chacun de taille j_n_melvecs * i_melvec_length
+
+    """
+    # Calculer les spectrogrammes
+    a_spec = []
+    size_a = len(signal)
+    cropped_a_spec = signal[:size_a - size_a % Nft]  # Tronquer le signal pour qu'il soit un multiple de 512
+    for m in range(0, len(cropped_a_spec), Nft):
+        temp_spec = np.log(np.abs(melspecgram(cropped_a_spec[m:m + Nft], Nmel=j_n_melvecs, mellength=i_melvec_length, fs_down=fs_down)))
+        a_spec.append(temp_spec)
+
+    a_spec_reshaped = []
+    for k in range(0, len(a_spec) - (len(a_spec) % j_n_melvecs), j_n_melvecs):  # Avancer par pas de j et tronquer le nombre de melvecs pour avoir un multiple de j
+        a_spec_reshaped.append(np.ravel(a_spec[k:k + j_n_melvecs]))  # Prendre des paquets de j spectrogrammes et les applatir en un seul vecteur de dimension 1
+
+    return a_spec_reshaped
+
+
 a = pickle.load(open("data/raw_global_samples/birds_reformated_globalsample.pickle", "rb"))
 b = pickle.load(open("data/raw_global_samples/fire_reformated_globalsample.pickle", "rb"))
 c = pickle.load(open("data/raw_global_samples/handsaw_reformated_globalsample.pickle", "rb"))
 d = pickle.load(open("data/raw_global_samples/chainsaw_reformated_globalsample.pickle", "rb"))
 e = pickle.load(open("data/raw_global_samples/helicopter_reformated_globalsample.pickle", "rb"))
+
+# Retirer la composante continue de chaque signal pour chaque classe
+a_signal_without_DC_component = remove_dc_component(a[1])
+b_signal_without_DC_component = remove_dc_component(b[1])
+c_signal_without_DC_component = remove_dc_component(c[1])
+d_signal_without_DC_component = remove_dc_component(d[1])
+e_signal_without_DC_component = remove_dc_component(e[1])
+
 
 print("Classes in the dataset:", ["birds", "fire", "handsaw", "chainsaw", "helicopter"])
 
@@ -151,15 +188,7 @@ for i in MELVEC_LENGTH_arange:
     for j in N_MELVECS_arange:
         print("Nouvelle boucle pour : N_MELVECS = {}, MELVEC_LENGTH = {}".format(i, j))
 
-        # Retirer la composante continue de chaque signal pour chaque classe
-        a_signal_without_DC_component = remove_dc_component(a[1])
-        b_signal_without_DC_component = remove_dc_component(b[1])
-        c_signal_without_DC_component = remove_dc_component(c[1])
-        d_signal_without_DC_component = remove_dc_component(d[1])
-        e_signal_without_DC_component = remove_dc_component(e[1])
-
-        data1_list = [] # Liste contenant les spectrogrammes de toutes les classes
-
+        """
         # Calculer les spectrogrammes
         a_spec = []
         size_a = len(a_signal_without_DC_component)
@@ -177,7 +206,7 @@ for i in MELVEC_LENGTH_arange:
 
         data1_list = a_spec_reshaped # Pour la suite, il faudra concaténer les autres classes à la suite de cette liste
 
-        """
+        
         "A décommenter pour vérifier le formatage des spectrogrammes"    
         print("Taille de data1_list", len(data1_list))
 
@@ -187,7 +216,7 @@ for i in MELVEC_LENGTH_arange:
         print("Taille de cropped_a_spec :", len(cropped_a_spec))
 
         print("Spectrogrammes oiseau calculés !")
-        """
+        
 
         b_spec = []
         size_b = len(b_signal_without_DC_component)
@@ -240,7 +269,7 @@ for i in MELVEC_LENGTH_arange:
         e_spec = []
         size_e = len(e_signal_without_DC_component)
         cropped_e_spec = e_signal_without_DC_component[:size_e - size_e % 512]
-        for m in range(0, len(cropped_e_spec) - (len(e_spec) % j), 512):
+        for m in range(0, len(cropped_e_spec), 512):
             temp_spec = np.log(np.abs(melspecgram(cropped_e_spec[m:m + 512], Nmel=i, mellength=j, fs_down=fs_down)))
             e_spec.append(temp_spec)
 
@@ -251,6 +280,21 @@ for i in MELVEC_LENGTH_arange:
         data1_list = np.concatenate((data1_list, e_spec_reshaped), axis=0)
 
         print("Spectrogrammes hélicoptère calculés !")
+        """
+
+        data1_list = []  # Liste contenant les spectrogrammes de toutes les classes
+
+        a_spec_reshaped = turbo_lol_spectrograms(a_signal_without_DC_component, i, j, Nft=512, fs_down=fs_down)
+        b_spec_reshaped = turbo_lol_spectrograms(b_signal_without_DC_component, i, j, Nft=512, fs_down=fs_down)
+        c_spec_reshaped = turbo_lol_spectrograms(c_signal_without_DC_component, i, j, Nft=512, fs_down=fs_down)
+        d_spec_reshaped = turbo_lol_spectrograms(d_signal_without_DC_component, i, j, Nft=512, fs_down=fs_down)
+        e_spec_reshaped = turbo_lol_spectrograms(e_signal_without_DC_component, i, j, Nft=512, fs_down=fs_down)
+
+        data1_list = a_spec_reshaped
+        data1_list = np.concatenate((data1_list, b_spec_reshaped))
+        data1_list = np.concatenate((data1_list, c_spec_reshaped))
+        data1_list = np.concatenate((data1_list, d_spec_reshaped))
+        data1_list = np.concatenate((data1_list, e_spec_reshaped))
 
         "Création de data2_list avec tous les labels"
         data2_list = []
@@ -261,7 +305,6 @@ for i in MELVEC_LENGTH_arange:
 
 
         print("Data2_list longeur", len(data2_list))
-        #print(data2_list)
         print("Longueur de tous les spectrogrammes : ", len(data1_list))
         print("Nombre d'éléments dans le premier spectrogramme", len(data1_list[0]))
 
