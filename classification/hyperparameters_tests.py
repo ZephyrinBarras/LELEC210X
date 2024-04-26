@@ -14,6 +14,7 @@ import librosa
 from sklearn.impute import SimpleImputer
 import seaborn as sns
 
+import classification.utils.audio_student as audio
 from classification.utils.plots import plot_specgram, show_confusion_matrix, show_confusion_matrix_with_save, \
     plot_decision_boundaries
 from classification.utils.utils import accuracy
@@ -138,12 +139,16 @@ N_MELVECS_arange = np.arange(N_MELVECS_begin, N_MELVECS_end, N_MELVECS_step)  # 
 MELVEC_LENGTH_arange = np.arange(MELVEC_LENGTH_begin, MELVEC_LENGTH_end,
                                  MELVEC_LENGTH_step)  # ICI LA RANGE DU PARAM MELVEC_LENGTH
 
-accuracy_matrix = np.zeros((len(N_MELVECS_arange), len(MELVEC_LENGTH_arange)))
-std_matrix = np.zeros((len(N_MELVECS_arange), len(MELVEC_LENGTH_arange)))
+# La création des matrices a été adaptée à la modification des boucles i et j
+accuracy_matrix = np.zeros((len(MELVEC_LENGTH_arange), len(N_MELVECS_arange)))
+std_matrix = np.zeros((len(MELVEC_LENGTH_arange), len(N_MELVECS_arange)))
 
-for i in N_MELVECS_arange:
-    for j in MELVEC_LENGTH_arange:
+"Les deux boucles étaient incorrectes, il fallait les inverser"
+"""for i in N_MELVECS_arange:
+    for j in MELVEC_LENGTH_arange:"""
 
+for i in MELVEC_LENGTH_arange:
+    for j in N_MELVECS_arange:
         print("Nouvelle boucle pour : N_MELVECS = {}, MELVEC_LENGTH = {}".format(i, j))
 
         # Retirer la composante continue de chaque signal pour chaque classe
@@ -163,6 +168,9 @@ for i in N_MELVECS_arange:
             temp_spec = np.log(np.abs(melspecgram(cropped_a_spec[m:m + 512], Nmel=i, mellength=j, fs_down=fs_down)))
             a_spec.append(temp_spec)
 
+        # print("Taille de a_spec :", len(a_spec))
+        # print("Taille d'un melvec :", len(a_spec[0]))
+
         a_spec_reshaped = []
         for k in range(0, len(a_spec) - (len(a_spec) % j), j): # Avancer par pas de j et tronquer le nombre de melvecs pour avoir un multiple de j
             a_spec_reshaped.append(np.ravel(a_spec[k:k+j])) # Prendre des paquets de j spectrogrammes et les applatir en un seul vecteur de dimension 1
@@ -176,11 +184,10 @@ for i in N_MELVECS_arange:
         print("Taille de a_spec_reshaped :", len(a_spec_reshaped))
         #print(a_spec_reshaped[0])
         print(len(a_spec_reshaped[0]))
-        print(size_a)
         print("Taille de cropped_a_spec :", len(cropped_a_spec))
-        """
-        print("Spectrogrammes oiseau calculés !")
 
+        print("Spectrogrammes oiseau calculés !")
+        """
 
         b_spec = []
         size_b = len(b_signal_without_DC_component)
@@ -325,13 +332,28 @@ for i in N_MELVECS_arange:
         temp_mean = np.mean(accuracy)
         temp_std = np.std(accuracy)
 
-        # Remplir les matrices globales
-        accuracy_matrix[(i - N_MELVECS_begin) // N_MELVECS_step][(j - MELVEC_LENGTH_begin) // MELVEC_LENGTH_step] = temp_mean
-        std_matrix[(i - N_MELVECS_begin) // N_MELVECS_step][(j - MELVEC_LENGTH_begin) // MELVEC_LENGTH_step] = temp_std
+        # Remplir les matrices globales (ont été modifiées en fonction des nouvelles boucles i et j)
+        accuracy_matrix[(i - MELVEC_LENGTH_begin) // MELVEC_LENGTH_step][(j - N_MELVECS_begin) // N_MELVECS_step] = temp_mean
+        std_matrix[(i - MELVEC_LENGTH_begin) // MELVEC_LENGTH_step][(j - N_MELVECS_begin) // N_MELVECS_step] = temp_std
 
         print("N_MELVECS : {}, MELVEC_LENGTH : {}, accuracy : {}, std : {}".format(i, j, 100 * temp_mean, 100 * temp_std))
         print("=====================================")
 
-ax = sns.heatmap(accuracy_matrix, linewidth=0.5)
+
+"""ax = sns.heatmap(accuracy_matrix, linewidth=0.5)
 ax2 = sns.heatmap(std_matrix, linewidth=0.5)
+plt.show()"""
+
+plt.imshow(accuracy_matrix, cmap='hot', extent=np.concatenate((N_MELVECS_arange, MELVEC_LENGTH_arange)))
+plt.colorbar()
+plt.xlabel("N_MELVECS")
+plt.ylabel("MELVEC_LENGTH")
+plt.savefig("accuracy_matrix.png")
+plt.show()
+
+plt.imshow(std_matrix, cmap='hot', extent=np.concatenate((N_MELVECS_arange, MELVEC_LENGTH_arange)))
+plt.colorbar()
+plt.xlabel("N_MELVECS")
+plt.ylabel("MELVEC_LENGTH")
+plt.savefig("std_matrix.png")
 plt.show()
