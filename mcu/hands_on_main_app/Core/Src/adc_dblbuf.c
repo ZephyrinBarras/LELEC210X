@@ -79,7 +79,6 @@ static void send_spectrogram() {
 	q15_t bound;
 	if (THRESHOLD_MOD) bound = 300; else bound = 70;
 	if (vmax_global<bound && remain == 0){
-		__WFI();
 		return;
 	}
 	if (remain ==0){

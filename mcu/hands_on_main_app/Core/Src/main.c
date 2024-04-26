@@ -90,7 +90,9 @@ static void acquire_and_send_packet() {
 	}
 	while (!IsADCFinished()) {
 		//start_cycle_count();
-		__WFI();
+		HAL_SuspendTick();
+		HAL_PWR_EnterSLEEPMode(PWR_LOWPOWERREGULATOR_ON, PWR_SLEEPENTRY_WFI);
+		HAL_ResumeTick();
 		//stop_cycle_count("wfi");
 		//fait pas chier
 	}
@@ -102,6 +104,7 @@ void run(void)
 
 	while (1)
 	{
+	  HAL_PWREx_EnableLowPowerRunMode();
 	  while (!btn_press) {
 		  HAL_GPIO_WritePin(GPIOB, LD2_Pin, GPIO_PIN_RESET);
 		  HAL_Delay(200);
