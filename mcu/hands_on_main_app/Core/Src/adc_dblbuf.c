@@ -104,10 +104,13 @@ static void ADC_Callback(int buf_cplt) {
 
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc)
 {
+	HAL_ResumeTick();
 	ADC_Callback(1);
+
 }
 
 void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef *hadc)
 {
+	HAL_ResumeTick();
 	ADC_Callback(0);
 }

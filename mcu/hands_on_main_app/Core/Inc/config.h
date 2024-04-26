@@ -18,7 +18,7 @@
 #define THRESHOLD_MOD PYTHAGORE_NOISE
 
 // Radio parameters
-#define ENABLE_RADIO 1
+#define ENABLE_RADIO 0
 
 // General UART enable/disable (disable for low-power operation)
 #define ENABLE_UART 0

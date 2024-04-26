@@ -92,7 +92,7 @@ static void acquire_and_send_packet() {
 		//start_cycle_count();
 		HAL_SuspendTick();
 		HAL_PWR_EnterSLEEPMode(PWR_LOWPOWERREGULATOR_ON, PWR_SLEEPENTRY_WFI);
-		HAL_ResumeTick();
+
 		//stop_cycle_count("wfi");
 		//fait pas chier
 	}
@@ -134,7 +134,6 @@ void run(void)
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-  HAL_PWREx_EnableLowPowerRunMode();
 
   /* USER CODE END 1 */
 
