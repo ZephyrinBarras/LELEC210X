@@ -8,8 +8,10 @@ from sklearn.decomposition import PCA
 import pickle
 import numpy as np
 import librosa
+import sounddevice as sd
 from sklearn.impute import SimpleImputer
 import copy
+from scipy.signal import fftconvolve, resample
 
 from classification.utils.utils import accuracy
 
@@ -127,40 +129,39 @@ e_signal_without_DC_component = e[1]
 data1_list = [] # Liste contenant les spectrogrammes de toutes les classes
 a_spec = []
 size_a = len(a_signal_without_DC_component)
-cropped_a_spec = a_signal_without_DC_component[:size_a - size_a % 512] # Tronquer le signal pour qu'il soit un multiple de 512
-for m in range(0, len(cropped_a_spec), 512):
-    a_spec.append(cropped_a_spec[m:m + 512])
-L = len(a_spec)
+cropped_a_spec = a_signal_without_DC_component[:size_a - size_a % 512*20] # Tronquer le signal pour qu'il soit un multiple de 512*20
+for m in range(0, len(cropped_a_spec), 512*20):
+    a_spec.append(cropped_a_spec[m:m + 512*20])
 data1_list = (a_spec)
 b_spec = []
-size_a = len(a_signal_without_DC_component)
-cropped_b_spec = a_signal_without_DC_component[:size_a - size_a % 512] # Tronquer le signal pour qu'il soit un multiple de 512
-for m in range(0, len(cropped_b_spec), 512):
-    b_spec.append(cropped_b_spec[m:m + 512])
+size_b = len(b_signal_without_DC_component)
+cropped_b_spec = b_signal_without_DC_component[:size_b - size_b % 512*20] # Tronquer le signal pour qu'il soit un multiple de 512*20
+for m in range(0, len(cropped_b_spec), 512*20):
+    b_spec.append(cropped_b_spec[m:m + 512*20])
 
 data1_list = np.concatenate((data1_list,b_spec), axis=0)
 
 c_spec = []
-size_a = len(a_signal_without_DC_component)
-cropped_c_spec = a_signal_without_DC_component[:size_a - size_a % 512] # Tronquer le signal pour qu'il soit un multiple de 512
-for m in range(0, len(cropped_c_spec), 512):
-    c_spec.append(cropped_c_spec[m:m + 512])
+size_c = len(c_signal_without_DC_component)
+cropped_c_spec = c_signal_without_DC_component[:size_c - size_c % 512*20] # Tronquer le signal pour qu'il soit un multiple de 512*20
+for m in range(0, len(cropped_c_spec), 512*20):
+    c_spec.append(cropped_c_spec[m:m + 512*20])
 
 data1_list = np.concatenate((data1_list,c_spec), axis=0)
 
 d_spec = []
-size_a = len(a_signal_without_DC_component)
-cropped_d_spec = a_signal_without_DC_component[:size_a - size_a % 512] # Tronquer le signal pour qu'il soit un multiple de 512
-for m in range(0, len(cropped_d_spec), 512):
-    d_spec.append(cropped_d_spec[m:m + 512])
+size_d = len(d_signal_without_DC_component)
+cropped_d_spec = d_signal_without_DC_component[:size_d - size_d % 512*20] # Tronquer le signal pour qu'il soit un multiple de 512*20
+for m in range(0, len(cropped_d_spec), 512*20):
+    d_spec.append(cropped_d_spec[m:m + 512*20])
 
 data1_list = np.concatenate((data1_list,d_spec), axis=0)
 
 e_spec = []
-size_a = len(a_signal_without_DC_component)
-cropped_e_spec = a_signal_without_DC_component[:size_a - size_a % 512] # Tronquer le signal pour qu'il soit un multiple de 512
-for m in range(0, len(cropped_e_spec), 512):
-    e_spec.append(cropped_e_spec[m:m + 512])
+size_e = len(e_signal_without_DC_component)
+cropped_e_spec = e_signal_without_DC_component[:size_e - size_e % 512*20] # Tronquer le signal pour qu'il soit un multiple de 512*20
+for m in range(0, len(cropped_e_spec), 512*20):
+    e_spec.append(cropped_e_spec[m:m + 512*20])
 
 data1_list = np.concatenate((data1_list,e_spec), axis=0)
 
@@ -168,256 +169,106 @@ data1_list = np.concatenate((data1_list,e_spec), axis=0)
 data2_list = []
 labels = ["birds", "fire", "handsaw", "chainsaw", "helicopter"]
 for label in range(0, 5):
-    data2_list = np.concatenate((data2_list, [labels[label] for _ in range(L)]), axis=0)
+    data2_list = np.concatenate((data2_list, [labels[label] for _ in range(len(e_spec))]), axis=0)
 # en partant du principe que len(a_spec_reshaped) = len(b_spec_reshaped) = len(c_spec_reshaped) = len(d_spec_reshaped) = len(e_spec_reshaped)
-print(data2_list.shape)
 data2_list = list(data2_list)
-"""del data2_list[2710]
-del data2_list[2522]
-del data2_list[2526]
-del data2_list[2569]
-del data2_list[2650]
-del data2_list[2531]
-del data2_list[2570]"""
 data1_list = np.array(data1_list)
 data2_list = np.array(data2_list)
-
+"""s1 = data1_list[20].astype(np.float32)
+s1 = s1-np.mean(s1)
+s1=s1/np.linalg.norm(s1)
+s2 = data1_list[720].astype(np.float32)
+s2 = s2-np.mean(s2)
+s2=s2/np.linalg.norm(s2)
+s3 = data1_list[1440].astype(np.float32)
+s3 = s3-np.mean(s3)
+s3=s3/np.linalg.norm(s3)
+s4 = data1_list[2160].astype(np.float32)
+s4 = s4-np.mean(s4)
+s4=s4/np.linalg.norm(s4)
+print(len(data1_list))
+sd.play(s1, 11111)
+sd.wait()
+sd.play(s2, 11111)
+sd.wait()
+sd.play(s3, 11111)
+sd.wait()
+sd.play(s4, 11111)
+sd.wait()"""
 
 pca_begin = 1
-pca_end = 50
+pca_end = 100
 pca_step = 1
-
-
-
-X_train, X_test, y_train, y_test = train_test_split(data1_list, data2_list, test_size=0.3, stratify=data2_list)  # random_state=1
-n_splits = 5
-kf = StratifiedKFold(n_splits=n_splits, shuffle=True)
-
+n_splits=3
 pca_arange = np.arange(pca_begin,pca_end,pca_step)
-accuracy_matrix = np.zeros((n_splits,len(pca_arange)))
+accuracy_matrix = np.zeros((len(pca_arange),n_splits))
+print(accuracy_matrix.shape)
 std_matrix = np.zeros((n_splits,len(pca_arange)))
-imp = SimpleImputer(missing_values=np.nan, strategy="constant",fill_value=0)
 count = 0
-for k, idx in enumerate(kf.split(X_train, y_train)):
-    (idx_learn, idx_val) = idx
-    X_val = copy.copy(data1_list[idx_val])
+for k in range(n_splits):
+    X_train, X_test, y_train, y_test = train_test_split(data1_list, data2_list, test_size=0.3)  # random_state=1
+    print(len(X_test), len(y_test))
     X_val_spec = []
-    y_val = data2_list[idx_val]
-    X_train = data1_list[idx_learn]
+    y_val = y_test
     X_train_spec = []
-    y_train = data2_list[idx_learn]
     #ADD DEFECT +conversion en mel  test
-    to_remove2 = []
-    for i in range(len(X_val)):
-        X_val[i] = X_val[i]*np.random.uniform(0.6,3)   #amplitude
-        X_val[i] =X_val[i] + np.random.normal(0, np.random.random(), len(X_val[i]))   #noise
-        X_val[i] =data1_list[np.random.randint(0,len(data1_list))]*np.random.random()   #background
-        echo = np.zeros(len(X_val[i]))
-        debut = np.random.randint(10,500)
-        factor = np.random.uniform(0.5,1.0)
-        for j in range(debut, len(X_val[i])):
-            X_val[i][j] =X_val[i][j] + X_val[i][j-debut]*factor #echo
-        
-        x = X_val[i]-np.mean(X_val[i])
-        flag=True
-        for elem in x:
-            if elem!=0:
-                flag = False
-                break
-        if flag:
-            to_remove2.append(i)
-        x = x/(np.linalg.norm(x))
-        x= imp.fit_transform([x])
-        x=x[0]
 
+    print(f"loop {k}")
+    for i in range(len(X_test)):
+        
+        array = X_test[i].astype(np.float32)
+        array = array -np.mean(array)
+        array = array*np.random.uniform(0.1,3)   #amplitude
+        echo = np.zeros(len(array))
+        echo_sig = np.zeros(512*20)
+        echo_sig[0] = 1
+        n_echo = np.random.randint(1,3)
+        echo_sig[(np.arange(1) / 1 * 512*20).astype(int)] = (
+            1 / 2
+        ) ** np.arange(1)
+
+        array = fftconvolve(array, echo_sig, mode="full")[:512*20]
+        array =array + np.random.normal(0, np.random.uniform(0.05,0.7), len(array))   #noise
+        sound_to_add = data1_list[np.random.randint(0,len(data1_list))].astype(np.float32)
+        sound_to_add = sound_to_add-np.mean(sound_to_add)
+        array =   array+sound_to_add*np.random.uniform(0,0.7)/np.max(sound_to_add)*np.max(array)
+
+        x = array-np.mean(array)
+        x=x/np.linalg.norm(x)
+        """imp = np.log(np.abs(melspecgram(x, Nmel=20, mellength=20, fs_down=fs_down)))
+        sd.play(x, 11111)
+        sd.wait()
+        print(y_test[i])
+        plt.imshow(imp)
+        plt.show()"""
         spec = np.ravel(np.log(np.abs(melspecgram(x, Nmel=20, mellength=20, fs_down=fs_down))))
         X_val_spec.append(spec-np.mean(spec))
     
     #conversion en mel train
-    to_remove = []
     for i in range(len(X_train)):
-        x = X_train[i]-np.mean(X_train[i])
-        flag=True
-        for elem in x:
-            if elem!=0:
-                flag = False
-                break
-        if flag:
-            to_remove.append(i)
-        x = x/np.linalg.norm(x)
-        x= imp.fit_transform([x])
-        x=x[0]
+        x = X_train[i]-np.mean(X_train[i])  
+        x=x/np.linalg.norm(x)      
         spec = np.ravel(np.log(np.abs(melspecgram(x, Nmel=20, mellength=20, fs_down=fs_down))))
+        
         X_train_spec.append(spec-np.mean(spec))
 
-    for index in to_remove:
-        del X_train_spec[index]
-        del y_train[index]
-    for index in to_remove:
-        del X_val_spec[index]
-        del y_val[index]
     for n_compo in range(pca_begin,pca_end,1):
         n_trees = 100
         model = RandomForestClassifier(n_trees)
-        accuracy = np.zeros((n_splits,))
         pca = PCA(n_components=n_compo, whiten=True)
         X_learn_reduced = pca.fit_transform(np.array(X_train_spec))
         X_val_reduced = pca.transform(X_val_spec)
         model.fit(X_learn_reduced, y_train)
         prediction = model.predict(X_val_reduced)
         a = compute_accuracy(prediction, y_val)
-        accuracy_matrix[k][n_compo-pca_begin] = a
+        accuracy_matrix[n_compo-pca_begin][k] = a
         print(f"accuracy {n_compo}, {a}")
         
-acc = np.zeros(n_splits)
+acc = np.zeros(len(pca_arange))
+print(accuracy_matrix)
 for i in range(n_compo-pca_begin):
     print(accuracy_matrix[i:])
     acc[i] = np.mean(accuracy_matrix[i:])
 
 plt.plot(pca_arange, acc)
 plt.show()
-
-
-"""for i in range(pca_begin,pca_end, pca_step):
-    
-
-    print("Nouvelle boucle pour : N_Componenet = {}".format(i))
-
-    n_trees = 100
-    model = RandomForestClassifier(n_trees)
-    accuracy = np.zeros((n_splits,))
-
-    # best pca = PCA(n_components=5,whiten=True)with n=7+1=8
-    imp = SimpleImputer(missing_values=np.nan, strategy='mean')
-    pca = PCA(n_components=i, whiten=True)
-
-    # [2] (optional) Data normalization
-    X_learn_normalised = X_train[idx_learn] / np.linalg.norm(X_train[idx_learn], axis=1, keepdims=True)
-    # print(len(X_learn_normalised))
-    X_val_normalised = X_train[idx_val] / np.linalg.norm(X_train[idx_val], axis=1, keepdims=True)
-    # print(len(X_val_normalised))
-
-    # [3] (optional) dimensionality reduction.
-    imp.fit(X_learn_normalised)
-    X_learn_normalised = imp.transform(X_learn_normalised) # Remplacer tous les NaN par la moyenne
-    X_learn_reduced = pca.fit_transform(X_learn_normalised)
-
-    imp.fit(X_val_normalised)
-    X_val_normalised = imp.transform(X_val_normalised)
-    X_val_reduced = pca.transform(X_val_normalised)
-    model.fit(X_learn_reduced, y_train_u[idx_learn])
-    prediction = model.predict(X_val_reduced)
-    # print(len(prediction_knn))
-    accuracy[k] = compute_accuracy(prediction, y_train_u)
-
-    # accuracy est un tableau avec 5 élements car il y a 5 plis pour la validation croisée
-    # accuracy.mean() est la moyenne des 5 élements
-    # accuracy.std() est l'écart-type des 5 élements
-temp_mean = np.mean(accuracy)
-temp_std = np.std(accuracy)
-
-# Remplir les matrices globales
-accuracy_matrix[i-pca_begin] = temp_mean
-std_matrix[i-pca_begin] = temp_std
-
-print("N_Componenet : {}, accuracy : {}, std : {}".format(i, 100 * temp_mean, 100 * temp_std))
-print("=====================================")
-
-plt.plot(pca_arange, accuracy_matrix, label="accuracy")
-plt.show()
-plt.plot(pca_arange, std_matrix, label="std")
-plt.show()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Calculer les spectrogrammes
-a_spec = []
-size_a = len(a_signal_without_DC_component)
-cropped_a_spec = a_signal_without_DC_component[:size_a - size_a % 512] # Tronquer le signal pour qu'il soit un multiple de 512
-for m in range(0, len(cropped_a_spec), 512):
-    temp_spec = np.log(np.abs(melspecgram(cropped_a_spec[m:m + 512], Nmel=20, mellength=20, fs_down=fs_down)))
-    a_spec.append(temp_spec)
-
-a_spec_reshaped = []
-for k in range(0, len(a_spec) - (len(a_spec) % 20), 20): # Avancer par pas de j et tronquer le nombre de melvecs pour avoir un multiple de j
-    a_spec_reshaped.append(np.ravel(a_spec[k:k+20])) # Prendre des paquets de j spectrogrammes et les applatir en un seul vecteur de dimension 1
-
-data1_list = a_spec_reshaped # Pour la suite, il faudra concaténer les autres classes à la suite de cette liste
-
-
-print("Spectrogrammes oiseau calculés !")
-
-
-b_spec = []
-size_b = len(b_signal_without_DC_component)
-cropped_b_spec = b_signal_without_DC_component[:size_b - size_b % 512]
-for m in range(0, len(cropped_b_spec), 512):
-    temp_spec = np.log(np.abs(melspecgram(cropped_b_spec[m:m + 512], Nmel=20, mellength=20, fs_down=fs_down)))
-    b_spec.append(temp_spec)
-
-b_spec_reshaped = []
-for k in range(0, len(b_spec) - (len(b_spec) % 20), 20): # Avancer par pas de j
-    b_spec_reshaped.append(np.ravel(b_spec[k:k+20])) # Prendre des paquets de j spectrogrammes et les applatir en un seul vecteur de dimension 1
-
-data1_list = np.concatenate((data1_list, b_spec_reshaped))
-
-print("Spectrogrammes feu calculés !")
-
-
-c_spec = []
-size_c = len(c_signal_without_DC_component)
-cropped_c_spec = c_signal_without_DC_component[:size_c - size_c % 512]
-for m in range(0, len(cropped_c_spec), 512):
-    temp_spec = np.log(np.abs(melspecgram(cropped_c_spec[m:m + 512], Nmel=20, mellength=20, fs_down=fs_down)))
-    c_spec.append(temp_spec)
-
-c_spec_reshaped = []
-for k in range(0, len(c_spec) - (len(c_spec) % 20), 20): # Avancer par pas de j
-    c_spec_reshaped.append(np.ravel(c_spec[k:k+20])) # Prendre des paquets de j spectrogrammes et les applatir en un seul vecteur de dimension 1
-
-data1_list = np.concatenate((data1_list, c_spec_reshaped), axis=0)
-
-print("Spectrogrammes scie calculés !")
-
-
-d_spec = []
-size_d = len(d_signal_without_DC_component)
-cropped_d_spec = d_signal_without_DC_component[:size_d - size_d % 512]
-for m in range(0, len(cropped_d_spec), 512):
-    temp_spec = np.log(np.abs(melspecgram(cropped_d_spec[m:m + 512], Nmel=20, mellength=20, fs_down=fs_down)))
-    d_spec.append(temp_spec)
-
-d_spec_reshaped = []
-for k in range(0, len(d_spec) - (len(d_spec) % 20), 20): # Avancer par pas de j
-    d_spec_reshaped.append(np.ravel(d_spec[k:k+20])) # Prendre des paquets de j spectrogrammes et les applatir en un seul vecteur de dimension 1
-
-data1_list = np.concatenate((data1_list, d_spec_reshaped), axis=0)
-
-print("Spectrogrammes tronçonneuse calculés !")
-
-
-e_spec = []
-size_e = len(e_signal_without_DC_component)
-cropped_e_spec = e_signal_without_DC_component[:size_e - size_e % 512]
-for m in range(0, len(cropped_e_spec), 512):
-    temp_spec = np.log(np.abs(melspecgram(cropped_e_spec[m:m + 512], Nmel=20, mellength=20, fs_down=fs_down)))
-    e_spec.append(temp_spec)
-
-e_spec_reshaped = []
-for k in range(0, len(e_spec) - (len(e_spec) % 20), 20): # Avancer par pas de j
-    e_spec_reshaped.append(np.ravel(e_spec[k:k+20])) # Prendre des paquets de j spectrogrammes et les applatir en un seul vecteur de dimension 1
-
-data1_list = np.concatenate((data1_list, e_spec_reshaped), axis=0)
-
-print("Spectrogrammes hélicoptère calculés !")"""
