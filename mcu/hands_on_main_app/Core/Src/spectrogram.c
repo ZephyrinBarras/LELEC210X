@@ -148,3 +148,20 @@ void Spectrogram_Compute(q15_t *samples, q15_t *melvec)
 		melvec[i] = (q15_t) (result_temp[i] >> 15);
 	}
 }
+
+void Spectrogram_To_Pca(q15_t* melvec, q15_t* pca, uint8_t clean){
+	arm_matrix_instance_q15 vec_instance = {MELVEC_LENGTH, 1, melvec};
+	arm_matrix_instance_q15 mat_instance = {29, MELVEC_LENGTH, pca_mat};
+	if (clean==0){
+		q15_t result[29];
+		arm_matrix_instance_q15 result_instance = {29, 1, result};
+		// Effectuer la multiplication de la matrice par le vecteur
+		arm_mat_mult_q15(&mat_instance, &vec_instance, &result_instance);
+		arm_add_q15(result, pca, pca, 29)
+	}else{
+		arm_matrix_instance_q15 result_instance = {29, 1, pca};
+		// Effectuer la multiplication de la matrice par le vecteur
+		arm_mat_mult_q15(&mat_instance, &vec_instance, &result_instance);
+	}
+
+}

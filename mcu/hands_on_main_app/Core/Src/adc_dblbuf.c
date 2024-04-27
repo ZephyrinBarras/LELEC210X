@@ -14,6 +14,7 @@ static volatile uint8_t ADCDataRdy[2] = {0, 0};
 
 static volatile uint8_t cur_melvec = 0;
 static q15_t mel_vectors[MELVEC_LENGTH];
+static q15_t pca[29];
 
 static uint32_t packet_cnt = 0;
 uint8_t remain = 0;
@@ -61,8 +62,8 @@ static void print_encoded_packet(uint8_t *packet) {
 static void encode_packet(uint8_t *packet, uint32_t* packet_cnt) {
 	// BE encoding of each mel coef
 	for (size_t j=0; j<MELVEC_LENGTH; j++) {
-		(packet+PACKET_HEADER_LENGTH)[j*2]   = mel_vectors[j] >> 8;
-		(packet+PACKET_HEADER_LENGTH)[j*2+1] = mel_vectors[j] & 0xFF;
+		(packet+PACKET_HEADER_LENGTH)[j*2]   = pca[j] >> 8;
+		(packet+PACKET_HEADER_LENGTH)[j*2+1] = pca[j] & 0xFF;
 	}
 	// Write header and tag into the packet.
 	make_packet(packet, PAYLOAD_LENGTH, 0, *packet_cnt);
@@ -87,6 +88,7 @@ static void send_spectrogram() {
 static void ADC_Callback(int buf_cplt) {
 	ADCDataRdy[buf_cplt] = 1;
 	q15_t bound;
+	uint8_t clean = 0;
 	if (THRESHOLD_MOD) bound = 300; else bound = 70;
 	if (vmax_global<bound && remain == 0){
 		ADCDataRdy[buf_cplt] = 0;
@@ -94,11 +96,13 @@ static void ADC_Callback(int buf_cplt) {
 	}
 	if (remain ==0){
 		remain = N_MELVECS-1;
+		clean=1;
 	}else{
 		remain --;
 	}
 	Spectrogram_Format((q15_t *)ADCData[buf_cplt]);
-	Spectrogram_Compute((q15_t *)ADCData[buf_cplt], mel_vectors);		//mel vector devient simple *20 delete
+	Spectrogram_Compute((q15_t *)ADCData[buf_cplt], mel_vectors);
+	Spectrogram_To_Pca((q15_t*)mel_vectors, pca, clean);
 	ADCDataRdy[buf_cplt] = 0;
 	send_spectrogram();
 }

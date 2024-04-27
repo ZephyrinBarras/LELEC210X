@@ -33,4 +33,6 @@ void Spectrogram_Format(q15_t *buf);
 // Compute spectrogram of samples into melvec. Modifies samples.
 void Spectrogram_Compute(q15_t *samples, q15_t *melvector);
 
+void Spectrogram_To_Pca(q15_t* melvec, q15_t* pca, uint8_t clean);
+
 #endif /* INC_SPECTROGRAM_H_ */
