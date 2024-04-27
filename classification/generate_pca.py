@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import time
 
 "Machine learning tools"
 from sklearn.ensemble import RandomForestClassifier
@@ -188,10 +189,18 @@ pca = PCA(n_components=29, whiten=True)
 X_learn_reduced = pca.fit(np.array(X_train_spec))
 scaled_components = pca.components_ * 32767
 scaled_components = np.round(scaled_components).astype(np.int16)
-data = str(scaled_components)
-data = data.replace("[","")
-data = data.replace("]","")
-data = data.replace("   ",",")
-data = data.replace("  ",",")
-print("test")
-print(data)
+new = np.zeros((29,20),np.int16)
+for i in range(0,len(scaled_components)):
+    for j in range(0,20,1):
+        new[i][j] = np.mean(scaled_components[i][j*20:j*20+20])
+text = str(new)
+text= text.replace("]","")
+text= text.replace("[","")
+text= text.replace(" ", ",")
+text= text.replace(",,",",")
+text= text.replace(",,",",")
+text= text.replace(",,",",")
+text= text.replace(",,",",")
+text= text.replace(",,",",")
+text= text.replace(",,",",")
+print(text)
