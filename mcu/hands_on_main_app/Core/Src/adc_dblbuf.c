@@ -6,6 +6,7 @@
 #include "utils.h"
 #include "s2lp.h"
 #include "packet.h"
+#include "gpio.h"
 
 
 static volatile uint16_t ADCDoubleBuf[2*ADC_BUF_SIZE]; /* ADC group regular conversion data (array of data) */
@@ -17,7 +18,7 @@ static q15_t mel_vectors[MELVEC_LENGTH];
 static q15_t pca[29];
 
 static uint32_t packet_cnt = 0;
-uint8_t remain = 0;
+
 
 static volatile int32_t rem_n_bufs = 0;
 
@@ -77,7 +78,6 @@ static void encode_packet(uint8_t *packet, uint32_t* packet_cnt) {
 
 static void send_spectrogram() {
 	uint8_t packet[PACKET_LENGTH];
-	vmax_global=0;
 	start_cycle_count();
 	encode_packet(packet, &packet_cnt);
 	stop_cycle_count("encode");
@@ -87,24 +87,14 @@ static void send_spectrogram() {
 
 static void ADC_Callback(int buf_cplt) {
 	ADCDataRdy[buf_cplt] = 1;
-	q15_t bound;
-	uint8_t clean = 0;
-	if (THRESHOLD_MOD) bound = 300; else bound = 70;
-	if (vmax_global<bound && remain == 0){
-		ADCDataRdy[buf_cplt] = 0;
-		return;
-	}
-	if (remain ==0){
-		remain = N_MELVECS-1;
-		clean=1;
-	}else{
-		remain --;
-	}
 	Spectrogram_Format((q15_t *)ADCData[buf_cplt]);
-	Spectrogram_Compute((q15_t *)ADCData[buf_cplt], mel_vectors);
-	Spectrogram_To_Pca((q15_t*)mel_vectors, pca, clean);
+	if (Spectrogram_Compute((q15_t *)ADCData[buf_cplt], mel_vectors, pca) == 1){
+		HAL_GPIO_WritePin(GPIOB, LD3_Pin, 1);
+		HAL_Delay(20);
+		HAL_GPIO_WritePin(GPIOB, LD3_Pin, 0);
+		send_spectrogram();
+	}
 	ADCDataRdy[buf_cplt] = 0;
-	send_spectrogram();
 }
 
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc)

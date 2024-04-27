@@ -14,10 +14,12 @@
 
 q15_t buf    [  SAMPLES_PER_MELVEC  ]; // Windowed samples
 q15_t buf_fft[2*SAMPLES_PER_MELVEC  ]; // Double size (real|imag) buffer needed for arm_rfft_q15
-q15_t buf_tmp[  SAMPLES_PER_MELVEC/2]; // Intermediate buffer for arm_mat_mult_fast_q15
-q15_t vmax_global=0;
+//q15_t buf_tmp[  SAMPLES_PER_MELVEC/2]; // Intermediate buffer for arm_mat_mult_fast_q15
+q15_t buf_tmp_pca[29];
 q15_t volume_noise_mean = 0;
 q15_t first = 5*MELVEC_LENGTH;
+uint8_t remain = 0;
+uint8_t clean = 1;
 
 // Convert 12-bit DC ADC samples to Q1.15 fixed point signal and remove DC component
 void Spectrogram_Format(q15_t *buf)
@@ -47,10 +49,11 @@ void Spectrogram_Format(q15_t *buf)
 	for(uint16_t i=0; i < SAMPLES_PER_MELVEC; i++) { // Remove DC component
 		buf[i] -= (1 << 14);
 	}
+
 }
 
 // Compute spectrogram of samples and transform into MEL vectors.
-void Spectrogram_Compute(q15_t *samples, q15_t *melvec)
+uint8_t Spectrogram_Compute(q15_t *samples, q15_t *melvec, q15_t* pca)
 {
 	// STEP 1  : Windowing of input samples
 	//           --> Pointwise product
@@ -86,8 +89,18 @@ void Spectrogram_Compute(q15_t *samples, q15_t *melvec)
 
 	arm_absmax_q15(buf_fft, SAMPLES_PER_MELVEC, &vmax, &pIndex);
 
-	if (vmax>vmax_global){
-		vmax_global=vmax;
+	q15_t bound;
+	clean = 0;
+
+	if (THRESHOLD_MOD) bound = 300; else bound = 70;
+	if (vmax<bound && remain == 0){
+		return 0;
+	}
+	if (remain ==0){
+		remain = N_MELVECS-1;
+		clean=1;
+	}else{
+		remain --;
 	}
 
 	// STEP 3.2: Normalize the vector - Dynamic range increase
@@ -133,9 +146,9 @@ void Spectrogram_Compute(q15_t *samples, q15_t *melvec)
 
 	arm_mat_init_q15(&hz2mel_inst, MELVEC_LENGTH, SAMPLES_PER_MELVEC/2, hz2mel_mat);
 	arm_mat_init_q15(&fftmag_inst, SAMPLES_PER_MELVEC/2, 1, buf);
-	arm_mat_init_q15(&melvec_inst, MELVEC_LENGTH, 1, melvec);
+	arm_mat_init_q15(&melvec_inst, MELVEC_LENGTH, 1, melvec);*/
 
-	arm_mat_mult_fast_q15(&hz2mel_inst, &fftmag_inst, &melvec_inst, buf_tmp);*/
+	//arm_mat_mult_fast_q15(&hz2mel_inst, &fftmag_inst, &melvec_inst, buf_tmp);
 
 	q63_t result_temp[MELVEC_LENGTH];
 
@@ -147,6 +160,26 @@ void Spectrogram_Compute(q15_t *samples, q15_t *melvec)
 
 		melvec[i] = (q15_t) (result_temp[i] >> 15);
 	}
+
+	arm_matrix_instance_q15 vec_instance = {MELVEC_LENGTH, 1, melvec};
+	arm_matrix_instance_q15 mat_instance = {29, MELVEC_LENGTH, pca_mat};
+	if (clean==0){
+		q15_t result[29];
+		arm_matrix_instance_q15 result_instance = {29, 1, result};
+		// Effectuer la multiplication de la matrice par le vecteur
+		arm_mat_mult_fast_q15(&mat_instance, &vec_instance, &result_instance,buf_tmp_pca);
+		arm_add_q15(result, pca, pca, 29);
+	}else{
+		arm_matrix_instance_q15 result_instance = {29, 1, pca};
+		// Effectuer la multiplication de la matrice par le vecteur
+		arm_mat_mult_fast_q15(&mat_instance, &vec_instance, &result_instance,buf_tmp_pca);
+	}
+
+	if (remain==0){
+		return 1;
+	}else{
+		return 0;
+	}
 }
 
 void Spectrogram_To_Pca(q15_t* melvec, q15_t* pca, uint8_t clean){
@@ -156,12 +189,12 @@ void Spectrogram_To_Pca(q15_t* melvec, q15_t* pca, uint8_t clean){
 		q15_t result[29];
 		arm_matrix_instance_q15 result_instance = {29, 1, result};
 		// Effectuer la multiplication de la matrice par le vecteur
-		arm_mat_mult_q15(&mat_instance, &vec_instance, &result_instance);
-		arm_add_q15(result, pca, pca, 29)
+		arm_mat_mult_fast_q15(&mat_instance, &vec_instance, &result_instance,buf_tmp_pca);
+		arm_add_q15(result, pca, pca, 29);
 	}else{
 		arm_matrix_instance_q15 result_instance = {29, 1, pca};
 		// Effectuer la multiplication de la matrice par le vecteur
-		arm_mat_mult_q15(&mat_instance, &vec_instance, &result_instance);
+		arm_mat_mult_fast_q15(&mat_instance, &vec_instance, &result_instance,buf_tmp_pca);
 	}
 
 }

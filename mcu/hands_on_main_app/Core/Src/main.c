@@ -107,8 +107,7 @@ void run(void)
 	{
 	  HAL_PWREx_EnableLowPowerRunMode();
 	  while (!btn_press) {
-		  HAL_GPIO_WritePin(GPIOB, LD2_Pin, GPIO_PIN_RESET);
-		  HAL_Delay(200);
+		  HAL_GPIO_WritePin(GPIOB, LD3_Pin, 0);
 	  }
 	  btn_press = 0;
 #if (CONTINUOUS_ACQ == 1)
