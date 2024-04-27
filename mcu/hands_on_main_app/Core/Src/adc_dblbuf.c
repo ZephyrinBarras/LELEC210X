@@ -76,16 +76,6 @@ static void encode_packet(uint8_t *packet, uint32_t* packet_cnt) {
 
 static void send_spectrogram() {
 	uint8_t packet[PACKET_LENGTH];
-	q15_t bound;
-	if (THRESHOLD_MOD) bound = 300; else bound = 70;
-	if (vmax_global<bound && remain == 0){
-		return;
-	}
-	if (remain ==0){
-		remain = N_MELVECS-1;
-	}else{
-		remain --;
-	}
 	vmax_global=0;
 	start_cycle_count();
 	encode_packet(packet, &packet_cnt);
@@ -96,6 +86,17 @@ static void send_spectrogram() {
 
 static void ADC_Callback(int buf_cplt) {
 	ADCDataRdy[buf_cplt] = 1;
+	q15_t bound;
+	if (THRESHOLD_MOD) bound = 300; else bound = 70;
+	if (vmax_global<bound && remain == 0){
+		ADCDataRdy[buf_cplt] = 0;
+		return;
+	}
+	if (remain ==0){
+		remain = N_MELVECS-1;
+	}else{
+		remain --;
+	}
 	Spectrogram_Format((q15_t *)ADCData[buf_cplt]);
 	Spectrogram_Compute((q15_t *)ADCData[buf_cplt], mel_vectors);		//mel vector devient simple *20 delete
 	ADCDataRdy[buf_cplt] = 0;

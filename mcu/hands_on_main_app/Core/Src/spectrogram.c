@@ -146,6 +146,5 @@ void Spectrogram_Compute(q15_t *samples, q15_t *melvec)
 		arm_dot_prod_q15(hz2mel_mat + i*SAMPLES_PER_MELVEC/2 + j, buf + j, l, result_temp + i); // résultat sur 64 bits
 
 		melvec[i] = (q15_t) (result_temp[i] >> 15);
-
 	}
 }
