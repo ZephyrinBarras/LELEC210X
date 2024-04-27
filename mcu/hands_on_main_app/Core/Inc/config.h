@@ -15,7 +15,7 @@
 #define PYTHAGORE_NOISE 1
 
 #define RUN_CONFIG MAIN_APP
-#define THRESHOLD_MOD PYTHAGORE_NOISE
+#define THRESHOLD_MOD BIBLIO_NOISE
 
 // Radio parameters
 #define ENABLE_RADIO 1

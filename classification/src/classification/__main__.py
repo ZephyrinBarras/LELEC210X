@@ -91,21 +91,10 @@ def main(
     This way, you will directly receive the authentified packets from STDIN
     (standard input, i.e., the terminal).
     """
-    imp = SimpleImputer(missing_values=nan, strategy="mean")
-    data = zeros((20,20))
-    data2 = None
-    first=0
-    done = 0                    #nombre de mel récupéré pour un feature vector
-    t0  = 0                     #temps de la première acuisition d'un feature vector
-    t1 = 0                      #permet de comparé à t0 pour savoir si on a perdu un mel
-    lastmissFlag = False
-    missing = 0
-    nbr_nmel =0
+    melvec_length=30 #harcode simplicité
     nbr_packet = 0
-    error = []
-    are_error = 0
-    data = full((20, 20), nan)
-    #print(f"nmel : {n_melvecs}, length {melvec_length}")
+    lim  =0
+    data = []
 
     for payload in _input:
         nbr_packet+=1
@@ -117,65 +106,41 @@ def main(
             #RECUPERE ET TRAITE LE MEL
             #serial_number = int(payload[len(PRINT_PREFIX):len(PRINT_PREFIX)+5],16)
             
-            packet_number = int(payload[len(PRINT_PREFIX):len(PRINT_PREFIX)+7],16)%20
+            #packet_number = int(payload[len(PRINT_PREFIX):len(PRINT_PREFIX)+7],16)%20
             payload = payload[len(PRINT_PREFIX)+7:]
             melvecs = payload_to_melvecs(payload, melvec_length, 1)
-
-            if are_error:
-                print("error")
-                are_error=0
-                data[previous] = error
-
-            if previous>packet_number:
-                print("detect error")
-                are_error=1
-                error = melvecs
-                previous = packet_number
-                continue
+            print("noise level",melvecs[-1]/3.05175781e-05)
+            print("melvec",melvecs[:-1]/3.05175781e-05)
+            melvecs = melvecs/3.05175781e-05
+            melvecs = reshape(melvecs[:-1] , (1,29))
+            if lim<15:
+                data.append(melvecs[0])
+                lim+=1
             else:
-                previous = packet_number
-                data[packet_number] = melvecs.reshape(-1)
-                #print(melvecs.reshape(-1))
-
-            if (packet_number==19 ):
-                pca = pickle.load(open("classification/data/models/pca_vite","rb"))
-                model = pickle.load(open("classification/data/models/model_vite","rb"))
-                print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-                data = imp.fit_transform(data)
-                data = data-mean(data)
-                mp = data/linalg.norm(data, axis=1,keepdims=True)
-                mp = pca.transform([data.reshape(-1)])
-                
-                #plt.imshow(data)
-                elem = model.predict_log_proba(mp)[0]
-                ajouter(elem)
-                global commencement
-                commencement+=1
-                probs=memory
-                maxvrai= zeros(5) 
-                for m in range(5) :
-                    for n in range(len(probs)):
-                        maxvrai[m]=+probs[n,m]
-                #pour le seuille
-                """seuille=0.6
-                if max(10**(maxvrai/5))<seuille:
-                    classe=" "
-                else:
-                    classe=name[argmax(maxvrai)]"""
-                print(max(10**(maxvrai/5)))
-                classe=name[argmax(maxvrai)]
+                plt.imshow(data)
+                plt.show()
+                data= []
+                lim=0
+            model = pickle.load(open("classification/data/models/model_pca_29.pickle","rb"))
+            print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+            elem = model.predict_proba(melvecs)
+            
+            print(elem)
+            ajouter(elem)
+            global commencement
+            commencement+=1
+            probs=memory
+            """maxvrai= zeros(5) 
+            for m in range(5) :
+                for n in range(len(probs)):
+                    maxvrai[m]=+probs[n,m]"""
+            #pour le seuille
+            """seuille=0.6
+            if max(10**(maxvrai/5))<seuille:
+                classe=" "
+            else:
+                classe=name[argmax(maxvrai)]"""
+            classe=name[argmax(elem)]
         
-            
-            
-                logger.info(f"Parsed payload into Mel vectors: {classe}")
-                
-
-
-                plot_specgram(data.reshape((20, 20)).T, ax=plt.gca(), is_mel=True,
-                          title="MEL Spectrogram", xlabel="Mel vector", tf=512 / 11000)
-                plt.draw()
-                plt.pause(0.05)
-                plt.clf()
-                #send(classe)
-                data = full((20, 20), nan)
-                main()
+            logger.info(f"Parsed payload into Mel vectors: {classe}")
+            #main()
