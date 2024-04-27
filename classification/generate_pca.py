@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import time
 
 "Machine learning tools"
 from sklearn.ensemble import RandomForestClassifier
@@ -185,13 +186,36 @@ for i in range(len(data1_list)):
 np.set_printoptions(threshold=np.inf)
 
 pca = PCA(n_components=29, whiten=True)
-X_learn_reduced = pca.fit(np.array(X_train_spec))
+pca.fit(np.array(X_train_spec))
+components = pca.components_
+new_compo = np.zeros((29,400))
+for i in range(len(components)):
+    for j in range(20):
+        mean = np.mean(components[i][j*20:j*20+20])
+        for k in range(20):
+            new_compo[i][j*20+k] = mean
+pca.components_ = new_compo
+X_learn_reduced =  pca.transform(X_train_spec)
+
+for i in range(len(X_learn_reduced)):
+    X_learn_reduced[i] = X_learn_reduced[i]/np.linalg.norm(X_learn_reduced[i])
 scaled_components = pca.components_ * 32767
 scaled_components = np.round(scaled_components).astype(np.int16)
-data = str(scaled_components)
-data = data.replace("[","")
-data = data.replace("]","")
-data = data.replace("   ",",")
-data = data.replace("  ",",")
-print("test")
-print(data)
+new = np.zeros((29,20),np.int16)
+for i in range(0,len(scaled_components)):
+    for j in range(0,20,1):
+        new[i][j] = np.mean(scaled_components[i][j*20:j*20+20])
+model = RandomForestClassifier(100)
+model.fit(X_learn_reduced,data2_list)
+pickle.dump(model, open("./model_pca_29.pickle", "wb"))
+text = str(new)
+text= text.replace("]","")
+text= text.replace("[","")
+text= text.replace(" ", ",")
+text= text.replace(",,",",")
+text= text.replace(",,",",")
+text= text.replace(",,",",")
+text= text.replace(",,",",")
+text= text.replace(",,",",")
+text= text.replace(",,",",")
+print(text)

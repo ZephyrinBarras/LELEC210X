@@ -197,9 +197,9 @@ sd.play(s4, 11111)
 sd.wait()"""
 
 pca_begin = 1
-pca_end = 70
+pca_end = 20
 pca_step = 1
-n_splits=5
+n_splits=2
 pca_arange = np.arange(pca_begin,pca_end,pca_step)
 accuracy_matrix = np.zeros((len(pca_arange),n_splits))
 std_matrix = np.zeros((n_splits,len(pca_arange)))
@@ -256,8 +256,21 @@ for k in range(n_splits):
         n_trees = 100
         model = RandomForestClassifier(n_trees)
         pca = PCA(n_components=n_compo, whiten=True)
-        X_learn_reduced = pca.fit_transform(np.array(X_train_spec))
+        pca.fit(np.array(X_train_spec))
+        components = pca.components_
+        new_compo = np.zeros((n_compo,400))
+        for d in range(len(components)):
+            for e in range(20):
+                mean = np.mean(components[d][e*20:e*20+20])
+                for f in range(20):
+                    new_compo[d][e*20+f] = mean
+        pca.components_ = new_compo
+        X_learn_reduced = pca.transform(np.array(X_train_spec))
+        for i in range(len(X_learn_reduced)):
+            X_learn_reduced[i]=X_learn_reduced[i]/np.linalg.norm(X_learn_reduced[i])
         X_val_reduced = pca.transform(X_val_spec)
+        for i in range(len(X_val_reduced)):
+            X_val_reduced[i]=X_val_reduced[i]/np.linalg.norm(X_val_reduced[i])
         model.fit(X_learn_reduced, y_train)
         prediction = model.predict(X_val_reduced)
         a = compute_accuracy(prediction, y_val)
