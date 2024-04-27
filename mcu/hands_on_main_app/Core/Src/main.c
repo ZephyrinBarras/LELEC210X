@@ -22,6 +22,7 @@
 #include "adc.h"
 #include "aes.h"
 #include "dma.h"
+#include "usart.h"
 #include "spi.h"
 #include "tim.h"
 #include "gpio.h"
@@ -133,6 +134,7 @@ void run(void)
   */
 int main(void)
 {
+
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
@@ -156,6 +158,7 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_DMA_Init();
+  MX_LPUART1_UART_Init();
   MX_SPI1_Init();
   MX_TIM3_Init();
   MX_ADC1_Init();

@@ -18,7 +18,7 @@
 #define THRESHOLD_MOD PYTHAGORE_NOISE
 
 // Radio parameters
-#define ENABLE_RADIO 0
+#define ENABLE_RADIO 1
 
 // General UART enable/disable (disable for low-power operation)
 #define ENABLE_UART 0
@@ -36,7 +36,7 @@
 #define PERF_COUNT 0
 
 // Enable debug print
-#define DEBUGP 1
+#define DEBUGP 0
 
 #if (DEBUGP == 1)
 #define DEBUG_PRINT(...) do{ printf(__VA_ARGS__ ); } while( 0 )
