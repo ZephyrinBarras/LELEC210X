@@ -15,7 +15,8 @@ static volatile uint8_t ADCDataRdy[2] = {0, 0};
 
 static volatile uint8_t cur_melvec = 0;
 static q15_t mel_vectors[MELVEC_LENGTH];
-static q15_t pca[29];
+static q15_t pca[30];
+
 
 static uint32_t packet_cnt = 0;
 
@@ -62,7 +63,7 @@ static void print_encoded_packet(uint8_t *packet) {
 */
 static void encode_packet(uint8_t *packet, uint32_t* packet_cnt) {
 	// BE encoding of each mel coef
-	for (size_t j=0; j<MELVEC_LENGTH; j++) {
+	for (size_t j=0; j<30; j++) {
 		(packet+PACKET_HEADER_LENGTH)[j*2]   = pca[j] >> 8;
 		(packet+PACKET_HEADER_LENGTH)[j*2+1] = pca[j] & 0xFF;
 	}
@@ -90,7 +91,7 @@ static void ADC_Callback(int buf_cplt) {
 	Spectrogram_Format((q15_t *)ADCData[buf_cplt]);
 	if (Spectrogram_Compute((q15_t *)ADCData[buf_cplt], mel_vectors, pca) == 1){
 		HAL_GPIO_WritePin(GPIOB, LD3_Pin, 1);
-		HAL_Delay(20);
+		HAL_Delay(10);
 		HAL_GPIO_WritePin(GPIOB, LD3_Pin, 0);
 		send_spectrogram();
 	}
