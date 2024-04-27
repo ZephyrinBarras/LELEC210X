@@ -174,100 +174,24 @@ for label in range(0, 5):
 data2_list = list(data2_list)
 data1_list = np.array(data1_list)
 data2_list = np.array(data2_list)
-"""s1 = data1_list[20].astype(np.float32)
-s1 = s1-np.mean(s1)
-s1=s1/np.linalg.norm(s1)
-s2 = data1_list[720].astype(np.float32)
-s2 = s2-np.mean(s2)
-s2=s2/np.linalg.norm(s2)
-s3 = data1_list[1440].astype(np.float32)
-s3 = s3-np.mean(s3)
-s3=s3/np.linalg.norm(s3)
-s4 = data1_list[2160].astype(np.float32)
-s4 = s4-np.mean(s4)
-s4=s4/np.linalg.norm(s4)
-print(len(data1_list))
-sd.play(s1, 11111)
-sd.wait()
-sd.play(s2, 11111)
-sd.wait()
-sd.play(s3, 11111)
-sd.wait()
-sd.play(s4, 11111)
-sd.wait()"""
 
-pca_begin = 1
-pca_end = 70
-pca_step = 1
-n_splits=5
-pca_arange = np.arange(pca_begin,pca_end,pca_step)
-accuracy_matrix = np.zeros((len(pca_arange),n_splits))
-std_matrix = np.zeros((n_splits,len(pca_arange)))
-count = 0
-for k in range(n_splits):
-    X_train, X_test, y_train, y_test = train_test_split(data1_list, data2_list, test_size=0.3)  # random_state=1
-    print(len(X_test), len(y_test))
-    X_val_spec = []
-    y_val = y_test
-    X_train_spec = []
-    #ADD DEFECT +conversion en mel  test
-
-    print(f"loop {k}")
-    for i in range(len(X_test)):
-        
-        array = X_test[i].astype(np.float32)
-        array = array -np.mean(array)
-        array = array*np.random.uniform(0.1,3)   #amplitude
-        echo = np.zeros(len(array))
-        echo_sig = np.zeros(512*20)
-        echo_sig[0] = 1
-        n_echo = np.random.randint(1,3)
-        echo_sig[(np.arange(1) / 1 * 512*20).astype(int)] = (
-            1 / 2
-        ) ** np.arange(1)
-
-        array = fftconvolve(array, echo_sig, mode="full")[:512*20]
-        array =array + np.random.normal(0, np.random.uniform(0.05,0.7), len(array))   #noise
-        sound_to_add = data1_list[np.random.randint(0,len(data1_list))].astype(np.float32)
-        sound_to_add = sound_to_add-np.mean(sound_to_add)
-        array =   array+sound_to_add*np.random.uniform(0,0.7)/np.max(sound_to_add)*np.max(array)
-
-        x = array-np.mean(array)
-        x=x/np.linalg.norm(x)
-        """imp = np.log(np.abs(melspecgram(x, Nmel=20, mellength=20, fs_down=fs_down)))
-        sd.play(x, 11111)
-        sd.wait()
-        print(y_test[i])
-        plt.imshow(imp)
-        plt.show()"""
-        spec = np.ravel(np.log(np.abs(melspecgram(x, Nmel=20, mellength=20, fs_down=fs_down))))
-        X_val_spec.append(spec-np.mean(spec))
+X_train_spec = []
+for i in range(len(data1_list)):
+    x = data1_list[i]-np.mean(data1_list[i])  
+    x=x/np.linalg.norm(x)      
+    spec = np.ravel(np.log(np.abs(melspecgram(x, Nmel=20, mellength=20, fs_down=fs_down))))
     
-    #conversion en mel train
-    for i in range(len(X_train)):
-        x = X_train[i]-np.mean(X_train[i])  
-        x=x/np.linalg.norm(x)      
-        spec = np.ravel(np.log(np.abs(melspecgram(x, Nmel=20, mellength=20, fs_down=fs_down))))
-        
-        X_train_spec.append(spec-np.mean(spec))
+    X_train_spec.append(spec-np.mean(spec))
+np.set_printoptions(threshold=np.inf)
 
-    for b in range(len(pca_arange)):
-        n_compo = pca_arange[b]
-        n_trees = 100
-        model = RandomForestClassifier(n_trees)
-        pca = PCA(n_components=n_compo, whiten=True)
-        X_learn_reduced = pca.fit_transform(np.array(X_train_spec))
-        X_val_reduced = pca.transform(X_val_spec)
-        model.fit(X_learn_reduced, y_train)
-        prediction = model.predict(X_val_reduced)
-        a = compute_accuracy(prediction, y_val)
-        accuracy_matrix[b][k] = a
-        print(f"accuracy {n_compo}, {a}")
-        
-acc = np.zeros(len(pca_arange))
-for i in range(len(accuracy_matrix)):
-    acc[i] = np.mean(accuracy_matrix[i])
-print(acc)
-
-plt.plot(pca_arange, acc)
-plt.show()
+pca = PCA(n_components=29, whiten=True)
+X_learn_reduced = pca.fit(np.array(X_train_spec))
+scaled_components = pca.components_ * 32767
+scaled_components = np.round(scaled_components).astype(np.int16)
+data = str(scaled_components)
+data = data.replace("[","")
+data = data.replace("]","")
+data = data.replace("   ",",")
+data = data.replace("  ",",")
+print("test")
+print(data)
