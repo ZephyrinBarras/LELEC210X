@@ -221,6 +221,7 @@ pca.components_ = new_compo
 
 scaled_components = pca.components_ * 32767
 scaled_components = np.round(scaled_components).astype(np.int16)
+#pca.components_ = scaled_components
 new = np.zeros((29,20),np.int16)
 for i in range(0,len(scaled_components)):
     for j in range(0,20,1):
@@ -235,15 +236,14 @@ model.fit(X_learn_reduced,data2_list)
 pickle.dump(model, open("./model_pca_29.pickle", "wb"))
 first=1
 pp = np.zeros((50,29))
-mel = np.zeros((50,400))
+mel = np.zeros((50,20,20))
+pca_test = np.zeros((50,29))
 for i in range(len(signal)):
-    mel[i] = np.ravel(melspecgram(signal[i], 20,20,512,11111,11111).T)
-    if first:
-        plt.imshow(np.reshape(mel[i],(20,20)))
-        plt.show()
-        first=0
-    pp[i] = pca.transform([mel[i]])
-plt.imshow(pp)
+    mel[i] = melspecgram(signal[i], 20,20,512,11111,11111).T
+    print(len(mel[i]))
+    for j in range(20):
+        pca_test[i]+= new @ mel[i][j]
+plt.imshow(pca_test)
 plt.show()
 
 text = str(new)
@@ -256,4 +256,4 @@ text= text.replace(",,",",")
 text= text.replace(",,",",")
 text= text.replace(",,",",")
 text= text.replace(",,",",")
-print(text)
+#print(text)
