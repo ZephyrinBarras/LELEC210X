@@ -19,6 +19,26 @@ from classification.utils.utils import accuracy
 MELVEC_LENGTH_DEFAULT = 20  # hauteur (longueur de chaque vecteur)
 N_MELVECS_DEFAULT = 20  # Nombre de vecteurs mel
 fs_down = 11111  # Target sampling frequency
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Fréquence de la sinusoïde en Hz
+frequency = 1000
+
+# Fréquence d'échantillonnage en Hz
+sampling_rate = 11111
+
+# Nombre d'échantillons
+num_samples = 512 * 20 *50
+
+# Temps d'échantillonnage
+t = np.arange(num_samples) / sampling_rate
+
+# Générer le signal sinusoïdal
+signal = np.sin(2 * np.pi * frequency * t)
+signal = np.reshape(signal,(50,512*20))
+
+
 
 
 def compute_accuracy(prediction, target):
@@ -180,12 +200,13 @@ X_train_spec = []
 for i in range(len(data1_list)):
     x = data1_list[i]-np.mean(data1_list[i])  
     x=x/np.linalg.norm(x)      
-    spec = np.ravel(np.log(np.abs(melspecgram(x, Nmel=20, mellength=20, fs_down=fs_down))))
+    spec = np.ravel(melspecgram(x, 20, 20,512, fs_down, fs_down=fs_down))
     
     X_train_spec.append(spec-np.mean(spec))
 np.set_printoptions(threshold=np.inf)
 
 pca = PCA(n_components=29, whiten=True)
+print(np.array(X_train_spec).shape)
 pca.fit(np.array(X_train_spec))
 components = pca.components_
 new_compo = np.zeros((29,400))
@@ -195,19 +216,36 @@ for i in range(len(components)):
         for k in range(20):
             new_compo[i][j*20+k] = mean
 pca.components_ = new_compo
-X_learn_reduced =  pca.transform(X_train_spec)
 
-for i in range(len(X_learn_reduced)):
-    X_learn_reduced[i] = X_learn_reduced[i]/np.linalg.norm(X_learn_reduced[i])
+
+
 scaled_components = pca.components_ * 32767
 scaled_components = np.round(scaled_components).astype(np.int16)
 new = np.zeros((29,20),np.int16)
 for i in range(0,len(scaled_components)):
     for j in range(0,20,1):
         new[i][j] = np.mean(scaled_components[i][j*20:j*20+20])
+        new[i][j] = new[i][j]>>4
 model = RandomForestClassifier(100)
+X_learn_reduced = pca.transform(np.array(X_train_spec))
+for i in range(len(X_learn_reduced)):
+    X_learn_reduced[i] = X_learn_reduced[i]/np.linalg.norm(X_learn_reduced[i])
 model.fit(X_learn_reduced,data2_list)
+
 pickle.dump(model, open("./model_pca_29.pickle", "wb"))
+first=1
+pp = np.zeros((50,29))
+mel = np.zeros((50,400))
+for i in range(len(signal)):
+    mel[i] = np.ravel(melspecgram(signal[i], 20,20,512,11111,11111).T)
+    if first:
+        plt.imshow(np.reshape(mel[i],(20,20)))
+        plt.show()
+        first=0
+    pp[i] = pca.transform([mel[i]])
+plt.imshow(pp)
+plt.show()
+
 text = str(new)
 text= text.replace("]","")
 text= text.replace("[","")
