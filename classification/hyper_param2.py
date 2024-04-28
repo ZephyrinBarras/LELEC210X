@@ -196,10 +196,10 @@ sd.wait()
 sd.play(s4, 11111)
 sd.wait()"""
 
-pca_begin = 1
-pca_end = 20
+pca_begin = 29
+pca_end = 30
 pca_step = 1
-n_splits=2
+n_splits=1
 pca_arange = np.arange(pca_begin,pca_end,pca_step)
 accuracy_matrix = np.zeros((len(pca_arange),n_splits))
 std_matrix = np.zeros((n_splits,len(pca_arange)))
@@ -246,7 +246,7 @@ for k in range(n_splits):
     #conversion en mel train
     for i in range(len(X_train)):
         x = X_train[i]-np.mean(X_train[i])  
-        x=x/np.linalg.norm(x)      
+        #x=x/np.linalg.norm(x)      
         spec = np.ravel(np.log(np.abs(melspecgram(x, Nmel=20, mellength=20, fs_down=fs_down))))
         
         X_train_spec.append(spec-np.mean(spec))
@@ -266,8 +266,37 @@ for k in range(n_splits):
                     new_compo[d][e*20+f] = mean
         pca.components_ = new_compo
         X_learn_reduced = pca.transform(np.array(X_train_spec))
+        array_fire = []
+        array_birds = []
+        array_hel = []
+        array_hand = []
+        array_chain = []
         for i in range(len(X_learn_reduced)):
             X_learn_reduced[i]=X_learn_reduced[i]/np.linalg.norm(X_learn_reduced[i])
+            if y_train[i]=="birds":
+                array_birds.append(X_learn_reduced[i])
+            elif y_train[i]=="fire":
+                array_fire.append(X_learn_reduced[i])
+            elif y_train[i]=="helicopter":
+                array_hel.append(X_learn_reduced[i])
+            elif y_train[i]=="chainsaw":
+                array_chain.append(X_learn_reduced[i])
+            elif y_train[i]=="handsaw":
+                array_hand.append(X_learn_reduced[i])
+        print("birds")
+        plt.imshow(array_birds)
+        plt.savefig("imbirds.svg")
+        print("helicopter")
+        plt.imshow(array_hel)
+        plt.savefig("imhel.svg")
+        print("handsaw")
+        plt.imshow(array_hand)
+        plt.savefig("imhand.svg")
+        print("chainsaw")
+        plt.imshow(array_chain)
+        plt.savefig("imchain.svg")
+        plt.imshow(array_fire)
+        plt.savefig("imfire.svg")
         X_val_reduced = pca.transform(X_val_spec)
         for i in range(len(X_val_reduced)):
             X_val_reduced[i]=X_val_reduced[i]/np.linalg.norm(X_val_reduced[i])
