@@ -38,7 +38,6 @@ t = np.arange(num_samples) / sampling_rate
 signal = 32767*np.sin(2 * np.pi * frequency * t)
 signal = np.reshape(signal,(50,512*20))
 signal = signal.astype(np.int16)
-print(signal)
 
 
 
@@ -227,7 +226,7 @@ new = np.zeros((29,20),np.int16)
 for i in range(0,len(scaled_components)):
     for j in range(0,20,1):
         new[i][j] = np.mean(scaled_components[i][j*20:j*20+20])
-        new[i][j] = new[i][j]
+        new[i][j] = new[i][j]>>4
 model = RandomForestClassifier(100)
 X_learn_reduced = pca.transform(np.array(X_train_spec))
 for i in range(len(X_learn_reduced)):
@@ -238,18 +237,20 @@ pickle.dump(model, open("./model_pca_29.pickle", "wb"))
 first=1
 pp = np.zeros((50,29))
 mel = np.zeros((50,20,20))
-pca_test = np.zeros((50,29), dtype=np.int16)
+pca_test = np.zeros((50,29))
 pca_test2 = np.zeros((50,29), dtype=np.int32)
 for i in range(len(signal)):
     temp = (melspecgram(signal[i], 20,20,512,11111,11111).T)
-    mel[i] = ((temp-np.mean(temp))/200).astype(np.int16)
+    mel[i] = ((temp-np.mean(temp))/200)
     for j in range(20):
-        pca_test2[i]+= (new @ np.abs(mel[i][j])).astype(np.int32)
+        pca_test[i]+= ((new @ np.abs(mel[i][j])).astype(np.int32)>>15).astype(np.int16)
+        pca_test2[i]+= ((new @ np.abs(mel[i][j]))/16).astype(np.int32)
 
 pca_test = pca_test2//np.max(pca_test2)
 print(np.max(np.abs(mel))/32767)
 print(np.max(mel[0]))
 print(type(new[0][0]),type(mel[0][0][0]))
+print(pca_test2/32767)
 plt.imshow(pca_test)
 plt.show()
 plt.imshow(pca_test2)
@@ -266,4 +267,4 @@ text= text.replace(",,",",")
 text= text.replace(",,",",")
 text= text.replace(",,",",")
 text= text.replace(",,",",")
-#print(text)
+print(text)
