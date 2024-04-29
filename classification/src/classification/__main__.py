@@ -114,6 +114,7 @@ def main(
             melvecs = melvecs/3.05175781e-05
             melvecs = reshape(melvecs[:-1] , (1,29))
             if lim<15:
+
                 data.append(melvecs[0])
                 lim+=1
             else:
