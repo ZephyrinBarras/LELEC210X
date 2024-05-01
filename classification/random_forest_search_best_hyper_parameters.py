@@ -94,7 +94,7 @@ kf = StratifiedKFold(n_splits=k_splits_cross_validation, shuffle=True)
 np.set_printoptions(threshold=9)
 print(data1_list[0])
 print(len(data1_list[0]))
-exit()
+
 for i in range(begin_n_trees, end_n_trees, step_n_trees):
     model = RandomForestClassifier(n_estimators=i, min_samples_split=2)
     for j in range(begin_pca, end_pca, step_pca):

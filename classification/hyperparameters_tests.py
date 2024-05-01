@@ -1,6 +1,7 @@
 import os
 import numpy as np
 import matplotlib.pyplot as plt
+from joblib import Parallel, delayed, parallel_config
 
 "Machine learning tools"
 from sklearn.neighbors import KNeighborsClassifier
@@ -13,6 +14,7 @@ import numpy as np
 import librosa
 from sklearn.impute import SimpleImputer
 import seaborn as sns
+from scipy.signal import fftconvolve, resample
 
 import classification.utils.audio_student as audio
 from classification.utils.plots import plot_specgram, show_confusion_matrix, show_confusion_matrix_with_save, \
@@ -28,13 +30,6 @@ MELVEC_LENGTH_DEFAULT = 20  # hauteur (longueur de chaque vecteur)
 N_MELVECS_DEFAULT = 20  # Nombre de vecteurs mel
 fs_down = 11111  # Target sampling frequency
 Nft = 512  # Number of samples by fft
-
-
-def compute_accuracy(prediction, target):
-    """
-    Compute the accuracy between prediction and ground truth.
-    """
-    return np.sum(prediction == target) / len(prediction)
 
 
 def remove_dc_component(signal):
@@ -56,10 +51,10 @@ def specgram(y, Nft=512, mellength=MELVEC_LENGTH_DEFAULT):
     # Homemade computation of stft
     "Crop the signal such that its length is a multiple of Nft"
     "Pas besoin de crop car je le fais au moment de l'appel de la fonction tout en bas dans la boucle"
-    #y = y[: mellength * Nft]
+    # y = y[: mellength * Nft]
 
     L = len(y)
-    #print("Taille de y :", L)
+    # print("Taille de y :", L)
 
     "Reshape the signal with a piece for each row"
     audiomat = np.reshape(y, (L // Nft, Nft))
@@ -138,15 +133,73 @@ def turbo_lol_spectrograms(signal, i_melvec_length, j_n_melvecs, Nft=512, fs_dow
     size_a = len(signal)
     cropped_a_spec = signal[:size_a - size_a % Nft]  # Tronquer le signal pour qu'il soit un multiple de 512
     for m in range(0, len(cropped_a_spec), Nft):
-        temp_spec = np.log(np.abs(melspecgram(cropped_a_spec[m:m + Nft], Nmel=j_n_melvecs, mellength=i_melvec_length, fs_down=fs_down)))
+        temp_spec = np.log(np.abs(
+            melspecgram(cropped_a_spec[m:m + Nft], Nmel=j_n_melvecs, mellength=i_melvec_length, fs_down=fs_down)))
         a_spec.append(temp_spec)
 
     a_spec_reshaped = []
-    for k in range(0, len(a_spec) - (len(a_spec) % j_n_melvecs), j_n_melvecs):  # Avancer par pas de j et tronquer le nombre de melvecs pour avoir un multiple de j
-        a_spec_reshaped.append(np.ravel(a_spec[k:k + j_n_melvecs]))  # Prendre des paquets de j spectrogrammes et les applatir en un seul vecteur de dimension 1
+    for k in range(0, len(a_spec) - (len(a_spec) % j_n_melvecs),
+                   j_n_melvecs):  # Avancer par pas de j et tronquer le nombre de melvecs pour avoir un multiple de j
+        a_spec_reshaped.append(np.ravel(a_spec[
+                                        k:k + j_n_melvecs]))  # Prendre des paquets de j spectrogrammes et les applatir en un seul vecteur de dimension 1
 
     return a_spec_reshaped
 
+
+def audio_signal_troncated(signal, i_melvec_length, j_n_melvecs, Nft=512, fs_down=11111):
+    a_spec = []
+    size_a = len(signal)
+    cropped_a_spec = signal[
+                     :size_a - size_a % Nft * i_melvec_length]  # Tronquer le signal pour qu'il soit un multiple de 512*20
+    for m in range(0, len(cropped_a_spec), Nft * i_melvec_length):
+        a_spec.append(cropped_a_spec[m:m + Nft * i_melvec_length])
+
+    return a_spec
+
+def add_lol_effects_and_specgram(signal, i_melvec_length, j_n_melvecs, Nft=512, fs_down=11111):
+    array = signal
+    array = remove_dc_component(array)
+    array = array * np.random.uniform(0.1, 3)  # amplitude
+    echo = np.zeros(len(array))
+    # TODO : vérifier que c'est bien j_n_melvecs et pas i_melvec_length
+    echo_sig = np.zeros(512 * j_n_melvecs) # Même taille que les fichiers audio de la base de données
+    echo_sig[0] = 1
+    n_echo = np.random.randint(1, 3)
+    echo_sig[(np.arange(1) / 1 * 512 * j_n_melvecs).astype(int)] = (1 / 2) ** np.arange(1) #TODO : vérifier que c'est bien j_n_melvecs et pas i_melvec_length
+
+    # print("len array avant convolve", len(array))
+    array = fftconvolve(array, echo_sig, mode="full")
+    "Tronquer le signal car il est plus long après la convolution"
+    # print("len array après convolve", len(array))
+    array = array[:512 * i_melvec_length] #TODO : vérifier que c'est bien j_n_melvecs et pas i_melvec_length
+    # print("len array après troncage", len(array))
+    array = array + np.random.normal(0, np.random.uniform(0.05, 0.7), len(array))  # noise
+    sound_to_add = data1_list[np.random.randint(0, len(data1_list))].astype(np.float32)
+    sound_to_add = sound_to_add - np.mean(sound_to_add)
+    # print("len sound_to_add", len(sound_to_add))
+    array = array + sound_to_add * np.random.uniform(0, 0.7) / np.max(sound_to_add) * np.max(array)
+
+    x = array - np.mean(array)  # Moyenne quasi nulle donc ligne superflue
+    x = x / np.linalg.norm(x)
+
+    #print("len x", len(x))  # Taille de chaque petit signal sonore
+
+    spec = np.ravel(np.log(np.abs(melspecgram(x, Nmel=j_n_melvecs, mellength=i_melvec_length, fs_down=fs_down))))
+    #print("len spec", len(spec))  # Taille du spectrogramme
+    return (spec - np.mean(spec))
+
+
+def convert_x_spec_to_regular_array(x_spec):
+    temp = []
+    # for i in range(len(x_spec)):
+    #     for j in range(len(x_spec[i])):
+    #         temp[i][j] = x_spec[i][j]
+
+    for i in range(len(x_spec)):
+        temp.append(np.ravel(x_spec[i]))
+        print(temp[i])
+
+    return temp
 
 a = pickle.load(open("data/raw_global_samples/birds_reformated_globalsample.pickle", "rb"))
 b = pickle.load(open("data/raw_global_samples/fire_reformated_globalsample.pickle", "rb"))
@@ -161,14 +214,13 @@ c_signal_without_DC_component = remove_dc_component(c[1])
 d_signal_without_DC_component = remove_dc_component(d[1])
 e_signal_without_DC_component = remove_dc_component(e[1])
 
-
 print("Classes in the dataset:", ["birds", "fire", "handsaw", "chainsaw", "helicopter"])
 
-N_MELVECS_begin = 10
-N_MELVECS_end = 20
+N_MELVECS_begin = 16
+N_MELVECS_end = 24
 N_MELVECS_step = 2
 
-MELVEC_LENGTH_begin = 20
+MELVEC_LENGTH_begin = 16 # au départ on avait mis 20
 MELVEC_LENGTH_end = 24
 MELVEC_LENGTH_step = 2
 
@@ -186,38 +238,10 @@ std_matrix = np.zeros((len(MELVEC_LENGTH_arange), len(N_MELVECS_arange)))
 
 for i in MELVEC_LENGTH_arange:
     for j in N_MELVECS_arange:
-        print("Nouvelle boucle pour : N_MELVECS = {}, MELVEC_LENGTH = {}".format(i, j))
+        print("Nouvelle boucle pour : MELVEC_LENGTH = {}, N_MELVECS = {}".format(i, j))
 
         """
-        # Calculer les spectrogrammes
-        a_spec = []
-        size_a = len(a_signal_without_DC_component)
-        cropped_a_spec = a_signal_without_DC_component[:size_a - size_a % 512] # Tronquer le signal pour qu'il soit un multiple de 512
-        for m in range(0, len(cropped_a_spec), 512):
-            temp_spec = np.log(np.abs(melspecgram(cropped_a_spec[m:m + 512], Nmel=i, mellength=j, fs_down=fs_down)))
-            a_spec.append(temp_spec)
-
-        # print("Taille de a_spec :", len(a_spec))
-        # print("Taille d'un melvec :", len(a_spec[0]))
-
-        a_spec_reshaped = []
-        for k in range(0, len(a_spec) - (len(a_spec) % j), j): # Avancer par pas de j et tronquer le nombre de melvecs pour avoir un multiple de j
-            a_spec_reshaped.append(np.ravel(a_spec[k:k+j])) # Prendre des paquets de j spectrogrammes et les applatir en un seul vecteur de dimension 1
-
-        data1_list = a_spec_reshaped # Pour la suite, il faudra concaténer les autres classes à la suite de cette liste
-
-        
-        "A décommenter pour vérifier le formatage des spectrogrammes"    
-        print("Taille de data1_list", len(data1_list))
-
-        print("Taille de a_spec_reshaped :", len(a_spec_reshaped))
-        #print(a_spec_reshaped[0])
-        print(len(a_spec_reshaped[0]))
-        print("Taille de cropped_a_spec :", len(cropped_a_spec))
-
-        print("Spectrogrammes oiseau calculés !")
-        
-
+        "Ancienne méthode sans fonction (conservée ici au cas où)"
         b_spec = []
         size_b = len(b_signal_without_DC_component)
         cropped_b_spec = b_signal_without_DC_component[:size_b - size_b % 512]
@@ -232,58 +256,10 @@ for i in MELVEC_LENGTH_arange:
         data1_list = np.concatenate((data1_list, b_spec_reshaped))
 
         print("Spectrogrammes feu calculés !")
-
-
-        c_spec = []
-        size_c = len(c_signal_without_DC_component)
-        cropped_c_spec = c_signal_without_DC_component[:size_c - size_c % 512]
-        for m in range(0, len(cropped_c_spec), 512):
-            temp_spec = np.log(np.abs(melspecgram(cropped_c_spec[m:m + 512], Nmel=i, mellength=j, fs_down=fs_down)))
-            c_spec.append(temp_spec)
-
-        c_spec_reshaped = []
-        for k in range(0, len(c_spec) - (len(c_spec) % j), j): # Avancer par pas de j
-            c_spec_reshaped.append(np.ravel(c_spec[k:k+j])) # Prendre des paquets de j spectrogrammes et les applatir en un seul vecteur de dimension 1
-
-        data1_list = np.concatenate((data1_list, c_spec_reshaped), axis=0)
-
-        print("Spectrogrammes scie calculés !")
-
-
-        d_spec = []
-        size_d = len(d_signal_without_DC_component)
-        cropped_d_spec = d_signal_without_DC_component[:size_d - size_d % 512]
-        for m in range(0, len(cropped_d_spec), 512):
-            temp_spec = np.log(np.abs(melspecgram(cropped_d_spec[m:m + 512], Nmel=i, mellength=j, fs_down=fs_down)))
-            d_spec.append(temp_spec)
-
-        d_spec_reshaped = []
-        for k in range(0, len(d_spec) - (len(d_spec) % j), j): # Avancer par pas de j
-            d_spec_reshaped.append(np.ravel(d_spec[k:k+j])) # Prendre des paquets de j spectrogrammes et les applatir en un seul vecteur de dimension 1
-
-        data1_list = np.concatenate((data1_list, d_spec_reshaped), axis=0)
-
-        print("Spectrogrammes tronçonneuse calculés !")
-
-
-        e_spec = []
-        size_e = len(e_signal_without_DC_component)
-        cropped_e_spec = e_signal_without_DC_component[:size_e - size_e % 512]
-        for m in range(0, len(cropped_e_spec), 512):
-            temp_spec = np.log(np.abs(melspecgram(cropped_e_spec[m:m + 512], Nmel=i, mellength=j, fs_down=fs_down)))
-            e_spec.append(temp_spec)
-
-        e_spec_reshaped = []
-        for k in range(0, len(e_spec) - (len(e_spec) % j), j): # Avancer par pas de j
-            e_spec_reshaped.append(np.ravel(e_spec[k:k+j])) # Prendre des paquets de j spectrogrammes et les applatir en un seul vecteur de dimension 1
-
-        data1_list = np.concatenate((data1_list, e_spec_reshaped), axis=0)
-
-        print("Spectrogrammes hélicoptère calculés !")
         """
 
-        data1_list = []  # Liste contenant les spectrogrammes de toutes les classes
-
+        """
+        "Utiliser ça si on ne rajoute aucun effet aux signaux sonores"
         a_spec_reshaped = turbo_lol_spectrograms(a_signal_without_DC_component, i, j, Nft=512, fs_down=fs_down)
         b_spec_reshaped = turbo_lol_spectrograms(b_signal_without_DC_component, i, j, Nft=512, fs_down=fs_down)
         c_spec_reshaped = turbo_lol_spectrograms(c_signal_without_DC_component, i, j, Nft=512, fs_down=fs_down)
@@ -295,47 +271,131 @@ for i in MELVEC_LENGTH_arange:
         data1_list = np.concatenate((data1_list, c_spec_reshaped))
         data1_list = np.concatenate((data1_list, d_spec_reshaped))
         data1_list = np.concatenate((data1_list, e_spec_reshaped))
+        """
+
+
+        # Zéphyrin ne prenait pas les signaux avec la composante continue enlevée
+        # a_spec = convert_x_spec_to_regular_array(audio_signal_troncated(a[1], i, j, Nft=512, fs_down=fs_down))
+        # b_spec = convert_x_spec_to_regular_array(audio_signal_troncated(b[1], i, j, Nft=512, fs_down=fs_down))
+        # c_spec = convert_x_spec_to_regular_array(audio_signal_troncated(c[1], i, j, Nft=512, fs_down=fs_down))
+        # d_spec = convert_x_spec_to_regular_array(audio_signal_troncated(d[1], i, j, Nft=512, fs_down=fs_down))
+        # e_spec = convert_x_spec_to_regular_array(audio_signal_troncated(e[1], i, j, Nft=512, fs_down=fs_down))
+
+
+        a_spec = audio_signal_troncated(a[1], i, j, Nft=512, fs_down=fs_down)
+        b_spec = audio_signal_troncated(b[1], i, j, Nft=512, fs_down=fs_down)
+        c_spec = audio_signal_troncated(c[1], i, j, Nft=512, fs_down=fs_down)
+        d_spec = audio_signal_troncated(d[1], i, j, Nft=512, fs_down=fs_down)
+        e_spec = audio_signal_troncated(e[1], i, j, Nft=512, fs_down=fs_down)
+
+        if len(a_spec) != len(b_spec) != len(c_spec) != len(d_spec) != len(e_spec):
+            raise ValueError("Dimensions des tableaux différentes")
+
+        sub_size = len(a_spec[0])
+        if len(a_spec[-1]) != sub_size:
+            a_spec.pop(-1)
+
+        sub_size = len(b_spec[0])
+        if len(b_spec[-1]) != sub_size:
+            b_spec.pop(-1)
+
+        sub_size = len(c_spec[0])
+        if len(c_spec[-1]) != sub_size:
+            c_spec.pop(-1)
+
+        sub_size = len(d_spec[0])
+        if len(d_spec[-1]) != sub_size:
+            d_spec.pop(-1)
+
+        sub_size = len(e_spec[0])
+        if len(e_spec[-1]) != sub_size:
+            e_spec.pop(-1)
+
+        data1_list = np.concatenate((a_spec, b_spec, c_spec, d_spec, e_spec))
+
+        # print("len data1_list", len(data1_list))
 
         "Création de data2_list avec tous les labels"
         data2_list = []
         labels = ["birds", "fire", "handsaw", "chainsaw", "helicopter"]
         for label in range(0, 5):
-            data2_list = np.concatenate((data2_list, [labels[label] for _ in range(len(a_spec_reshaped))]), axis=0)
+            data2_list = np.concatenate((data2_list, [labels[label] for _ in range(len(a_spec))]), axis=0)
             # en partant du principe que len(a_spec_reshaped) = len(b_spec_reshaped) = len(c_spec_reshaped) = len(d_spec_reshaped) = len(e_spec_reshaped)
 
+        # print("Data2_list longeur", len(data2_list))
+        # print("Longueur de tous les spectrogrammes : ", len(data1_list))
+        # print("Nombre d'éléments dans le premier spectrogramme", len(data1_list[0]))
 
-        print("Data2_list longeur", len(data2_list))
-        print("Longueur de tous les spectrogrammes : ", len(data1_list))
-        print("Nombre d'éléments dans le premier spectrogramme", len(data1_list[0]))
+        data1_list = np.array(data1_list)
+        data2_list = np.array(data2_list)
 
-        """
-        myds = Feature_vector_DS(dataset, Nft=512, nmel=10, duration=950, shift_pct=0.0,
-                                 fs=10980)  # METTRE i Á FS POUR FREQ OU NFT
-        train_pct = 0.70
+        # print("len data1_list", len(data1_list))
+        # print("len data2_list", len(data2_list))
 
-        featveclen = len(myds["fire", 0])  # number of items in a feature vector
-        nitems = len(myds)  # number of sounds in the dataset
-        naudio = dataset.naudio  # number of audio files in each class
-        nclass = dataset.nclass  # number of classes
-        nlearn = round(naudio * train_pct)  # number of sounds among naudio for training
+        temp_acc_split = [] # une accuracy par split
+        n_splits = 1
+        for _ in range(n_splits):
+            X_train, X_test, y_train, y_test = train_test_split(data1_list, data2_list, test_size=0.3)
+            # print("Taille de X_test et de y_test : ", len(X_test), len(y_test))
+            # print("Taille de X_train et de y_train : ", len(X_train), len(y_train))
+            X_val_spec = []
+            y_val = y_test
+            X_train_spec = []
 
-        data_aug_factor = 1
-        class_ids_aug = np.repeat(classnames, naudio * data_aug_factor)
+            "Ajouter les effets LOL aux signaux sonores de test puis en calculer les spectrogrammes"
+            for test_elem in range(len(X_test)):
+                X_val_spec.append(add_lol_effects_and_specgram(X_test[test_elem].astype(np.float32), i_melvec_length=i, j_n_melvecs=j, Nft=512, fs_down=fs_down))
 
-        "Compute the matrixed dataset, this takes some seconds, but you can then reload it by commenting this loop and decommenting the np.load below"
-        X = np.zeros((data_aug_factor * nclass * naudio, featveclen))
-        for s in range(data_aug_factor):
-            for class_idx, classname in enumerate(classnames):
-                for idx in range(naudio):
-                    featvec = myds[classname, idx]
-                    X[s * nclass * naudio + class_idx * naudio + idx, :] = featvec
-        np.save("data/feature_matrices/" + "feature_matrix_2D.npy", X)
-        # X = np.load(fm_dir+"feature_matrix_2D.npy")
-        """
+            "Spectrogrammes des signaux sonores d'entraînement"
+            for train_elem in range(len(X_train)):
+                x = X_train[train_elem] - np.mean(X_train[train_elem])
+
+                # Normalisation (Zéphyrin ne l'a pas fait mais c'est fait pour le dataset de test)
+                x = x / np.linalg.norm(x)
+                spec = np.ravel(np.log(np.abs(melspecgram(x, Nmel=j, mellength=i, fs_down=fs_down))))
+                X_train_spec.append(spec - np.mean(spec))
+
+            "Modèle et PCA"
+            model = RandomForestClassifier(n_estimators=100)
+            pca = PCA(n_components=29, whiten=True)
+
+            "Entraîner le modèle et la PCA"
+            X_learn_reduced = pca.fit_transform(np.array(X_train_spec))
+            X_val_reduced = pca.transform(np.array(X_val_spec))
+
+            for reduced_elem in range(len(X_val_reduced)):
+                X_val_reduced[reduced_elem] = X_val_reduced[reduced_elem] / np.linalg.norm(X_val_reduced[reduced_elem])
+
+            model.fit(X_learn_reduced, y_train)
+            prediction = model.predict(X_val_reduced)
+
+            temp_acc_split.append(accuracy(prediction, y_val))
+
+            """
+            print(prediction)
+            print("len prediction", len(prediction))
+            print("y_val", y_val)
+            print("computed accuracy", accuracy(prediction, y_val)) # rappel : y_val = y_test
+            """
+
+        mean_acc = np.mean(temp_acc_split)
+        accuracy_matrix[(i - MELVEC_LENGTH_begin) // MELVEC_LENGTH_step][(j - N_MELVECS_begin) // N_MELVECS_step] = mean_acc
+
+        print("MELVEC_LENGTH : {}, N_MELVECS : {}, mean accuracy of the {}-splits : {}".format(i, j, n_splits,100 * mean_acc))
+        print("=====================================")
+
+plt.imshow(accuracy_matrix, cmap='hot', extent=np.concatenate((N_MELVECS_arange, MELVEC_LENGTH_arange)))
+plt.colorbar()
+plt.xlabel("N_MELVECS")
+plt.ylabel("MELVEC_LENGTH")
+plt.savefig("accuracy_matrix.png")
+plt.show()
+
+"""
+        "========================================="
+        "Ancien code"
         "Labels"
-        # y = class_ids_aug.copy()
-        # X_train, X_test, y_train, y_test = ...
-        X_train, X_test, y_train, y_test = train_test_split(data1_list, data2_list, test_size=0.3, stratify=data2_list)  # random_state=1
+        X_train, X_test, y_train, y_test = train_test_split(data1_list, data2_list, test_size=0.3, stratify=data2_list)
         n_splits = 5
         kf = StratifiedKFold(n_splits=n_splits, shuffle=True)
 
@@ -357,7 +417,7 @@ for i in MELVEC_LENGTH_arange:
 
             # [3] (optional) dimensionality reduction.
             imp.fit(X_learn_normalised)
-            X_learn_normalised = imp.transform(X_learn_normalised) # Remplacer tous les NaN par la moyenne
+            X_learn_normalised = imp.transform(X_learn_normalised)  # Remplacer tous les NaN par la moyenne
             X_learn_reduced = pca.fit_transform(X_learn_normalised)
 
             imp.fit(X_val_normalised)
@@ -376,16 +436,17 @@ for i in MELVEC_LENGTH_arange:
         temp_std = np.std(accuracy)
 
         # Remplir les matrices globales (ont été modifiées en fonction des nouvelles boucles i et j)
-        accuracy_matrix[(i - MELVEC_LENGTH_begin) // MELVEC_LENGTH_step][(j - N_MELVECS_begin) // N_MELVECS_step] = temp_mean
+        accuracy_matrix[(i - MELVEC_LENGTH_begin) // MELVEC_LENGTH_step][
+            (j - N_MELVECS_begin) // N_MELVECS_step] = temp_mean
         std_matrix[(i - MELVEC_LENGTH_begin) // MELVEC_LENGTH_step][(j - N_MELVECS_begin) // N_MELVECS_step] = temp_std
 
-        print("N_MELVECS : {}, MELVEC_LENGTH : {}, accuracy : {}, std : {}".format(i, j, 100 * temp_mean, 100 * temp_std))
+        print(
+            "N_MELVECS : {}, MELVEC_LENGTH : {}, accuracy : {}, std : {}".format(i, j, 100 * temp_mean, 100 * temp_std))
         print("=====================================")
 
-
-"""ax = sns.heatmap(accuracy_matrix, linewidth=0.5)
-ax2 = sns.heatmap(std_matrix, linewidth=0.5)
-plt.show()"""
+# ax = sns.heatmap(accuracy_matrix, linewidth=0.5)
+# ax2 = sns.heatmap(std_matrix, linewidth=0.5)
+# plt.show()
 
 plt.imshow(accuracy_matrix, cmap='hot', extent=np.concatenate((N_MELVECS_arange, MELVEC_LENGTH_arange)))
 plt.colorbar()
@@ -400,3 +461,4 @@ plt.xlabel("N_MELVECS")
 plt.ylabel("MELVEC_LENGTH")
 plt.savefig("std_matrix.png")
 plt.show()
+"""

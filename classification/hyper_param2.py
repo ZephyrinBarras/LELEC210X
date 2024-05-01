@@ -106,7 +106,7 @@ def melspecgram(x, Nmel=N_MELVECS_DEFAULT, mellength=MELVEC_LENGTH_DEFAULT, Nft=
     print("Dimensions de la matrice de transfo (la matrice est correcte) :", "({},{})".format(len(mels), len(mels[0])),
           "Dimensions de la matrice de stft :", "({},{})".format(len(stft), len(stft[0])))
     """
-    melspec = np.dot(mels[:,:-1], stft)
+    melspec = np.dot(mels[:, :-1], stft)
     return melspec
 
 
@@ -133,6 +133,7 @@ cropped_a_spec = a_signal_without_DC_component[:size_a - size_a % 512*20] # Tron
 for m in range(0, len(cropped_a_spec), 512*20):
     a_spec.append(cropped_a_spec[m:m + 512*20])
 data1_list = (a_spec)
+
 b_spec = []
 size_b = len(b_signal_without_DC_component)
 cropped_b_spec = b_signal_without_DC_component[:size_b - size_b % 512*20] # Tronquer le signal pour qu'il soit un multiple de 512*20
@@ -199,11 +200,14 @@ sd.wait()"""
 pca_begin = 29
 pca_end = 30
 pca_step = 1
-n_splits=1
+n_splits = 1
 pca_arange = np.arange(pca_begin,pca_end,pca_step)
 accuracy_matrix = np.zeros((len(pca_arange),n_splits))
 std_matrix = np.zeros((n_splits,len(pca_arange)))
 count = 0
+
+print(len(data1_list))
+
 for k in range(n_splits):
     X_train, X_test, y_train, y_test = train_test_split(data1_list, data2_list, test_size=0.3)  # random_state=1
     print(len(X_test), len(y_test))
@@ -216,40 +220,44 @@ for k in range(n_splits):
     for i in range(len(X_test)):
         
         array = X_test[i].astype(np.float32)
-        array = array -np.mean(array)
-        array = array*np.random.uniform(0.1,3)   #amplitude
+        array = array - np.mean(array)
+        array = array * np.random.uniform(0.1,3)   #amplitude
         echo = np.zeros(len(array))
         echo_sig = np.zeros(512*20)
         echo_sig[0] = 1
         n_echo = np.random.randint(1,3)
-        echo_sig[(np.arange(1) / 1 * 512*20).astype(int)] = (
+        echo_sig[(np.arange(1) / 1 * 512 * 20).astype(int)] = (
             1 / 2
         ) ** np.arange(1)
 
         array = fftconvolve(array, echo_sig, mode="full")[:512*20]
-        array =array + np.random.normal(0, np.random.uniform(0.05,0.7), len(array))   #noise
-        sound_to_add = data1_list[np.random.randint(0,len(data1_list))].astype(np.float32)
-        sound_to_add = sound_to_add-np.mean(sound_to_add)
-        array =   array+sound_to_add*np.random.uniform(0,0.7)/np.max(sound_to_add)*np.max(array)
+        array = array + np.random.normal(0, np.random.uniform(0.05,0.7), len(array))   #noise
+        sound_to_add = data1_list[np.random.randint(0, len(data1_list))].astype(np.float32)
+        sound_to_add = sound_to_add - np.mean(sound_to_add)
+        array = array + sound_to_add * np.random.uniform(0,0.7) / np.max(sound_to_add) * np.max(array)
 
-        x = array-np.mean(array)
-        x=x/np.linalg.norm(x)
+        x = array - np.mean(array) # Moyenne quasi nulle donc ligne superflue
+        x = x / np.linalg.norm(x)
         """imp = np.log(np.abs(melspecgram(x, Nmel=20, mellength=20, fs_down=fs_down)))
         sd.play(x, 11111)
         sd.wait()
         print(y_test[i])
         plt.imshow(imp)
         plt.show()"""
+
+        print("len x", len(x)) # Taille de chaque petit signal sonore
+
         spec = np.ravel(np.log(np.abs(melspecgram(x, Nmel=20, mellength=20, fs_down=fs_down))))
-        X_val_spec.append(spec-np.mean(spec))
+        print("len spec", len(spec)) # Taille du spectrogramme
+        X_val_spec.append(spec - np.mean(spec))
     
     #conversion en mel train
     for i in range(len(X_train)):
-        x = X_train[i]-np.mean(X_train[i])  
+        x = X_train[i] - np.mean(X_train[i])
         #x=x/np.linalg.norm(x)      
         spec = np.ravel(np.log(np.abs(melspecgram(x, Nmel=20, mellength=20, fs_down=fs_down))))
         
-        X_train_spec.append(spec-np.mean(spec))
+        X_train_spec.append(spec - np.mean(spec))
 
     for b in range(len(pca_arange)):
         n_compo = pca_arange[b]
@@ -304,7 +312,7 @@ for k in range(n_splits):
         plt.savefig("imfire.svg")
         X_val_reduced = pca.transform(X_val_spec)
         for i in range(len(X_val_reduced)):
-            X_val_reduced[i]=X_val_reduced[i]/np.linalg.norm(X_val_reduced[i])
+            X_val_reduced[i]=X_val_reduced[i] / np.linalg.norm(X_val_reduced[i])
         model.fit(X_learn_reduced, y_train)
         prediction = model.predict(X_val_reduced)
         a = compute_accuracy(prediction, y_val)
