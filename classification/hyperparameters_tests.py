@@ -150,7 +150,7 @@ def audio_signal_troncated(signal, i_melvec_length, j_n_melvecs, Nft=512, fs_dow
     a_spec = []
     size_a = len(signal)
     cropped_a_spec = signal[
-                     :size_a - size_a % Nft * i_melvec_length]  # Tronquer le signal pour qu'il soit un multiple de 512*20
+                     :size_a - size_a % (Nft * i_melvec_length)]  # Tronquer le signal pour qu'il soit un multiple de 512*20
     for m in range(0, len(cropped_a_spec), Nft * i_melvec_length):
         a_spec.append(cropped_a_spec[m:m + Nft * i_melvec_length])
 
@@ -167,17 +167,16 @@ def add_lol_effects_and_specgram(signal, i_melvec_length, j_n_melvecs, Nft=512, 
     n_echo = np.random.randint(1, 3)
     echo_sig[(np.arange(1) / 1 * 512 * j_n_melvecs).astype(int)] = (1 / 2) ** np.arange(1) #TODO : vérifier que c'est bien j_n_melvecs et pas i_melvec_length
 
-    # print("len array avant convolve", len(array))
+
     array = fftconvolve(array, echo_sig, mode="full")
     "Tronquer le signal car il est plus long après la convolution"
-    # print("len array après convolve", len(array))
     array = array[:512 * i_melvec_length] #TODO : vérifier que c'est bien j_n_melvecs et pas i_melvec_length
-    # print("len array après troncage", len(array))
-    array = array + np.random.normal(0, np.random.uniform(0.05, 0.7), len(array))  # noise
-    sound_to_add = data1_list[np.random.randint(0, len(data1_list))].astype(np.float32)
-    sound_to_add = sound_to_add - np.mean(sound_to_add)
-    # print("len sound_to_add", len(sound_to_add))
-    array = array + sound_to_add * np.random.uniform(0, 0.7) / np.max(sound_to_add) * np.max(array)
+
+    # "Background"
+    # array = array + np.random.normal(0, np.random.uniform(0.05, 0.7), len(array))  # noise
+    # sound_to_add = data1_list[np.random.randint(0, len(data1_list))].astype(np.float32) # TODO : attention ce n'est pas data1_list !!
+    # sound_to_add = sound_to_add - np.mean(sound_to_add)
+    #array = array + sound_to_add * np.random.uniform(0, 0.7) / np.max(sound_to_add) * np.max(array)*
 
     x = array - np.mean(array)  # Moyenne quasi nulle donc ligne superflue
     x = x / np.linalg.norm(x)
@@ -294,26 +293,31 @@ for i in MELVEC_LENGTH_arange:
         sub_size = len(a_spec[0])
         if len(a_spec[-1]) != sub_size:
             a_spec.pop(-1)
+            print("Troncature de a_spec")
 
         sub_size = len(b_spec[0])
         if len(b_spec[-1]) != sub_size:
             b_spec.pop(-1)
+            print("Troncature de b_spec")
 
         sub_size = len(c_spec[0])
         if len(c_spec[-1]) != sub_size:
             c_spec.pop(-1)
+            print("Troncature de c_spec")
 
         sub_size = len(d_spec[0])
         if len(d_spec[-1]) != sub_size:
             d_spec.pop(-1)
+            print("Troncature de d_spec")
 
         sub_size = len(e_spec[0])
         if len(e_spec[-1]) != sub_size:
             e_spec.pop(-1)
+            print("Troncature de e_spec")
 
         data1_list = np.concatenate((a_spec, b_spec, c_spec, d_spec, e_spec))
 
-        # print("len data1_list", len(data1_list))
+        print("len data1_list", len(data1_list))
 
         "Création de data2_list avec tous les labels"
         data2_list = []
@@ -321,6 +325,22 @@ for i in MELVEC_LENGTH_arange:
         for label in range(0, 5):
             data2_list = np.concatenate((data2_list, [labels[label] for _ in range(len(a_spec))]), axis=0)
             # en partant du principe que len(a_spec_reshaped) = len(b_spec_reshaped) = len(c_spec_reshaped) = len(d_spec_reshaped) = len(e_spec_reshaped)
+
+        if len(data1_list) != len(data2_list):
+            raise ValueError("Tailles des signaux et des étiquettes différentes")
+
+        # Vérifier que les étiquettes sont ok (elles ont l'air de l'être)
+        for p in range(int(len(data2_list) / 5)):
+            if data2_list[p] != "birds":
+                raise ValueError("Pas le bon nombre de birds")
+            if data2_list[p + int(len(data2_list) / 5)] != "fire":
+                raise ValueError("Pas le bon nombre de fire")
+            if data2_list[p + 2 * int(len(data2_list) / 5)] != "handsaw":
+                raise ValueError("Pas le bon nombre de handsaw")
+            if data2_list[p + 3 * int(len(data2_list) / 5)] != "chainsaw":
+                raise ValueError("Pas le bon nombre de chainsaw")
+            if data2_list[p + 4 * int(len(data2_list) / 5)] != "helicopter":
+                raise ValueError("Pas le bon nombre de helicopter")
 
         # print("Data2_list longeur", len(data2_list))
         # print("Longueur de tous les spectrogrammes : ", len(data1_list))
@@ -335,7 +355,7 @@ for i in MELVEC_LENGTH_arange:
         temp_acc_split = [] # une accuracy par split
         n_splits = 1
         for _ in range(n_splits):
-            X_train, X_test, y_train, y_test = train_test_split(data1_list, data2_list, test_size=0.3)
+            X_train, X_test, y_train, y_test = train_test_split(data1_list, data2_list, stratify=data2_list, test_size=0.3)
             # print("Taille de X_test et de y_test : ", len(X_test), len(y_test))
             # print("Taille de X_train et de y_train : ", len(X_train), len(y_train))
             X_val_spec = []
