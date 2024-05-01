@@ -149,17 +149,17 @@ def turbo_lol_spectrograms(signal, i_melvec_length, j_n_melvecs, Nft=512, fs_dow
 def audio_signal_troncated(signal, i_melvec_length, j_n_melvecs, Nft=512, fs_down=11111):
     a_spec = []
     size_a = len(signal)
-    cropped_a_spec = signal[
-                     :size_a - size_a % (Nft * i_melvec_length)]  # Tronquer le signal pour qu'il soit un multiple de 512*20
+    cropped_a_spec = signal[:size_a - size_a % (Nft * i_melvec_length)]  # Tronquer le signal pour qu'il soit un multiple de 512*20
     for m in range(0, len(cropped_a_spec), Nft * i_melvec_length):
         a_spec.append(cropped_a_spec[m:m + Nft * i_melvec_length])
 
     return a_spec
 
-def add_lol_effects_and_specgram(signal, i_melvec_length, j_n_melvecs, Nft=512, fs_down=11111):
+def add_lol_effects_and_specgram(signal,bg, i_melvec_length, j_n_melvecs, Nft=512, fs_down=11111):
     array = signal
     array = remove_dc_component(array)
-    array = array * np.random.uniform(0.1, 3)  # amplitude
+    val = np.random.uniform(0.1, 3) 
+    array =  array*val# amplitude
     echo = np.zeros(len(array))
     # TODO : vérifier que c'est bien j_n_melvecs et pas i_melvec_length
     echo_sig = np.zeros(512 * j_n_melvecs) # Même taille que les fichiers audio de la base de données
@@ -171,12 +171,10 @@ def add_lol_effects_and_specgram(signal, i_melvec_length, j_n_melvecs, Nft=512, 
     array = fftconvolve(array, echo_sig, mode="full")
     "Tronquer le signal car il est plus long après la convolution"
     array = array[:512 * i_melvec_length] #TODO : vérifier que c'est bien j_n_melvecs et pas i_melvec_length
+    array = array + np.random.normal(0, np.random.uniform(0.2, 0.9), len(array))*val # noise
 
     # "Background"
-    # array = array + np.random.normal(0, np.random.uniform(0.05, 0.7), len(array))  # noise
-    # sound_to_add = data1_list[np.random.randint(0, len(data1_list))].astype(np.float32) # TODO : attention ce n'est pas data1_list !!
-    # sound_to_add = sound_to_add - np.mean(sound_to_add)
-    #array = array + sound_to_add * np.random.uniform(0, 0.7) / np.max(sound_to_add) * np.max(array)*
+    array = array + bg * np.random.uniform(0, 0.7) / np.max(bg) * np.max(array)
 
     x = array - np.mean(array)  # Moyenne quasi nulle donc ligne superflue
     x = x / np.linalg.norm(x)
@@ -290,31 +288,6 @@ for i in MELVEC_LENGTH_arange:
         if len(a_spec) != len(b_spec) != len(c_spec) != len(d_spec) != len(e_spec):
             raise ValueError("Dimensions des tableaux différentes")
 
-        sub_size = len(a_spec[0])
-        if len(a_spec[-1]) != sub_size:
-            a_spec.pop(-1)
-            print("Troncature de a_spec")
-
-        sub_size = len(b_spec[0])
-        if len(b_spec[-1]) != sub_size:
-            b_spec.pop(-1)
-            print("Troncature de b_spec")
-
-        sub_size = len(c_spec[0])
-        if len(c_spec[-1]) != sub_size:
-            c_spec.pop(-1)
-            print("Troncature de c_spec")
-
-        sub_size = len(d_spec[0])
-        if len(d_spec[-1]) != sub_size:
-            d_spec.pop(-1)
-            print("Troncature de d_spec")
-
-        sub_size = len(e_spec[0])
-        if len(e_spec[-1]) != sub_size:
-            e_spec.pop(-1)
-            print("Troncature de e_spec")
-
         data1_list = np.concatenate((a_spec, b_spec, c_spec, d_spec, e_spec))
 
         print("len data1_list", len(data1_list))
@@ -364,7 +337,9 @@ for i in MELVEC_LENGTH_arange:
 
             "Ajouter les effets LOL aux signaux sonores de test puis en calculer les spectrogrammes"
             for test_elem in range(len(X_test)):
-                X_val_spec.append(add_lol_effects_and_specgram(X_test[test_elem].astype(np.float32), i_melvec_length=i, j_n_melvecs=j, Nft=512, fs_down=fs_down))
+                elem_bg = data1_list[np.random.randint(0, len(data1_list))]
+                elem_bg = elem_bg-np.mean(elem_bg)
+                X_val_spec.append(add_lol_effects_and_specgram(X_test[test_elem],elem_bg, i_melvec_length=i, j_n_melvecs=j, Nft=512, fs_down=fs_down))
 
             "Spectrogrammes des signaux sonores d'entraînement"
             for train_elem in range(len(X_train)):
@@ -383,9 +358,9 @@ for i in MELVEC_LENGTH_arange:
             X_learn_reduced = pca.fit_transform(np.array(X_train_spec))
             X_val_reduced = pca.transform(np.array(X_val_spec))
 
-            for reduced_elem in range(len(X_val_reduced)):
+            """for reduced_elem in range(len(X_val_reduced)):
                 X_val_reduced[reduced_elem] = X_val_reduced[reduced_elem] / np.linalg.norm(X_val_reduced[reduced_elem])
-
+"""
             model.fit(X_learn_reduced, y_train)
             prediction = model.predict(X_val_reduced)
 
@@ -410,75 +385,3 @@ plt.xlabel("N_MELVECS")
 plt.ylabel("MELVEC_LENGTH")
 plt.savefig("accuracy_matrix.png")
 plt.show()
-
-"""
-        "========================================="
-        "Ancien code"
-        "Labels"
-        X_train, X_test, y_train, y_test = train_test_split(data1_list, data2_list, test_size=0.3, stratify=data2_list)
-        n_splits = 5
-        kf = StratifiedKFold(n_splits=n_splits, shuffle=True)
-
-        n_trees = 100
-        model = RandomForestClassifier(n_trees)
-        accuracy = np.zeros((n_splits,))
-
-        # best pca = PCA(n_components=5,whiten=True)with n=7+1=8
-        imp = SimpleImputer(missing_values=np.nan, strategy='mean')
-        pca = PCA(n_components=35, whiten=True)
-        for k, idx in enumerate(kf.split(X_train, y_train)):
-            (idx_learn, idx_val) = idx
-
-            # [2] (optional) Data normalization
-            X_learn_normalised = X_train[idx_learn] / np.linalg.norm(X_train[idx_learn], axis=1, keepdims=True)
-            # print(len(X_learn_normalised))
-            X_val_normalised = X_train[idx_val] / np.linalg.norm(X_train[idx_val], axis=1, keepdims=True)
-            # print(len(X_val_normalised))
-
-            # [3] (optional) dimensionality reduction.
-            imp.fit(X_learn_normalised)
-            X_learn_normalised = imp.transform(X_learn_normalised)  # Remplacer tous les NaN par la moyenne
-            X_learn_reduced = pca.fit_transform(X_learn_normalised)
-
-            imp.fit(X_val_normalised)
-            X_val_normalised = imp.transform(X_val_normalised)
-            X_val_reduced = pca.transform(X_val_normalised)
-            pca.transform([X_val_normalised[0]])
-            model.fit(X_learn_reduced, y_train[idx_learn])
-            prediction = model.predict(X_val_reduced)
-            # print(len(prediction_knn))
-            accuracy[k] = compute_accuracy(prediction, y_train[idx_val])
-
-        # accuracy est un tableau avec 5 élements car il y a 5 plis pour la validation croisée
-        # accuracy.mean() est la moyenne des 5 élements
-        # accuracy.std() est l'écart-type des 5 élements
-        temp_mean = np.mean(accuracy)
-        temp_std = np.std(accuracy)
-
-        # Remplir les matrices globales (ont été modifiées en fonction des nouvelles boucles i et j)
-        accuracy_matrix[(i - MELVEC_LENGTH_begin) // MELVEC_LENGTH_step][
-            (j - N_MELVECS_begin) // N_MELVECS_step] = temp_mean
-        std_matrix[(i - MELVEC_LENGTH_begin) // MELVEC_LENGTH_step][(j - N_MELVECS_begin) // N_MELVECS_step] = temp_std
-
-        print(
-            "N_MELVECS : {}, MELVEC_LENGTH : {}, accuracy : {}, std : {}".format(i, j, 100 * temp_mean, 100 * temp_std))
-        print("=====================================")
-
-# ax = sns.heatmap(accuracy_matrix, linewidth=0.5)
-# ax2 = sns.heatmap(std_matrix, linewidth=0.5)
-# plt.show()
-
-plt.imshow(accuracy_matrix, cmap='hot', extent=np.concatenate((N_MELVECS_arange, MELVEC_LENGTH_arange)))
-plt.colorbar()
-plt.xlabel("N_MELVECS")
-plt.ylabel("MELVEC_LENGTH")
-plt.savefig("accuracy_matrix.png")
-plt.show()
-
-plt.imshow(std_matrix, cmap='hot', extent=np.concatenate((N_MELVECS_arange, MELVEC_LENGTH_arange)))
-plt.colorbar()
-plt.xlabel("N_MELVECS")
-plt.ylabel("MELVEC_LENGTH")
-plt.savefig("std_matrix.png")
-plt.show()
-"""
