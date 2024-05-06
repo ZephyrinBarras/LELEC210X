@@ -12,7 +12,7 @@
 #include "utils.h"
 #include "arm_absmax_q15.h"
 
-static q15_t result[MELVEC_LENGTH];
+
 
 q15_t buf    [  SAMPLES_PER_MELVEC  ]; // Windowed samples
 q15_t buf_fft[2*SAMPLES_PER_MELVEC  ]; // Double size (real|imag) buffer needed for arm_rfft_q15
@@ -57,7 +57,7 @@ void Spectrogram_Format(q15_t *buf)
 }
 
 // Compute spectrogram of samples and transform into MEL vectors.
-uint8_t Spectrogram_Compute(q15_t *samples, q15_t *melvec, q15_t* pca)
+uint8_t Spectrogram_Compute(q15_t *samples, q15_t *melvec, q15_t* result)
 {
 	// STEP 1  : Windowing of input samples
 	//           --> Pointwise product
@@ -181,7 +181,7 @@ uint8_t Spectrogram_Compute(q15_t *samples, q15_t *melvec, q15_t* pca)
 			printf("%d,",result[k]);
 		}
 		printf("\n");
-		pca[29]=vmax_mem;
+		//pca[29]=vmax_mem;
 		vmax_mem=0;
 		return 1;
 	}else{
