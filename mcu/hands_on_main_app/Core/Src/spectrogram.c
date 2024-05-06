@@ -96,7 +96,7 @@ uint8_t Spectrogram_Compute(q15_t *samples, q15_t *melvec, q15_t* result)
 	q15_t bound;
 	clean = 0;
 
-	if (THRESHOLD_MOD) bound = 700; else bound = 70;
+	if (THRESHOLD_MOD) bound = 700; else bound = 30;
 	if (vmax<bound && remain == 0){
 		return 0;
 	}
