@@ -12,10 +12,12 @@
 #include "utils.h"
 #include "arm_absmax_q15.h"
 
+static q15_t result[MELVEC_LENGTH];
+
 q15_t buf    [  SAMPLES_PER_MELVEC  ]; // Windowed samples
 q15_t buf_fft[2*SAMPLES_PER_MELVEC  ]; // Double size (real|imag) buffer needed for arm_rfft_q15
 //q15_t buf_tmp[  SAMPLES_PER_MELVEC/2]; // Intermediate buffer for arm_mat_mult_fast_q15
-q15_t buf_tmp_pca[29];
+q31_t buf_mean[MELVEC_LENGTH];
 q15_t volume_noise_mean = 0;
 q15_t first = 5*MELVEC_LENGTH;
 uint8_t remain = 0;
@@ -152,7 +154,6 @@ uint8_t Spectrogram_Compute(q15_t *samples, q15_t *melvec, q15_t* pca)
 	arm_mat_init_q15(&melvec_inst, MELVEC_LENGTH, 1, melvec);*/
 
 	//arm_mat_mult_fast_q15(&hz2mel_inst, &fftmag_inst, &melvec_inst, buf_tmp);
-
 	q63_t result_temp[MELVEC_LENGTH];
 
 	for (uint8_t i = 0; i < MELVEC_LENGTH; i++){  // pour chaque ligne de hz2mel_mat :
@@ -163,28 +164,25 @@ uint8_t Spectrogram_Compute(q15_t *samples, q15_t *melvec, q15_t* pca)
 
 		melvec[i] = (q15_t) (result_temp[i] >> 15);
 	}
-	q15_t mean = 0;
-	arm_mean_q15(melvec, 20, &mean);
-	for (uint8_t i = 0; i < MELVEC_LENGTH; i++){  // pour chaque ligne de hz2mel_mat :
-		melvec[i] -= mean;
+	if (remain == N_MELVECS-1){
+		for (uint8_t l = 0; l<MELVEC_LENGTH;l++){
+			buf_mean[l] = (q31_t) melvec[l];
+		}
+	}else{
+		arm_add_q31((q31_t*) melvec, buf_mean, buf_mean, MELVEC_LENGTH);
 	}
 
-	arm_matrix_instance_q15 vec_instance = {MELVEC_LENGTH, 1, melvec};
-	arm_matrix_instance_q15 mat_instance = {29, MELVEC_LENGTH, pca_mat};
-	if (clean==0){
-		q15_t result[29];
-		arm_matrix_instance_q15 result_instance = {29, 1, result};
-		// Effectuer la multiplication de la matrice par le vecteur
-		arm_mat_mult_fast_q15(&mat_instance, &vec_instance, &result_instance,buf_tmp_pca);
-		arm_add_q15(result, pca, pca, 29);
-	}else{
-		arm_matrix_instance_q15 result_instance = {29, 1, pca};
-		// Effectuer la multiplication de la matrice par le vecteur
-		arm_mat_mult_fast_q15(&mat_instance, &vec_instance, &result_instance,buf_tmp_pca);
-	}
+
 
 	if (remain==0){
+		result = (q15_t*) buf_mean;
+		printf("[MEAN]");
+		for (int k=0; k<MELVEC_LENGTH;k++){
+			printf("%d,",result[k]);
+		}
+		printf("\n");
 		pca[29]=vmax_mem;
+		vmax_mem=0;
 		return 1;
 	}else{
 		return 0;

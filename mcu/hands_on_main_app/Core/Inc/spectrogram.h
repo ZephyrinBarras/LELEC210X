@@ -24,6 +24,7 @@ static inline q15_t float_to_q15(float x)
 	arm_float_to_q15(&x, &y, 1);
 	return y;
 }
+static q15_t* result;
 
 // Convert 12-bit DC ADC samples to Q1.15 fixed point signal and remove DC component
 void Spectrogram_Format(q15_t *buf);
