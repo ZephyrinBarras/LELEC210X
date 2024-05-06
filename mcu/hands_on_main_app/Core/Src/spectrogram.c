@@ -164,6 +164,11 @@ uint8_t Spectrogram_Compute(q15_t *samples, q15_t *melvec, q15_t* result)
 
 		melvec[i] = (q15_t) (result_temp[i] >> 15);
 	}
+	/*for(uint8_t i =0; i<MELVEC_LENGTH;i++){
+		melvec[i]=melvec[i]*corr_freq[i];
+	}*/
+	arm_shift_q15(melvec, 3, melvec, 24);
+	arm_mult_q15(melvec, corr_freq, melvec, 24);
 	if (remain == N_MELVECS-1){
 		for (uint8_t l = 0; l<MELVEC_LENGTH;l++){
 			buf_mean[l] = (q31_t) melvec[l];
