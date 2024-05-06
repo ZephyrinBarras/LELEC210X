@@ -184,7 +184,13 @@ uint8_t Spectrogram_Compute(q15_t *samples, q15_t *melvec, q15_t* pca)
 	}
 
 	if (remain==0){
+		printf("[PCA]");
+		for (int k=0; k<29;k++){
+			printf("%d,",pca[k]);
+		}
+		printf("\n");
 		pca[29]=vmax_mem;
+		vmax_mem=0;
 		return 1;
 	}else{
 		return 0;

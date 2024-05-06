@@ -4,7 +4,8 @@ from pathlib import Path
 from typing import Optional
 
 import requests
-
+classeee1 = ["birds", "chainsaw","fire","hand","heli"]
+classeee = ["fire", "helicopter","fire","handsaw","_"]
 import click
 import matplotlib.pyplot as plt
 import common
@@ -18,7 +19,8 @@ from classification.utils.plots import plot_specgram
 from sklearn.impute import SimpleImputer
 
 from .utils import payload_to_melvecs
-
+sucess = 0
+failed = 0
 listeclass=["birds","chainsaw","fire","handsaw","helicopter"]
 name = sorted(listeclass)
 max_size = 4 #à changer
@@ -79,6 +81,7 @@ def main(
     melvec_length: int,
     n_melvecs: int,
 ) -> None:
+    global sucess, failed
     """
     Extract Mel vectors from payloads and perform classification on them.
     Classify MELVECs contained in payloads (from packets).
@@ -98,17 +101,34 @@ def main(
 
     for payload in _input:
         nbr_packet+=1
-        
-        
-        if PRINT_PREFIX in payload:
-            previous = 0
 
+        
+        if "[PCA]" in payload:
+            previous = 0
             #RECUPERE ET TRAITE LE MEL
             #serial_number = int(payload[len(PRINT_PREFIX):len(PRINT_PREFIX)+5],16)
             
             #packet_number = int(payload[len(PRINT_PREFIX):len(PRINT_PREFIX)+7],16)%20
-            payload = payload[len(PRINT_PREFIX)+7:]
-            melvecs = payload_to_melvecs(payload, melvec_length, 1)
+            melvecs = payload
+            melvecs = melvecs[len("[PCA]"):]
+            melvecs = melvecs.strip("\n")
+            melvecs = melvecs.split(",")[:-1]
+            
+            for i in range(len(melvecs)):
+                melvecs[i] = float(melvecs[i])
+            melvecs = array(melvecs)
+            melvecs = melvecs/linalg.norm(melvecs)
+            print(melvecs)
+
+            model = pickle.load(open("classification/data/models/model_pca_29.pickle","rb"))
+            print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+            elem = model.predict([melvecs])
+            print(elem)
+            if elem=="birds":
+                sucess+=1
+            else:
+                failed+=1
+            """melvecs = payload_to_melvecs(payload, melvec_length, 1)
             print("noise level",melvecs[-1]/3.05175781e-05)
             print("melvec",melvecs[:-1]/3.05175781e-05)
             melvecs = melvecs/3.05175781e-05
@@ -130,7 +150,7 @@ def main(
             ajouter(elem)
             global commencement
             commencement+=1
-            probs=memory
+            probs=memory"""
             """maxvrai= zeros(5) 
             for m in range(5) :
                 for n in range(len(probs)):
@@ -141,7 +161,8 @@ def main(
                 classe=" "
             else:
                 classe=name[argmax(maxvrai)]"""
-            classe=name[argmax(elem)]
+            """classe=name[argmax(elem)]
         
-            logger.info(f"Parsed payload into Mel vectors: {classe}")
+            logger.info(f"Parsed payload into Mel vectors: {classe}")"""
             #main()
+            print(sucess/(sucess+failed))
