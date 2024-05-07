@@ -1,7 +1,6 @@
 import os
 import numpy as np
 import matplotlib.pyplot as plt
-from joblib import Parallel, delayed, parallel_config
 
 "Machine learning tools"
 from sklearn.neighbors import KNeighborsClassifier
@@ -10,11 +9,11 @@ from sklearn.discriminant_analysis import LinearDiscriminantAnalysis as LDA
 from sklearn.model_selection import train_test_split, StratifiedKFold
 from sklearn.decomposition import PCA
 import pickle
-import numpy as np
 import librosa
 from sklearn.impute import SimpleImputer
 import seaborn as sns
 from scipy.signal import fftconvolve, resample
+import pandas as pd
 
 import classification.utils.audio_student as audio
 from classification.utils.plots import plot_specgram, show_confusion_matrix, show_confusion_matrix_with_save, \
@@ -213,12 +212,12 @@ e_signal_without_DC_component = remove_dc_component(e[1])
 
 print("Classes in the dataset:", ["birds", "fire", "handsaw", "chainsaw", "helicopter"])
 
-N_MELVECS_begin = 16
-N_MELVECS_end = 24
+N_MELVECS_begin = 10
+N_MELVECS_end = 40
 N_MELVECS_step = 2
 
-MELVEC_LENGTH_begin = 16 # au départ on avait mis 20
-MELVEC_LENGTH_end = 24
+MELVEC_LENGTH_begin = 10 # au départ on avait mis 20
+MELVEC_LENGTH_end = 40
 MELVEC_LENGTH_step = 2
 
 N_MELVECS_arange = np.arange(N_MELVECS_begin, N_MELVECS_end, N_MELVECS_step)  # ICI LA RANGE DU PARAM NMEL
@@ -326,7 +325,7 @@ for i in MELVEC_LENGTH_arange:
         # print("len data2_list", len(data2_list))
 
         temp_acc_split = [] # une accuracy par split
-        n_splits = 1
+        n_splits = 3
         for _ in range(n_splits):
             X_train, X_test, y_train, y_test = train_test_split(data1_list, data2_list, stratify=data2_list, test_size=0.3)
             # print("Taille de X_test et de y_test : ", len(X_test), len(y_test))
@@ -379,9 +378,21 @@ for i in MELVEC_LENGTH_arange:
         print("MELVEC_LENGTH : {}, N_MELVECS : {}, mean accuracy of the {}-splits : {}".format(i, j, n_splits,100 * mean_acc))
         print("=====================================")
 
-plt.imshow(accuracy_matrix, cmap='hot', extent=np.concatenate((N_MELVECS_arange, MELVEC_LENGTH_arange)))
+plt.imshow(accuracy_matrix, cmap='hot', extent=[N_MELVECS_begin, N_MELVECS_end, MELVEC_LENGTH_begin, MELVEC_LENGTH_end])
 plt.colorbar()
+plt.title("Exactitude")
 plt.xlabel("N_MELVECS")
 plt.ylabel("MELVEC_LENGTH")
-plt.savefig("accuracy_matrix.png")
+plt.savefig("accuracy_matrix_big_span.png")
 plt.show()
+
+# print(N_MELVECS_arange)
+# print(MELVEC_LENGTH_arange[::-1])
+# labels = [0.45, 0.90, 1.35, 1.80, 2.25, 2.70, 3.15, 3.60, 4.05, 4.50, 4.95, 5.40, 5.85, 6.30, 6.75]
+# df_cm = pd.DataFrame(accuracy_matrix, index=MELVEC_LENGTH_arange, columns=N_MELVECS_arange[::-1])
+# sns.heatmap(df_cm, linewidth=1, annot=True)
+# # plt.title("Exactitude")
+# # plt.xlabel("N_MELVECS")
+# # plt.ylabel("MELVEC_LENGTH")
+# plt.savefig("sns_accuracy_matrix")
+# plt.show()
