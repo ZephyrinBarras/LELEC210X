@@ -29,14 +29,14 @@
 
 // Spectrogram parameters
 #define SAMPLES_PER_MELVEC 512
-#define MELVEC_LENGTH 20
-#define N_MELVECS 20
+#define MELVEC_LENGTH 24
+#define N_MELVECS 10
 
 // Enable performance measurements
 #define PERF_COUNT 0
 
 // Enable debug print
-#define DEBUGP 1
+#define DEBUGP 0
 
 #if (DEBUGP == 1)
 #define DEBUG_PRINT(...) do{ printf(__VA_ARGS__ ); } while( 0 )

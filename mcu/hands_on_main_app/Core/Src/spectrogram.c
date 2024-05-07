@@ -12,12 +12,18 @@
 #include "utils.h"
 #include "arm_absmax_q15.h"
 
+
+
 q15_t buf    [  SAMPLES_PER_MELVEC  ]; // Windowed samples
 q15_t buf_fft[2*SAMPLES_PER_MELVEC  ]; // Double size (real|imag) buffer needed for arm_rfft_q15
-q15_t buf_tmp[  SAMPLES_PER_MELVEC/2]; // Intermediate buffer for arm_mat_mult_fast_q15
-q15_t vmax_global=0;
+//q15_t buf_tmp[  SAMPLES_PER_MELVEC/2]; // Intermediate buffer for arm_mat_mult_fast_q15
+q31_t buf_mean[MELVEC_LENGTH];
 q15_t volume_noise_mean = 0;
 q15_t first = 5*MELVEC_LENGTH;
+uint8_t remain = 0;
+uint8_t clean = 1;
+q15_t vmax;
+q15_t vmax_mem;
 
 // Convert 12-bit DC ADC samples to Q1.15 fixed point signal and remove DC component
 void Spectrogram_Format(q15_t *buf)
@@ -47,10 +53,11 @@ void Spectrogram_Format(q15_t *buf)
 	for(uint16_t i=0; i < SAMPLES_PER_MELVEC; i++) { // Remove DC component
 		buf[i] -= (1 << 14);
 	}
+
 }
 
 // Compute spectrogram of samples and transform into MEL vectors.
-void Spectrogram_Compute(q15_t *samples, q15_t *melvec)
+uint8_t Spectrogram_Compute(q15_t *samples, q15_t *melvec, q15_t* result)
 {
 	// STEP 1  : Windowing of input samples
 	//           --> Pointwise product
@@ -86,8 +93,19 @@ void Spectrogram_Compute(q15_t *samples, q15_t *melvec)
 
 	arm_absmax_q15(buf_fft, SAMPLES_PER_MELVEC, &vmax, &pIndex);
 
-	if (vmax>vmax_global){
-		vmax_global=vmax;
+	q15_t bound;
+	clean = 0;
+
+	if (THRESHOLD_MOD) bound = 700; else bound = 30;
+	if (vmax<bound && remain == 0){
+		return 0;
+	}
+	if (remain ==0){
+		remain = N_MELVECS-1;
+		vmax_mem = vmax;
+		clean=1;
+	}else{
+		remain --;
 	}
 
 	// STEP 3.2: Normalize the vector - Dynamic range increase
@@ -108,6 +126,7 @@ void Spectrogram_Compute(q15_t *samples, q15_t *melvec)
 
 	// STEP 3.4: Denormalize the vector
 	//           Complexity: O(N)
+
 	//           Number of cycles: <TODO>
 
 	for (int i=0; i < SAMPLES_PER_MELVEC/2; i++)
@@ -128,11 +147,45 @@ void Spectrogram_Compute(q15_t *samples, q15_t *melvec)
 	// /!\ In order to avoid overflows completely the input signals should be scaled down. Scale down one of the input matrices by log2(numColsA) bits to avoid overflows,
 	// as a total of numColsA additions are computed internally for each output element. Because our hz2mel_mat matrix contains lots of zeros in its rows, this is not necessary.
 	
-	arm_matrix_instance_q15 hz2mel_inst, fftmag_inst, melvec_inst;
+	/*arm_matrix_instance_q15 hz2mel_inst, fftmag_inst, melvec_inst;
 
 	arm_mat_init_q15(&hz2mel_inst, MELVEC_LENGTH, SAMPLES_PER_MELVEC/2, hz2mel_mat);
 	arm_mat_init_q15(&fftmag_inst, SAMPLES_PER_MELVEC/2, 1, buf);
-	arm_mat_init_q15(&melvec_inst, MELVEC_LENGTH, 1, melvec);
+	arm_mat_init_q15(&melvec_inst, MELVEC_LENGTH, 1, melvec);*/
 
-	arm_mat_mult_fast_q15(&hz2mel_inst, &fftmag_inst, &melvec_inst, buf_tmp);
+	//arm_mat_mult_fast_q15(&hz2mel_inst, &fftmag_inst, &melvec_inst, buf_tmp);
+	q63_t result_temp[MELVEC_LENGTH];
+
+	for (uint8_t i = 0; i < MELVEC_LENGTH; i++){  // pour chaque ligne de hz2mel_mat :
+		uint8_t j = start_idx[i];
+		uint8_t l = length[i];
+		// dot product entre le vecteur de chaque ligne et le vecteur buf
+		arm_dot_prod_q15(hz2mel_mat + i*SAMPLES_PER_MELVEC/2 + j, buf + j, l, result_temp + i); // résultat sur 64 bits
+
+		melvec[i] = (q15_t) (result_temp[i] >> 15);
+	}
+	/*for(uint8_t i =0; i<MELVEC_LENGTH;i++){
+		melvec[i]=melvec[i]*corr_freq[i];
+	}*/
+	arm_shift_q15(melvec, 3, melvec, 24);
+	arm_mult_q15(melvec, corr_freq, melvec, 24);
+	if (remain == N_MELVECS-1){
+		for (uint8_t l = 0; l<MELVEC_LENGTH;l++){
+			buf_mean[l] = (q31_t) melvec[l];
+		}
+	}else{
+		arm_add_q31((q31_t*) melvec, buf_mean, buf_mean, MELVEC_LENGTH);
+	}
+
+
+
+
+	if (remain==0){
+		q15_t* temp = (q15_t*) buf_mean;
+		memcpy(result, temp, 24*sizeof(q15_t));
+		vmax_mem=0;
+		return 1;
+	}else{
+		return 0;
+	}
 }

@@ -20,6 +20,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "adc.h"
+#include "aes.h"
 #include "dma.h"
 #include "spi.h"
 #include "tim.h"
@@ -89,7 +90,9 @@ static void acquire_and_send_packet() {
 	}
 	while (!IsADCFinished()) {
 		//start_cycle_count();
-		__WFI();
+		HAL_SuspendTick();
+		HAL_PWR_EnterSLEEPMode(PWR_LOWPOWERREGULATOR_ON, PWR_SLEEPENTRY_WFI);
+
 		//stop_cycle_count("wfi");
 		//fait pas chier
 	}
@@ -101,9 +104,9 @@ void run(void)
 
 	while (1)
 	{
+	  HAL_PWREx_EnableLowPowerRunMode();
 	  while (!btn_press) {
-		  HAL_GPIO_WritePin(GPIOB, LD2_Pin, GPIO_PIN_RESET);
-		  HAL_Delay(200);
+		  continue;
 	  }
 	  btn_press = 0;
 #if (CONTINUOUS_ACQ == 1)
@@ -131,7 +134,6 @@ int main(void)
 {
   /* USER CODE BEGIN 1 */
 
-
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -156,6 +158,7 @@ int main(void)
   MX_SPI1_Init();
   MX_TIM3_Init();
   MX_ADC1_Init();
+  MX_AES_Init();
   /* USER CODE BEGIN 2 */
   if (ENABLE_UART) {
 	  MX_LPUART1_UART_Init();
@@ -224,7 +227,7 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_MSI;
   RCC_OscInitStruct.MSIState = RCC_MSI_ON;
   RCC_OscInitStruct.MSICalibrationValue = 0;
-  RCC_OscInitStruct.MSIClockRange = RCC_MSIRANGE_11;
+  RCC_OscInitStruct.MSIClockRange = RCC_MSIRANGE_5;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
@@ -236,7 +239,7 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_MSI;
-  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV4;
+  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
@@ -262,9 +265,9 @@ void Error_Handler(void)
   while (1)
   {
 	  // Blink LED3 (red)
-	  HAL_GPIO_WritePin(GPIOB, LD3_Pin, GPIO_PIN_SET);
+	  HAL_GPIO_WritePin(GPIOB, LD2_Pin, GPIO_PIN_SET);
 	  for (volatile int i=0; i < SystemCoreClock/200; i++);
-	  HAL_GPIO_WritePin(GPIOB, LD3_Pin, GPIO_PIN_RESET);
+	  HAL_GPIO_WritePin(GPIOB, LD2_Pin, GPIO_PIN_RESET);
 	  for (volatile int i=0; i < SystemCoreClock/200; i++);
   }
   /* USER CODE END Error_Handler_Debug */

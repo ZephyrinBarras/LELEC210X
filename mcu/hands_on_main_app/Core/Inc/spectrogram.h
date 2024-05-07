@@ -11,8 +11,6 @@
 
 #include "arm_math.h"
 
-extern q15_t vmax_global;
-
 static inline float q15_to_float(q15_t x)
 {
 	float y;
@@ -29,8 +27,7 @@ static inline q15_t float_to_q15(float x)
 
 // Convert 12-bit DC ADC samples to Q1.15 fixed point signal and remove DC component
 void Spectrogram_Format(q15_t *buf);
-
 // Compute spectrogram of samples into melvec. Modifies samples.
-void Spectrogram_Compute(q15_t *samples, q15_t *melvector);
+uint8_t Spectrogram_Compute(q15_t *samples, q15_t *melvector, q15_t* pca);
 
 #endif /* INC_SPECTROGRAM_H_ */
