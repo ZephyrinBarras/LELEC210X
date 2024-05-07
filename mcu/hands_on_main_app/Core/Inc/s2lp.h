@@ -7,7 +7,7 @@
 
 // === Communication parameters
 #define BASE_FREQ 860000000 // Carrier frequency, in Hz
-#define DATARATE 50000 // Data rate in 2FSK, in bit/s
+#define DATARATE 80000 // Data rate in 2FSK, in bit/s
 #define FREQDEV DATARATE/4 // Frequency deviation, in Hz
 #define PA_LEVEL 0 // Default Tx output power, in dBm    //TUNE ICi
 // === END of communication parameters

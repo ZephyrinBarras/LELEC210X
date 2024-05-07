@@ -22,6 +22,7 @@
 #include "adc.h"
 #include "aes.h"
 #include "dma.h"
+#include "usart.h"
 #include "spi.h"
 #include "tim.h"
 #include "gpio.h"
@@ -32,14 +33,12 @@
 #include <string.h>
 #include "arm_math.h"
 #include "adc_dblbuf.h"
-#include "retarget.h"
 #include "s2lp.h"
 #include "spectrogram.h"
 #include "eval_radio.h"
 #include "packet.h"
 #include "config.h"
 #include "utils.h"
-#include "usart.h"
 
 /* USER CODE END Includes */
 
@@ -159,12 +158,8 @@ int main(void)
   MX_TIM3_Init();
   MX_ADC1_Init();
   MX_AES_Init();
+  MX_LPUART1_UART_Init();
   /* USER CODE BEGIN 2 */
-  if (ENABLE_UART) {
-	  MX_LPUART1_UART_Init();
-  }
-
-  RetargetInit(&hlpuart1);
   DEBUG_PRINT("Hello world\r\n");
 
 #if ENABLE_RADIO
@@ -240,8 +235,8 @@ void SystemClock_Config(void)
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_MSI;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV4;
 
   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
   {
