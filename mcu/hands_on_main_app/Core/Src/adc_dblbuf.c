@@ -35,32 +35,7 @@ int StartADCAcq() {											//supression arg nombre de buffer => main
 int IsADCFinished(void) {
 	return (0);
 }
-/*
-static void StopADCAcq() {
-	HAL_ADC_Stop_DMA(&hadc1);
-}
 
-static void print_spectrogram(void) {
-#if (DEBUGP == 1)
-	//start_cycle_count();
-	DEBUG_PRINT("Acquisition complete, sending the following FVs\r\n");
-	DEBUG_PRINT("FV #:\t");
-	for(unsigned int i=0; i < MELVEC_LENGTH; i++) {
-		DEBUG_PRINT("%.2f, ", q15_to_float(mel_vectors[i]));
-	}
-	DEBUG_PRINT("\r\n");
-	//stop_cycle_count("Print FV");
-#endif
-}
-
-static void print_encoded_packet(uint8_t *packet) {
-#if (DEBUGP == 1)
-	char hex_encoded_packet[2*PACKET_LENGTH+1];
-	hex_encode(hex_encoded_packet, packet, PACKET_LENGTH);
-	DEBUG_PRINT("DF:HEX:%s\r\n", hex_encoded_packet);
-#endif
-}
-*/
 static void encode_packet(uint8_t *packet, uint32_t* packet_cnt) {
 	// BE encoding of each mel coef
 	for (size_t j=0; j<MELVEC_LENGTH; j++) {
@@ -79,11 +54,8 @@ static void encode_packet(uint8_t *packet, uint32_t* packet_cnt) {
 
 static void send_spectrogram() {
 	uint8_t packet[PACKET_LENGTH];
-	start_cycle_count();
 	encode_packet(packet, &packet_cnt);
-	stop_cycle_count("encode");
 	S2LP_Send(packet, PACKET_LENGTH);
-	//print_encoded_packet(packet);
 }
 
 static void ADC_Callback(int buf_cplt) {

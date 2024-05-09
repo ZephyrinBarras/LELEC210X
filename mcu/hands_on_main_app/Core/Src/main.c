@@ -22,7 +22,6 @@
 #include "adc.h"
 #include "aes.h"
 #include "dma.h"
-#include "usart.h"
 #include "spi.h"
 #include "tim.h"
 #include "gpio.h"
@@ -35,7 +34,6 @@
 #include "adc_dblbuf.h"
 #include "s2lp.h"
 #include "spectrogram.h"
-#include "eval_radio.h"
 #include "packet.h"
 #include "config.h"
 #include "utils.h"
@@ -158,7 +156,6 @@ int main(void)
   MX_TIM3_Init();
   MX_ADC1_Init();
   MX_AES_Init();
-  MX_LPUART1_UART_Init();
   /* USER CODE BEGIN 2 */
   DEBUG_PRINT("Hello world\r\n");
 
@@ -166,32 +163,22 @@ int main(void)
   // Enable S2LP Radio
   HAL_StatusTypeDef err = S2LP_Init(&hspi1);
   if (err)  {
-	  DEBUG_PRINT("[S2LP] Error while initializing: %u\r\n", err);
 	  Error_Handler();
   } else {
-	  DEBUG_PRINT("[S2LP] Init OK\r\n");
   }
 #endif
 
   if (HAL_ADCEx_Calibration_Start(&hadc1, ADC_SINGLE_ENDED) != HAL_OK) {
-	  DEBUG_PRINT("Error while calibrating the ADC\r\n");
 	  Error_Handler();
   }
   if (HAL_TIM_Base_Start(&htim3) != HAL_OK) {
-	  DEBUG_PRINT("Error while enabling timer TIM3\r\n");
 	  Error_Handler();
   }
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-#if (RUN_CONFIG == MAIN_APP)
   run();
-#elif (RUN_CONFIG == EVAL_RADIO)
-  eval_radio();
-#else
-#error "Wrong value for RUN_CONFIG."
-#endif
 
     /* USER CODE END WHILE */
 
@@ -211,7 +198,7 @@ void SystemClock_Config(void)
 
   /** Configure the main internal regulator output voltage
   */
-  if (HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE1) != HAL_OK)
+  if (HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE2) != HAL_OK)
   {
     Error_Handler();
   }
@@ -260,10 +247,7 @@ void Error_Handler(void)
   while (1)
   {
 	  // Blink LED3 (red)
-	  HAL_GPIO_WritePin(GPIOB, LD2_Pin, GPIO_PIN_SET);
-	  for (volatile int i=0; i < SystemCoreClock/200; i++);
-	  HAL_GPIO_WritePin(GPIOB, LD2_Pin, GPIO_PIN_RESET);
-	  for (volatile int i=0; i < SystemCoreClock/200; i++);
+	  continue;
   }
   /* USER CODE END Error_Handler_Debug */
 }

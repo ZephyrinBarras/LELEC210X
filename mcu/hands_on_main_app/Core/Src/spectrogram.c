@@ -169,10 +169,9 @@ uint8_t Spectrogram_Compute(q15_t *samples, q15_t *melvec, q15_t* result)
 	}*/
 	arm_shift_q15(melvec, 3, melvec, 24);
 	arm_mult_q15(melvec, corr_freq, melvec, 24);
+
 	if (remain == N_MELVECS-1){
-		for (uint8_t l = 0; l<MELVEC_LENGTH;l++){
-			buf_mean[l] = (q31_t) melvec[l];
-		}
+		memcpy(buf_mean,(q31_t*) melvec, 24*4);
 	}else{
 		arm_add_q31((q31_t*) melvec, buf_mean, buf_mean, MELVEC_LENGTH);
 	}
@@ -182,7 +181,7 @@ uint8_t Spectrogram_Compute(q15_t *samples, q15_t *melvec, q15_t* result)
 
 	if (remain==0){
 		q15_t* temp = (q15_t*) buf_mean;
-		memcpy(result, temp, 24*sizeof(q15_t));
+		memcpy(result, temp, 24*2);
 		vmax_mem=0;
 		return 1;
 	}else{
