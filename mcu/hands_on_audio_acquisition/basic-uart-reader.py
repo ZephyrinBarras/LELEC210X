@@ -50,7 +50,7 @@ else :
     count = 0
     max_count = 300
     data = []
-    model = pickle.load(open("./classification/model_quick.pickle","rb"))
+    model = pickle.load(open("./model_def.pickle","rb"))
     parity= 0
     memory_size = 5
     memory_value = np.zeros((memory_size,len(name)))
@@ -69,45 +69,37 @@ else :
             if "[MEAN]" in text:
                 
                 count +=1
-                print(str(count/max_count*100)+"%")
                 data.append(text)
                 
-                """temp = text[len("[MEAN]"):].strip("\n").strip(",")
+                temp = text[len("[MEAN]"):].strip("\n").strip(",")
                 temp = temp.split(",")
                 for j in range(len(temp)):
                     temp[j] = np.int16(temp[j])
                 temp = np.array(temp)
                 temp =temp/np.linalg.norm(temp)
-                feature[parity] = temp"""
-                
-                
-                """elem = model.predict_proba([temp])
-                if np.max(elem)>0.8:
-                    print("je déconne à fond")
-                    print(name[np.argmax(elem)])
-                loga = np.log(elem)
-                memory_value[position] = loga
-                print(memory_value)
+                feature[parity] = temp
+                parity = (parity+1)%2
+                if parity:
+                    elem = model.predict_proba([np.ravel(feature)])
+                    print(elem, model.predict([np.ravel(feature)]))
+                    if np.max(elem)>0.7:
+                        print("je déconne à fond")
+                    loga = np.log(elem)
+                    memory_value[position] = loga
 
-                position=(position+1)%5
-                proba_sum = np.sum(memory_value, axis=0)
-                retour = np.exp(proba_sum/5)
-                print(retour.shape)
-                print("variance", np.var(retour))
-                var = np.var(retour)
+                    position=(position+1)%5
+                    proba_sum = np.sum(memory_value, axis=0)
+                    retour = np.exp(proba_sum/5)
+                    var = np.var(retour)
 
-                if np.max(np.exp(proba_sum/5))>0.6:
-                    print("nouveau threshold")
+                    if np.max(np.exp(proba_sum/5))>0.6:
+                        print("nouveau threshold")
 
-                trie = np.flip(np.sort(retour))
-                print("triée ,", trie)
-                if np.var(var>0.2 and trie[0]-trie[1]>0.2):
-                    print("treash variance")
-                if np.var(trie[0]-trie[1]>0.3):
-                    print("treash diff max")"""
-
-            if count==max_count:
-                break
+                    trie = np.flip(np.sort(retour))
+                    if np.var(var>0.2 and trie[0]-trie[1]>0.2):
+                        print("treash variance")
+                    if np.var(trie[0]-trie[1]>0.3):
+                        print("treash diff max")
 
     for i in range(len(data)):
         temp = data[i]
