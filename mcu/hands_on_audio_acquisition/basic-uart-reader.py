@@ -48,7 +48,7 @@ else :
     )
     serialString = ""  # Used to hold data coming over UART
     count = 0
-    max_count = 360
+    max_count = 300
     data = []
     model = pickle.load(open("./classification/model_quick.pickle","rb"))
     parity= 0
