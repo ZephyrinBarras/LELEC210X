@@ -107,7 +107,7 @@ void run(void)
 	{
 	  HAL_PWREx_EnableLowPowerRunMode();
 	  while (!btn_press) {
-		  HAL_GPIO_WritePin(GPIOB, LD2_Pin, 0);
+		  HAL_GPIO_WritePin(GPIOB, LD3_Pin, 0);
 	  }
 	  btn_press = 0;
 #if (CONTINUOUS_ACQ == 1)
@@ -157,11 +157,11 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_DMA_Init();
+  MX_LPUART1_UART_Init();
   MX_SPI1_Init();
   MX_TIM3_Init();
   MX_ADC1_Init();
   MX_AES_Init();
-  MX_LPUART1_UART_Init();
   /* USER CODE BEGIN 2 */
   if (ENABLE_UART) {
 	  MX_LPUART1_UART_Init();
@@ -219,7 +219,7 @@ void SystemClock_Config(void)
 
   /** Configure the main internal regulator output voltage
   */
-  if (HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE1) != HAL_OK)
+  if (HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE2) != HAL_OK)
   {
     Error_Handler();
   }
@@ -243,8 +243,8 @@ void SystemClock_Config(void)
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_MSI;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV4;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
   {
@@ -268,9 +268,9 @@ void Error_Handler(void)
   while (1)
   {
 	  // Blink LED3 (red)
-	  HAL_GPIO_WritePin(GPIOB, LD2_Pin, GPIO_PIN_SET);
+	  HAL_GPIO_WritePin(GPIOB, LD3_Pin, GPIO_PIN_SET);
 	  for (volatile int i=0; i < SystemCoreClock/200; i++);
-	  HAL_GPIO_WritePin(GPIOB, LD2_Pin, GPIO_PIN_RESET);
+	  HAL_GPIO_WritePin(GPIOB, LD3_Pin, GPIO_PIN_RESET);
 	  for (volatile int i=0; i < SystemCoreClock/200; i++);
   }
   /* USER CODE END Error_Handler_Debug */

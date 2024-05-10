@@ -44,11 +44,11 @@ void MX_AES_Init(void)
 
   /* USER CODE END AES_Init 1 */
   hcryp.Instance = AES;
-  hcryp.Init.DataType = CRYP_DATATYPE_32B;
+  hcryp.Init.DataType = CRYP_DATATYPE_8B;
   hcryp.Init.KeySize = CRYP_KEYSIZE_128B;
   hcryp.Init.OperatingMode = CRYP_ALGOMODE_ENCRYPT;
   hcryp.Init.ChainingMode = CRYP_CHAINMODE_AES_CBC;
-  hcryp.Init.KeyWriteFlag = CRYP_KEY_WRITE_ENABLE;
+  hcryp.Init.KeyWriteFlag = CRYP_KEY_WRITE_DISABLE;
   hcryp.Init.pKey = (uint8_t *)pKeyAES;
   hcryp.Init.pInitVect = (uint8_t *)pInitVectAES;
   if (HAL_CRYP_Init(&hcryp) != HAL_OK)

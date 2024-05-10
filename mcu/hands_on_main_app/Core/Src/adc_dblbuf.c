@@ -90,9 +90,9 @@ static void ADC_Callback(int buf_cplt) {
 	ADCDataRdy[buf_cplt] = 1;
 	Spectrogram_Format((q15_t *)ADCData[buf_cplt]);
 	if (Spectrogram_Compute((q15_t *)ADCData[buf_cplt], mel_vectors, result) == 1){
-		HAL_GPIO_WritePin(GPIOB, LD2_Pin, 1);
+		HAL_GPIO_WritePin(GPIOB, LD3_Pin, 1);
 		HAL_Delay(10);
-		HAL_GPIO_WritePin(GPIOB, LD2_Pin, 0);
+		HAL_GPIO_WritePin(GPIOB, LD3_Pin, 0);
 		send_spectrogram();
 	}
 	ADCDataRdy[buf_cplt] = 0;

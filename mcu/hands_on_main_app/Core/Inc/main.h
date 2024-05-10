@@ -72,6 +72,8 @@ void Error_Handler(void);
 #define RADIO_SDN_GPIO_Port GPIOF
 #define RADIO_EEPROM_CSN_Pin GPIO_PIN_11
 #define RADIO_EEPROM_CSN_GPIO_Port GPIOE
+#define LD3_Pin GPIO_PIN_14
+#define LD3_GPIO_Port GPIOB
 #define USB_OverCurrent_Pin GPIO_PIN_5
 #define USB_OverCurrent_GPIO_Port GPIOG
 #define USB_PowerSwitchOn_Pin GPIO_PIN_6
