@@ -55,6 +55,18 @@ else :
     memory_size = 5
     memory_value = np.zeros((memory_size,len(name)))
     position = 0
+    vote = np.zeros(5)
+    classe_vote = []
+
+    def voteur(array):
+        global vote, name
+        for k in range(len(vote)):
+            count = 0
+            for i in array:
+                if i==name[k]:
+                    count+=1
+            vote[k] = count
+    
     while 1:
         # Wait until there is data waiting in the serial buffer
         if serialPort.in_waiting > 0:
@@ -81,7 +93,15 @@ else :
                 parity = (parity+1)%2
                 if parity:
                     elem = model.predict_proba([np.ravel(feature)])
+                    predict = model.predict([np.ravel(feature)])
                     print(elem, model.predict([np.ravel(feature)]))
+                    classe_vote.append(predict[0])
+                    if len(classe_vote)>10:
+                        del(classe_vote[0])
+                    voteur(classe_vote)
+                    if np.max(vote)>=8:
+                        print("critere vote")
+                        print(name[np.argmax(vote)])
                     if np.max(elem)>0.7:
                         print("je déconne à fond")
                     loga = np.log(elem)
