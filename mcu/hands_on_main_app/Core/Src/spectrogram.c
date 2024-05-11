@@ -96,7 +96,7 @@ uint8_t Spectrogram_Compute(q15_t *samples, q15_t *melvec, q15_t* result)
 	q15_t bound;
 	clean = 0;
 
-	if (THRESHOLD_MOD) bound = 700; else bound = 30;
+	if (THRESHOLD_MOD) bound = 700; else bound = 100;
 	if (vmax<bound && remain == 0){
 		return 0;
 	}
@@ -182,7 +182,9 @@ uint8_t Spectrogram_Compute(q15_t *samples, q15_t *melvec, q15_t* result)
 
 	if (remain==0){
 		q15_t* temp = (q15_t*) buf_mean;
-		memcpy(result, temp, 24*sizeof(q15_t));
+		for (int i =0; i<MELVEC_LENGTH;i++){
+			result[i]=temp[i];
+		}
 		vmax_mem=0;
 		return 1;
 	}else{
