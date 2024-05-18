@@ -71,7 +71,6 @@ static void encode_packet(uint8_t *packet, uint32_t* packet_cnt) {
 	make_packet(packet, PAYLOAD_LENGTH, 0, *packet_cnt);
 	*packet_cnt += 1;
 	if (*packet_cnt == 0) {
-		// Should not happen as packet_cnt is 32-bit and we send at most 1 packet per second.
 		DEBUG_PRINT("Packet counter overflow.\r\n");
 		Error_Handler();
 	}
@@ -82,14 +81,21 @@ static void send_spectrogram() {
 	start_cycle_count();
 	encode_packet(packet, &packet_cnt);
 	stop_cycle_count("encode");
+	start_cycle_count();
 	S2LP_Send(packet, PACKET_LENGTH);
-	//print_encoded_packet(packet);
+	stop_cycle_count("send");
 }
 
 static void ADC_Callback(int buf_cplt) {
+	//a
 	ADCDataRdy[buf_cplt] = 1;
+	start_cycle_count();
 	Spectrogram_Format((q15_t *)ADCData[buf_cplt]);
-	if (Spectrogram_Compute((q15_t *)ADCData[buf_cplt], mel_vectors, result) == 1){
+	stop_cycle_count("format");
+	start_cycle_count();
+	uint8_t r =Spectrogram_Compute((q15_t *)ADCData[buf_cplt], mel_vectors, result);
+	stop_cycle_count("spec compute");
+	if (r  == 1){
 		send_spectrogram();
 	}
 	ADCDataRdy[buf_cplt] = 0;

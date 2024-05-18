@@ -1,0 +1,492 @@
+basic-uart-reader launched...
+
+Hello world
+
+[S2LP] Init OK
+
+[PERF] format 6597 cycles.
+
+[PERF] melvec 24426 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] melvec 24402 cycles.
+
+[PERF] format 6595 cycles.
+
+[PERF] melvec 24404 cycles.
+
+[PERF] format 6600 cycles.
+
+[PERF] melvec 24443 cycles.
+
+[PERF] format 6627 cycles.
+
+[PERF] melvec 24414 cycles.
+
+[PERF] format 6599 cycles.
+
+[PERF] melvec 24412 cycles.
+
+[PERF] format 6598 cycles.
+
+[PERF] melvec 24443 cycles.
+
+[PERF] format 6596 cycles.
+
+[PERF] melvec 24403 cycles.
+
+[PERF] format 6601 cycles.
+
+[PERF] melvec 24410 cycles.
+
+[PERF] format 6602 cycles.
+
+[PERF] melvec 24405 cycles.
+
+[PERF] tag generation 1733 cycles.
+
+[S2LP] Packet transmitted!
+
+[PERF] send 48485 cycles.
+
+[PERF] format 6627 cycles.
+
+[PERF] melvec 24411 cycles.
+
+[PERF] format 6598 cycles.
+
+[PERF] melvec 24449 cycles.
+
+[PERF] format 6628 cycles.
+
+[PERF] melvec 24417 cycles.
+
+[PERF] format 6598 cycles.
+
+[PERF] melvec 24449 cycles.
+
+[PERF] format 6598 cycles.
+
+[PERF] melvec 24414 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] melvec 24411 cycles.
+
+[PERF] format 6599 cycles.
+
+[PERF] melvec 24417 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] melvec 24415 cycles.
+
+[PERF] format 6601 cycles.
+
+[PERF] melvec 24417 cycles.
+
+[PERF] format 6598 cycles.
+
+[PERF] melvec 24424 cycles.
+
+[PERF] tag generation 1702 cycles.
+
+[S2LP] Packet transmitted!
+
+[PERF] send 48489 cycles.
+
+[PERF] format 6599 cycles.
+
+[PERF] melvec 24405 cycles.
+
+[PERF] format 6599 cycles.
+
+[PERF] melvec 24417 cycles.
+
+[PERF] format 6598 cycles.
+
+[PERF] melvec 24414 cycles.
+
+[PERF] format 6598 cycles.
+
+[PERF] melvec 24400 cycles.
+
+[PERF] format 6627 cycles.
+
+[PERF] melvec 24450 cycles.
+
+[PERF] format 6602 cycles.
+
+[PERF] melvec 24413 cycles.
+
+[PERF] format 6629 cycles.
+
+[PERF] melvec 24417 cycles.
+
+[PERF] format 6598 cycles.
+
+[PERF] melvec 24409 cycles.
+
+[PERF] format 6601 cycles.
+
+[PERF] melvec 24395 cycles.
+
+[PERF] format 6595 cycles.
+
+[PERF] melvec 24417 cycles.
+
+[PERF] tag generation 1730 cycles.
+
+[S2LP] Packet transmitted!
+
+[PERF] send 48457 cycles.
+
+[PERF] format 6629 cycles.
+
+[PERF] melvec 24437 cycles.
+
+[PERF] format 6598 cycles.
+
+[PERF] melvec 24420 cycles.
+
+[PERF] format 6598 cycles.
+
+[PERF] melvec 24409 cycles.
+
+[PERF] format 6600 cycles.
+
+[PERF] melvec 24421 cycles.
+
+[PERF] format 6600 cycles.
+
+[PERF] melvec 24440 cycles.
+
+[PERF] format 6625 cycles.
+
+[PERF] melvec 24425 cycles.
+
+[PERF] format 6599 cycles.
+
+[PERF] melvec 24408 cycles.
+
+[PERF] format 6633 cycles.
+
+[PERF] melvec 24427 cycles.
+
+[PERF] format 6601 cycles.
+
+[PERF] melvec 24402 cycles.
+
+[PERF] format 6628 cycles.
+
+[PERF] melvec 24424 cycles.
+
+[PERF] tag generation 1733 cycles.
+
+[S2LP] Packet transmitted!
+
+[PERF] send 48433 cycles.
+
+[PERF] format 6603 cycles.
+
+[PERF] melvec 24403 cycles.
+
+[PERF] format 6596 cycles.
+
+[PERF] melvec 24410 cycles.
+
+[PERF] format 6626 cycles.
+
+[PERF] melvec 24403 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] melvec 24411 cycles.
+
+[PERF] format 6599 cycles.
+
+[PERF] melvec 24421 cycles.
+
+[PERF] format 6626 cycles.
+
+[PERF] melvec 24420 cycles.
+
+[PERF] format 6601 cycles.
+
+[PERF] melvec 24423 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] melvec 24408 cycles.
+
+[PERF] format 6627 cycles.
+
+[PERF] melvec 24409 cycles.
+
+[PERF] format 6629 cycles.
+
+[PERF] melvec 24399 cycles.
+
+[PERF] tag generation 1686 cycles.
+
+[S2LP] Packet transmitted!
+
+[PERF] send 48451 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] melvec 24405 cycles.
+
+[PERF] format 6598 cycles.
+
+[PERF] melvec 24414 cycles.
+
+[PERF] format 6629 cycles.
+
+[PERF] melvec 24414 cycles.
+
+[PERF] format 6628 cycles.
+
+[PERF] melvec 24418 cycles.
+
+[PERF] format 6626 cycles.
+
+[PERF] melvec 24415 cycles.
+
+[PERF] format 6599 cycles.
+
+[PERF] melvec 24396 cycles.
+
+[PERF] format 6600 cycles.
+
+[PERF] melvec 24399 cycles.
+
+[PERF] format 6601 cycles.
+
+[PERF] melvec 24402 cycles.
+
+[PERF] format 6627 cycles.
+
+[PERF] melvec 24409 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] melvec 24398 cycles.
+
+[PERF] tag generation 1687 cycles.
+
+[S2LP] Packet transmitted!
+
+[PERF] send 48514 cycles.
+
+[PERF] format 6600 cycles.
+
+[PERF] melvec 24405 cycles.
+
+[PERF] format 6625 cycles.
+
+[PERF] melvec 24418 cycles.
+
+[PERF] format 6627 cycles.
+
+[PERF] melvec 24433 cycles.
+
+[PERF] format 6600 cycles.
+
+[PERF] melvec 24405 cycles.
+
+[PERF] format 6630 cycles.
+
+[PERF] melvec 24411 cycles.
+
+[PERF] format 6598 cycles.
+
+[PERF] melvec 24411 cycles.
+
+[PERF] format 6629 cycles.
+
+[PERF] melvec 24436 cycles.
+
+[PERF] format 6629 cycles.
+
+[PERF] melvec 24398 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] melvec 24416 cycles.
+
+[PERF] format 6601 cycles.
+
+[PERF] melvec 24443 cycles.
+
+[PERF] tag generation 1702 cycles.
+
+[S2LP] Packet transmitted!
+
+[PERF] send 48530 cycles.
+
+[PERF] format 6600 cycles.
+
+[PERF] melvec 24411 cycles.
+
+[PERF] format 6629 cycles.
+
+[PERF] melvec 24408 cycles.
+
+[PERF] format 6624 cycles.
+
+[PERF] melvec 24432 cycles.
+
+[PERF] format 6599 cycles.
+
+[PERF] melvec 24400 cycles.
+
+[PERF] format 6632 cycles.
+
+[PERF] melvec 24438 cycles.
+
+[PERF] format 6631 cycles.
+
+[PERF] melvec 24426 cycles.
+
+[PERF] format 6599 cycles.
+
+[PERF] melvec 24417 cycles.
+
+[PERF] format 6598 cycles.
+
+[PERF] melvec 24402 cycles.
+
+[PERF] format 6595 cycles.
+
+[PERF] melvec 24417 cycles.
+
+[PERF] format 6603 cycles.
+
+[PERF] melvec 24425 cycles.
+
+[PERF] tag generation 1701 cycles.
+
+[S2LP] Packet transmitted!
+
+[PERF] send 48508 cycles.
+
+[PERF] format 6627 cycles.
+
+[PERF] melvec 24414 cycles.
+
+[PERF] format 6596 cycles.
+
+[PERF] melvec 24393 cycles.
+
+[PERF] format 6598 cycles.
+
+[PERF] melvec 24399 cycles.
+
+[PERF] format 6600 cycles.
+
+[PERF] melvec 24410 cycles.
+
+[PERF] format 6626 cycles.
+
+[PERF] melvec 24415 cycles.
+
+[PERF] format 6599 cycles.
+
+[PERF] melvec 24417 cycles.
+
+[PERF] format 6626 cycles.
+
+[PERF] melvec 24447 cycles.
+
+[PERF] format 6599 cycles.
+
+[PERF] melvec 24416 cycles.
+
+[PERF] format 6598 cycles.
+
+[PERF] melvec 24447 cycles.
+
+[PERF] format 6630 cycles.
+
+[PERF] melvec 24415 cycles.
+
+[PERF] tag generation 1688 cycles.
+
+[S2LP] Packet transmitted!
+
+[PERF] send 48517 cycles.
+
+[PERF] format 6596 cycles.
+
+[PERF] melvec 24417 cycles.
+
+[PERF] format 6594 cycles.
+
+[PERF] melvec 24414 cycles.
+
+[PERF] format 6628 cycles.
+
+[PERF] melvec 24414 cycles.
+
+[PERF] format 6596 cycles.
+
+[PERF] melvec 24412 cycles.
+
+[PERF] format 6627 cycles.
+
+[PERF] melvec 24396 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] melvec 24410 cycles.
+
+[PERF] format 6601 cycles.
+
+[PERF] melvec 24436 cycles.
+
+[PERF] format 6603 cycles.
+
+[PERF] melvec 24404 cycles.
+
+[PERF] format 6598 cycles.
+
+[PERF] melvec 24401 cycles.
+
+[PERF] format 6629 cycles.
+
+[PERF] melvec 24406 cycles.
+
+[PERF] tag generation 1686 cycles.
+
+[S2LP] Packet transmitted!
+
+[PERF] send 48522 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] melvec 24439 cycles.
+
+[PERF] format 6632 cycles.
+
+[PERF] melvec 24416 cycles.
+
+[PERF] format 6595 cycles.
+
+[PERF] melvec 24446 cycles.
+
+[PERF] format 6624 cycles.
+
+[PERF] melvec 24414 cycles.
+
+[PERF] format 6599 cycles.
+
+[PERF] melvec 24410 cycles.
+
+[PERF] format 6628 cycles.
+
+[PERF] melvec 24415 cycles.
+
+[PERF] format 6599 cycles.
+

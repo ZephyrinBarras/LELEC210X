@@ -1,0 +1,664 @@
+basic-uart-reader launched...
+
+[PERF] format 6597 cycles.
+
+[PERF] spec compute 32892 cycles.
+
+[PERF] format 6623 cycles.
+
+[PERF] spec compute 32894 cycles.
+
+[PERF] format 6599 cycles.
+
+[PERF] spec compute 32902 cycles.
+
+[PERF] format 6598 cycles.
+
+[PERF] spec compute 32873 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] spec compute 32900 cycles.
+
+[PERF] format 6628 cycles.
+
+[PERF] spec compute 32913 cycles.
+
+[PERF] format 6625 cycles.
+
+[PERF] spec compute 32904 cycles.
+
+[PERF] format 6594 cycles.
+
+[PERF] spec compute 32900 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] spec compute 32919 cycles.
+
+[PERF] format 6596 cycles.
+
+[PERF] spec compute 32924 cycles.
+
+[PERF] format 6628 cycles.
+
+[PERF] spec compute 32910 cycles.
+
+[PERF] format 6594 cycles.
+
+[PERF] spec compute 32905 cycles.
+
+[PERF] format 6595 cycles.
+
+[PERF] spec compute 32939 cycles.
+
+[PERF] format 6593 cycles.
+
+[PERF] spec compute 32861 cycles.
+
+[PERF] format 6626 cycles.
+
+[PERF] spec compute 32857 cycles.
+
+[PERF] format 6596 cycles.
+
+[PERF] spec compute 32871 cycles.
+
+[PERF] format 6595 cycles.
+
+[PERF] spec compute 32901 cycles.
+
+[PERF] format 6596 cycles.
+
+[PERF] spec compute 32935 cycles.
+
+[PERF] format 6624 cycles.
+
+[PERF] spec compute 32934 cycles.
+
+[PERF] format 6596 cycles.
+
+[PERF] spec compute 32936 cycles.
+
+[PERF] format 6595 cycles.
+
+[PERF] spec compute 32985 cycles.
+
+[PERF] format 6594 cycles.
+
+[PERF] spec compute 32974 cycles.
+
+[PERF] format 6623 cycles.
+
+[PERF] spec compute 32948 cycles.
+
+[PERF] format 6594 cycles.
+
+[PERF] spec compute 32925 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] spec compute 32957 cycles.
+
+[PERF] format 6596 cycles.
+
+[PERF] spec compute 32955 cycles.
+
+[PERF] format 6624 cycles.
+
+[PERF] spec compute 32962 cycles.
+
+[PERF] format 6628 cycles.
+
+[PERF] spec compute 32929 cycles.
+
+[PERF] format 6594 cycles.
+
+[PERF] spec compute 32933 cycles.
+
+[PERF] format 6594 cycles.
+
+[PERF] spec compute 32983 cycles.
+
+[PERF] format 6626 cycles.
+
+[PERF] spec compute 32988 cycles.
+
+[PERF] format 6627 cycles.
+
+[PERF] spec compute 32951 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] spec compute 32949 cycles.
+
+[PERF] format 6598 cycles.
+
+[PERF] spec compute 32987 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] spec compute 32968 cycles.
+
+[PERF] format 6625 cycles.
+
+[PERF] spec compute 32937 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] spec compute 32947 cycles.
+
+[PERF] format 6594 cycles.
+
+[PERF] spec compute 32990 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] spec compute 32982 cycles.
+
+[PERF] format 6623 cycles.
+
+[PERF] spec compute 32933 cycles.
+
+[PERF] format 6595 cycles.
+
+[PERF] spec compute 32936 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] spec compute 32962 cycles.
+
+[PERF] format 6595 cycles.
+
+[PERF] spec compute 32960 cycles.
+
+[PERF] format 6623 cycles.
+
+[PERF] spec compute 32920 cycles.
+
+[PERF] format 6595 cycles.
+
+[PERF] spec compute 32925 cycles.
+
+[PERF] format 6594 cycles.
+
+[PERF] spec compute 32971 cycles.
+
+[PERF] format 6595 cycles.
+
+[PERF] spec compute 32980 cycles.
+
+[PERF] format 6623 cycles.
+
+[PERF] spec compute 32912 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] spec compute 32948 cycles.
+
+[PERF] format 6599 cycles.
+
+[PERF] spec compute 32931 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] spec compute 32970 cycles.
+
+[PERF] format 6623 cycles.
+
+[PERF] spec compute 32986 cycles.
+
+[PERF] format 6599 cycles.
+
+[PERF] spec compute 32891 cycles.
+
+[PERF] format 6598 cycles.
+
+[PERF] spec compute 32871 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] spec compute 32841 cycles.
+
+[PERF] format 6628 cycles.
+
+[PERF] spec compute 32922 cycles.
+
+[PERF] format 6625 cycles.
+
+[PERF] spec compute 32948 cycles.
+
+[PERF] format 6594 cycles.
+
+[PERF] spec compute 32858 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] spec compute 32966 cycles.
+
+[PERF] format 6596 cycles.
+
+[PERF] spec compute 32969 cycles.
+
+[PERF] format 6628 cycles.
+
+[PERF] spec compute 32946 cycles.
+
+[PERF] format 6594 cycles.
+
+[PERF] spec compute 32953 cycles.
+
+[PERF] format 6595 cycles.
+
+[PERF] spec compute 32972 cycles.
+
+[PERF] format 6593 cycles.
+
+[PERF] spec compute 32982 cycles.
+
+[PERF] format 6626 cycles.
+
+[PERF] spec compute 32939 cycles.
+
+[PERF] format 6596 cycles.
+
+[PERF] spec compute 32932 cycles.
+
+[PERF] format 6595 cycles.
+
+[PERF] spec compute 32970 cycles.
+
+[PERF] format 6596 cycles.
+
+[PERF] spec compute 32945 cycles.
+
+[PERF] format 6624 cycles.
+
+[PERF] spec compute 32801 cycles.
+
+[PERF] format 6596 cycles.
+
+[PERF] spec compute 32771 cycles.
+
+[PERF] format 6595 cycles.
+
+[PERF] spec compute 32983 cycles.
+
+[PERF] format 6594 cycles.
+
+[PERF] spec compute 32970 cycles.
+
+[PERF] format 6623 cycles.
+
+[PERF] spec compute 32950 cycles.
+
+[PERF] format 6594 cycles.
+
+[PERF] spec compute 32914 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] spec compute 32852 cycles.
+
+[PERF] format 6596 cycles.
+
+[PERF] spec compute 32966 cycles.
+
+[PERF] format 6624 cycles.
+
+[PERF] spec compute 32979 cycles.
+
+[PERF] format 6628 cycles.
+
+[PERF] spec compute 32937 cycles.
+
+[PERF] format 6594 cycles.
+
+[PERF] spec compute 32945 cycles.
+
+[PERF] format 6594 cycles.
+
+[PERF] spec compute 32960 cycles.
+
+[PERF] format 6626 cycles.
+
+[PERF] spec compute 32988 cycles.
+
+[PERF] format 6627 cycles.
+
+[PERF] spec compute 32924 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] spec compute 32846 cycles.
+
+[PERF] format 6594 cycles.
+
+[PERF] spec compute 32970 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] spec compute 32967 cycles.
+
+[PERF] format 6625 cycles.
+
+[PERF] spec compute 32942 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] spec compute 32947 cycles.
+
+[PERF] format 6594 cycles.
+
+[PERF] spec compute 32945 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] spec compute 32967 cycles.
+
+[PERF] format 6623 cycles.
+
+[PERF] spec compute 32951 cycles.
+
+[PERF] format 6595 cycles.
+
+[PERF] spec compute 32961 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] spec compute 32985 cycles.
+
+[PERF] format 6595 cycles.
+
+[PERF] spec compute 32968 cycles.
+
+[PERF] format 6623 cycles.
+
+[PERF] spec compute 32934 cycles.
+
+[PERF] format 6595 cycles.
+
+[PERF] spec compute 32940 cycles.
+
+[PERF] format 6594 cycles.
+
+[PERF] spec compute 32962 cycles.
+
+[PERF] format 6595 cycles.
+
+[PERF] spec compute 32945 cycles.
+
+[PERF] format 6623 cycles.
+
+[PERF] spec compute 32891 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] spec compute 32893 cycles.
+
+[PERF] format 6599 cycles.
+
+[PERF] spec compute 32921 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] spec compute 32937 cycles.
+
+[PERF] format 6623 cycles.
+
+[PERF] spec compute 32948 cycles.
+
+[PERF] format 6599 cycles.
+
+[PERF] spec compute 32918 cycles.
+
+[PERF] format 6598 cycles.
+
+[PERF] spec compute 32883 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] spec compute 32908 cycles.
+
+[PERF] format 6628 cycles.
+
+[PERF] spec compute 32915 cycles.
+
+[PERF] format 6625 cycles.
+
+[PERF] spec compute 32911 cycles.
+
+[PERF] format 6594 cycles.
+
+[PERF] spec compute 32936 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] spec compute 32951 cycles.
+
+[PERF] format 6596 cycles.
+
+[PERF] spec compute 32925 cycles.
+
+[PERF] format 6628 cycles.
+
+[PERF] spec compute 32883 cycles.
+
+[PERF] format 6594 cycles.
+
+[PERF] spec compute 32893 cycles.
+
+[PERF] format 6595 cycles.
+
+[PERF] spec compute 32932 cycles.
+
+[PERF] format 6593 cycles.
+
+[PERF] spec compute 32942 cycles.
+
+[PERF] format 6626 cycles.
+
+[PERF] spec compute 32916 cycles.
+
+[PERF] format 6596 cycles.
+
+[PERF] spec compute 32888 cycles.
+
+[PERF] format 6595 cycles.
+
+[PERF] spec compute 32887 cycles.
+
+[PERF] format 6596 cycles.
+
+[PERF] spec compute 32935 cycles.
+
+[PERF] format 6624 cycles.
+
+[PERF] spec compute 32913 cycles.
+
+[PERF] format 6596 cycles.
+
+[PERF] spec compute 32854 cycles.
+
+[PERF] format 6595 cycles.
+
+[PERF] spec compute 32886 cycles.
+
+[PERF] format 6594 cycles.
+
+[PERF] spec compute 32903 cycles.
+
+[PERF] format 6623 cycles.
+
+[PERF] spec compute 32914 cycles.
+
+[PERF] format 6594 cycles.
+
+[PERF] spec compute 32907 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] spec compute 32985 cycles.
+
+[PERF] format 6596 cycles.
+
+[PERF] spec compute 32967 cycles.
+
+[PERF] format 6624 cycles.
+
+[PERF] spec compute 32912 cycles.
+
+[PERF] format 6628 cycles.
+
+[PERF] spec compute 32915 cycles.
+
+[PERF] format 6594 cycles.
+
+[PERF] spec compute 32929 cycles.
+
+[PERF] format 6594 cycles.
+
+[PERF] spec compute 32979 cycles.
+
+[PERF] format 6626 cycles.
+
+[PERF] spec compute 32981 cycles.
+
+[PERF] format 6627 cycles.
+
+[PERF] spec compute 32947 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] spec compute 32874 cycles.
+
+[PERF] format 6594 cycles.
+
+[PERF] spec compute 32905 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] spec compute 32925 cycles.
+
+[PERF] format 6625 cycles.
+
+[PERF] spec compute 32857 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] spec compute 32869 cycles.
+
+[PERF] format 6598 cycles.
+
+[PERF] spec compute 32943 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] spec compute 32905 cycles.
+
+[PERF] format 6623 cycles.
+
+[PERF] spec compute 32869 cycles.
+
+[PERF] format 6595 cycles.
+
+[PERF] spec compute 32889 cycles.
+
+[PERF] format 6594 cycles.
+
+[PERF] spec compute 32932 cycles.
+
+[PERF] format 6595 cycles.
+
+[PERF] spec compute 32946 cycles.
+
+[PERF] format 6623 cycles.
+
+[PERF] spec compute 32912 cycles.
+
+[PERF] format 6595 cycles.
+
+[PERF] spec compute 32927 cycles.
+
+[PERF] format 6594 cycles.
+
+[PERF] spec compute 32969 cycles.
+
+[PERF] format 6595 cycles.
+
+[PERF] spec compute 32888 cycles.
+
+[PERF] format 6623 cycles.
+
+[PERF] spec compute 32873 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] spec compute 32920 cycles.
+
+[PERF] format 6599 cycles.
+
+[PERF] spec compute 32905 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] spec compute 32927 cycles.
+
+[PERF] format 6623 cycles.
+
+[PERF] spec compute 32939 cycles.
+
+[PERF] format 6599 cycles.
+
+[PERF] spec compute 32906 cycles.
+
+[PERF] format 6598 cycles.
+
+[PERF] spec compute 32898 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] spec compute 32917 cycles.
+
+[PERF] format 6628 cycles.
+
+[PERF] spec compute 32913 cycles.
+
+[PERF] format 6625 cycles.
+
+[PERF] spec compute 32918 cycles.
+
+[PERF] format 6594 cycles.
+
+[PERF] spec compute 32930 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] spec compute 32973 cycles.
+
+[PERF] format 6596 cycles.
+
+[PERF] spec compute 32916 cycles.
+
+[PERF] format 6628 cycles.
+
+[PERF] spec compute 32862 cycles.
+
+[PERF] format 6594 cycles.
+
+[PERF] spec compute 32881 cycles.
+
+[PERF] format 6595 cycles.
+
+[PERF] spec compute 32930 cycles.
+
+[PERF] format 6593 cycles.
+
+[PERF] spec compute 32957 cycles.
+
+[PERF] format 6626 cycles.
+
+Hello world
+
+[S2LP] Init OK
+

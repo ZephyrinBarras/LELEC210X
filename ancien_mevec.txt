@@ -1,0 +1,8 @@
+basic-uart-reader launched...
+
+o world
+
+Hello world
+
+[S2LP] Init OK
+

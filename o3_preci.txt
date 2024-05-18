@@ -1,0 +1,1150 @@
+basic-uart-reader launched...
+
+Hello world
+
+[S2LP] Init OK
+
+[PERF] format 6592 cycles.
+
+[PERF] seuil 41 cycles.
+
+[PERF] melvec 3928 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 170 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3928 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 229 cycles.
+
+[PERF] format 6623 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3938 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 259 cycles.
+
+[PERF] format 6596 cycles.
+
+[PERF] seuil 69 cycles.
+
+[PERF] melvec 3928 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 229 cycles.
+
+[PERF] format 6596 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3933 cycles.
+
+[PERF] shift 254 cycles.
+
+[PERF] freq 241 cycles.
+
+[PERF] moy 227 cycles.
+
+[PERF] format 6593 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3933 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 270 cycles.
+
+[PERF] moy 227 cycles.
+
+[PERF] format 6598 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3931 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 228 cycles.
+
+[PERF] format 6594 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3931 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 227 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3934 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 227 cycles.
+
+[PERF] format 6624 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3927 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 240 cycles.
+
+[PERF] moy 258 cycles.
+
+[PERF] encode 1941 cycles.
+
+[S2LP] Packet transmitted!
+
+[PERF] send 48555 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] seuil 41 cycles.
+
+[PERF] melvec 3934 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 169 cycles.
+
+[PERF] format 6623 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3931 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 271 cycles.
+
+[PERF] moy 227 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3901 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 229 cycles.
+
+[PERF] format 6598 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3938 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 228 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3934 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 257 cycles.
+
+[PERF] format 6592 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3935 cycles.
+
+[PERF] shift 253 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 229 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3931 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 241 cycles.
+
+[PERF] moy 227 cycles.
+
+[PERF] format 6624 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3927 cycles.
+
+[PERF] shift 224 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 229 cycles.
+
+[PERF] format 6594 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3939 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 228 cycles.
+
+[PERF] format 6593 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3928 cycles.
+
+[PERF] shift 225 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 227 cycles.
+
+[PERF] encode 1991 cycles.
+
+[S2LP] Packet transmitted!
+
+[PERF] send 48528 cycles.
+
+[PERF] format 6594 cycles.
+
+[PERF] seuil 41 cycles.
+
+[PERF] melvec 3900 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 240 cycles.
+
+[PERF] moy 169 cycles.
+
+[PERF] format 6595 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3926 cycles.
+
+[PERF] shift 224 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 229 cycles.
+
+[PERF] format 6595 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3926 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 229 cycles.
+
+[PERF] format 6628 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3932 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 255 cycles.
+
+[PERF] format 6598 cycles.
+
+[PERF] seuil 69 cycles.
+
+[PERF] melvec 3932 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 273 cycles.
+
+[PERF] moy 227 cycles.
+
+[PERF] format 6598 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3941 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 227 cycles.
+
+[PERF] format 6625 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3929 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 229 cycles.
+
+[PERF] format 6595 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3932 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 256 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] seuil 70 cycles.
+
+[PERF] melvec 3937 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 227 cycles.
+
+[PERF] format 6595 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3930 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 241 cycles.
+
+[PERF] moy 229 cycles.
+
+[PERF] encode 1989 cycles.
+
+[S2LP] Packet transmitted!
+
+[PERF] send 48527 cycles.
+
+[PERF] format 6599 cycles.
+
+[PERF] seuil 41 cycles.
+
+[PERF] melvec 3929 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 269 cycles.
+
+[PERF] moy 169 cycles.
+
+[PERF] format 6594 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3930 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 269 cycles.
+
+[PERF] moy 227 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3936 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 227 cycles.
+
+[PERF] format 6625 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3932 cycles.
+
+[PERF] shift 254 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 229 cycles.
+
+[PERF] format 6595 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3931 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 261 cycles.
+
+[PERF] format 6595 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3933 cycles.
+
+[PERF] shift 252 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 227 cycles.
+
+[PERF] format 6594 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3934 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 227 cycles.
+
+[PERF] format 6594 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3929 cycles.
+
+[PERF] shift 224 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 256 cycles.
+
+[PERF] format 6595 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3935 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 229 cycles.
+
+[PERF] format 6598 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3928 cycles.
+
+[PERF] shift 253 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 227 cycles.
+
+[PERF] encode 1943 cycles.
+
+[S2LP] Packet transmitted!
+
+[PERF] send 48534 cycles.
+
+[PERF] format 6625 cycles.
+
+[PERF] seuil 41 cycles.
+
+[PERF] melvec 3933 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 240 cycles.
+
+[PERF] moy 198 cycles.
+
+[PERF] format 6595 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3935 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 227 cycles.
+
+[PERF] format 6595 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3927 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 228 cycles.
+
+[PERF] format 6598 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3934 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 227 cycles.
+
+[PERF] format 6596 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3946 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 269 cycles.
+
+[PERF] moy 227 cycles.
+
+[PERF] format 6595 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3935 cycles.
+
+[PERF] shift 225 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 227 cycles.
+
+[PERF] format 6625 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3940 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 241 cycles.
+
+[PERF] moy 259 cycles.
+
+[PERF] format 6596 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3931 cycles.
+
+[PERF] shift 252 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 227 cycles.
+
+[PERF] format 6594 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3931 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 229 cycles.
+
+[PERF] format 6595 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3933 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 227 cycles.
+
+[PERF] encode 1942 cycles.
+
+[S2LP] Packet transmitted!
+
+[PERF] send 48526 cycles.
+
+[PERF] format 6622 cycles.
+
+[PERF] seuil 41 cycles.
+
+[PERF] melvec 3925 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 169 cycles.
+
+[PERF] format 6594 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3931 cycles.
+
+[PERF] shift 225 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 227 cycles.
+
+[PERF] format 6624 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3929 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 258 cycles.
+
+[PERF] format 6595 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3944 cycles.
+
+[PERF] shift 252 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 227 cycles.
+
+[PERF] format 6598 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3927 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 258 cycles.
+
+[PERF] format 6596 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3929 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 259 cycles.
+
+[PERF] format 6594 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3932 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 227 cycles.
+
+[PERF] format 6594 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3906 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 228 cycles.
+
+[PERF] format 6596 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3931 cycles.
+
+[PERF] shift 224 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 256 cycles.
+
+[PERF] format 6596 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3931 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 227 cycles.
+
+[PERF] encode 1989 cycles.
+
+[S2LP] Packet transmitted!
+
+[PERF] send 48494 cycles.
+
+[PERF] format 6596 cycles.
+
+[PERF] seuil 41 cycles.
+
+[PERF] melvec 3948 cycles.
+
+[PERF] shift 224 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 169 cycles.
+
+[PERF] format 6596 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3932 cycles.
+
+[PERF] shift 253 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 227 cycles.
+
+[PERF] format 6596 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3927 cycles.
+
+[PERF] shift 253 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 227 cycles.
+
+[PERF] format 6595 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3932 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 268 cycles.
+
+[PERF] moy 228 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3936 cycles.
+
+[PERF] shift 224 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 228 cycles.
+
+[PERF] format 6624 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3936 cycles.
+
+[PERF] shift 225 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 227 cycles.
+
+[PERF] format 6624 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3929 cycles.
+
+[PERF] shift 252 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 227 cycles.
+
+[PERF] format 6595 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3928 cycles.
+
+[PERF] shift 252 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 229 cycles.
+
+[PERF] format 6595 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3929 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 227 cycles.
+
+[PERF] format 6621 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3931 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 255 cycles.
+
+[PERF] encode 1944 cycles.
+
+[S2LP] Packet transmitted!
+
+[PERF] send 48518 cycles.
+
+[PERF] format 6594 cycles.
+
+[PERF] seuil 41 cycles.
+
+[PERF] melvec 3934 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 169 cycles.
+
+[PERF] format 6595 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3928 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 227 cycles.
+
+[PERF] format 6599 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3938 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 229 cycles.
+
+[PERF] format 6624 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3930 cycles.
+
+[PERF] shift 252 cycles.
+
+[PERF] freq 241 cycles.
+
+[PERF] moy 229 cycles.
+
+[PERF] format 6595 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3936 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 227 cycles.
+
+[PERF] format 6599 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3937 cycles.
+
+[PERF] shift 224 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 227 cycles.
+
+[PERF] format 6625 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3929 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 227 cycles.
+
+[PERF] format 6624 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3932 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 257 cycles.
+
+[PERF] format 6593 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3934 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 227 cycles.
+
+[PERF] format 6628 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3934 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 269 cycles.
+
+[PERF] moy 227 cycles.
+
+[PERF] encode 1987 cycles.
+
+[S2LP] Packet transmitted!
+
+[PERF] send 48526 cycles.
+
+[PERF] format 6595 cycles.
+
+[PERF] seuil 70 cycles.
+
+[PERF] melvec 3936 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 169 cycles.
+
+[PERF] format 6596 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3937 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 241 cycles.
+
+[PERF] moy 227 cycles.
+
+[PERF] format 6596 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3931 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 227 cycles.
+
+[PERF] format 6599 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3932 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 227 cycles.
+
+[PERF] format 6595 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3931 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 268 cycles.
+
+[PERF] moy 227 cycles.
+
+[PERF] format 6596 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3896 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 227 cycles.
+
+[PERF] format 6594 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3931 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 227 cycles.
+
+[PERF] format 6624 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3930 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 229 cycles.
+
+[PERF] format 6596 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3932 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 227 cycles.
+
+[PERF] format 6627 cycles.
+
+[PERF] seuil 40 cycles.
+
+[PERF] melvec 3928 cycles.
+
+[PERF] shift 223 cycles.
+
+[PERF] freq 239 cycles.
+
+[PERF] moy 258 cycles.
+
+[PERF] encode 1942 cycles.
+
+[S2LP] Packet transmitted!
+
+[PERF] send 48520 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] seuil 41 cycles.
+
+[PERF] melvec 3932 cycles.
+
+[PERF] shift 223 cycles.
+
+[S2LP] Init OK
+

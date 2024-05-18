@@ -16,7 +16,6 @@
 
 q15_t buf    [  SAMPLES_PER_MELVEC  ]; // Windowed samples
 q15_t buf_fft[2*SAMPLES_PER_MELVEC  ]; // Double size (real|imag) buffer needed for arm_rfft_q15
-//q15_t buf_tmp[  SAMPLES_PER_MELVEC/2]; // Intermediate buffer for arm_mat_mult_fast_q15
 q31_t buf_mean[MELVEC_LENGTH];
 q15_t volume_noise_mean = 0;
 q15_t first = 5*MELVEC_LENGTH;
@@ -95,9 +94,8 @@ uint8_t Spectrogram_Compute(q15_t *samples, q15_t *melvec, q15_t* result)
 
 	q15_t bound;
 	clean = 0;
-
-	if (THRESHOLD_MOD) bound = 700; else bound = 100;
-	if (vmax<bound && remain == 0){
+	if (THRESHOLD_MOD) bound = 0; else bound = 0;
+	if (vmax>bound && remain == 0){
 		return 0;
 	}
 	if (remain ==0){
@@ -146,14 +144,7 @@ uint8_t Spectrogram_Compute(q15_t *samples, q15_t *melvec, q15_t* result)
 
 	// /!\ In order to avoid overflows completely the input signals should be scaled down. Scale down one of the input matrices by log2(numColsA) bits to avoid overflows,
 	// as a total of numColsA additions are computed internally for each output element. Because our hz2mel_mat matrix contains lots of zeros in its rows, this is not necessary.
-	
-	/*arm_matrix_instance_q15 hz2mel_inst, fftmag_inst, melvec_inst;
 
-	arm_mat_init_q15(&hz2mel_inst, MELVEC_LENGTH, SAMPLES_PER_MELVEC/2, hz2mel_mat);
-	arm_mat_init_q15(&fftmag_inst, SAMPLES_PER_MELVEC/2, 1, buf);
-	arm_mat_init_q15(&melvec_inst, MELVEC_LENGTH, 1, melvec);*/
-
-	//arm_mat_mult_fast_q15(&hz2mel_inst, &fftmag_inst, &melvec_inst, buf_tmp);
 	q63_t result_temp[MELVEC_LENGTH];
 
 	for (uint8_t i = 0; i < MELVEC_LENGTH; i++){  // pour chaque ligne de hz2mel_mat :

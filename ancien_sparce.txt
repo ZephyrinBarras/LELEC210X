@@ -1,0 +1,274 @@
+basic-uart-reader launched...
+
+[PERF] format 6597 cycles.
+
+[PERF] melvec 24391 cycles.
+
+[PERF] format 6631 cycles.
+
+[PERF] melvec 24414 cycles.
+
+[PERF] format 6625 cycles.
+
+[PERF] melvec 24443 cycles.
+
+[PERF] format 6599 cycles.
+
+[PERF] melvec 24415 cycles.
+
+[PERF] format 6601 cycles.
+
+[PERF] melvec 24419 cycles.
+
+[PERF] format 6598 cycles.
+
+[PERF] melvec 24410 cycles.
+
+[PERF] format 6599 cycles.
+
+[PERF] melvec 24413 cycles.
+
+[PERF] format 6627 cycles.
+
+[PERF] melvec 24414 cycles.
+
+[PERF] format 6628 cycles.
+
+[PERF] melvec 24410 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] melvec 24416 cycles.
+
+[PERF] encode 1939 cycles.
+
+[S2LP] Packet transmitted!
+
+[PERF] send 48490 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] melvec 24416 cycles.
+
+[PERF] format 6596 cycles.
+
+[PERF] melvec 24400 cycles.
+
+[PERF] format 6598 cycles.
+
+[PERF] melvec 24417 cycles.
+
+[PERF] format 6624 cycles.
+
+[PERF] melvec 24415 cycles.
+
+[PERF] format 6630 cycles.
+
+[PERF] melvec 24397 cycles.
+
+[PERF] format 6600 cycles.
+
+[PERF] melvec 24417 cycles.
+
+[PERF] format 6602 cycles.
+
+[PERF] melvec 24409 cycles.
+
+[PERF] format 6598 cycles.
+
+[PERF] melvec 24414 cycles.
+
+[PERF] format 6628 cycles.
+
+[PERF] melvec 24412 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] melvec 24411 cycles.
+
+[PERF] encode 1986 cycles.
+
+[S2LP] Packet transmitted!
+
+[PERF] send 48453 cycles.
+
+[PERF] format 6599 cycles.
+
+[PERF] melvec 24416 cycles.
+
+[PERF] format 6627 cycles.
+
+[PERF] melvec 24414 cycles.
+
+[PERF] format 6627 cycles.
+
+[PERF] melvec 24416 cycles.
+
+[PERF] format 6605 cycles.
+
+[PERF] melvec 24420 cycles.
+
+[PERF] format 6625 cycles.
+
+[PERF] melvec 24414 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] melvec 24411 cycles.
+
+[PERF] format 6629 cycles.
+
+[PERF] melvec 24406 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] melvec 24396 cycles.
+
+[PERF] format 6601 cycles.
+
+[PERF] melvec 24414 cycles.
+
+[PERF] format 6598 cycles.
+
+[PERF] melvec 24431 cycles.
+
+[PERF] encode 1941 cycles.
+
+[S2LP] Packet transmitted!
+
+[PERF] send 48470 cycles.
+
+[PERF] format 6600 cycles.
+
+[PERF] melvec 24434 cycles.
+
+[PERF] format 6624 cycles.
+
+[PERF] melvec 24438 cycles.
+
+[PERF] format 6600 cycles.
+
+[PERF] melvec 24406 cycles.
+
+[PERF] format 6599 cycles.
+
+[PERF] melvec 24411 cycles.
+
+[PERF] format 6628 cycles.
+
+[PERF] melvec 24449 cycles.
+
+[PERF] format 6596 cycles.
+
+[PERF] melvec 24432 cycles.
+
+[PERF] format 6596 cycles.
+
+[PERF] melvec 24411 cycles.
+
+[PERF] format 6629 cycles.
+
+[PERF] melvec 24402 cycles.
+
+[PERF] format 6602 cycles.
+
+[PERF] melvec 24423 cycles.
+
+[PERF] format 6630 cycles.
+
+[PERF] melvec 24399 cycles.
+
+[PERF] encode 1985 cycles.
+
+[S2LP] Packet transmitted!
+
+[PERF] send 48454 cycles.
+
+[PERF] format 6599 cycles.
+
+[PERF] melvec 24408 cycles.
+
+[PERF] format 6598 cycles.
+
+[PERF] melvec 24445 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] melvec 24417 cycles.
+
+[PERF] format 6598 cycles.
+
+[PERF] melvec 24449 cycles.
+
+[PERF] format 6600 cycles.
+
+[PERF] melvec 24414 cycles.
+
+[PERF] format 6596 cycles.
+
+[PERF] melvec 24398 cycles.
+
+[PERF] format 6597 cycles.
+
+[PERF] melvec 24416 cycles.
+
+[PERF] format 6598 cycles.
+
+[PERF] melvec 24403 cycles.
+
+[PERF] format 6598 cycles.
+
+[PERF] melvec 24437 cycles.
+
+[PERF] format 6627 cycles.
+
+[PERF] melvec 24401 cycles.
+
+[PERF] encode 1939 cycles.
+
+[S2LP] Packet transmitted!
+
+[PERF] send 48443 cycles.
+
+[PERF] format 6601 cycles.
+
+[PERF] melvec 24409 cycles.
+
+[PERF] format 6599 cycles.
+
+[PERF] melvec 24444 cycles.
+
+[PERF] format 6600 cycles.
+
+[PERF] melvec 24417 cycles.
+
+[PERF] format 6599 cycles.
+
+[PERF] melvec 24404 cycles.
+
+[PERF] format 6598 cycles.
+
+[PERF] melvec 24401 cycles.
+
+[PERF] format 6627 cycles.
+
+[PERF] melvec 24400 cycles.
+
+[PERF] format 6598 cycles.
+
+[PERF] melvec 24433 cycles.
+
+[PERF] format 6627 cycles.
+
+[PERF] melvec 24411 cycles.
+
+[PERF] format 6598 cycles.
+
+[PERF] melvec 24412 cycles.
+
+[PERF] format 6597 cycles.
+
+Hello world
+
+[S2LP] Init OK
+

@@ -1,0 +1,510 @@
+basic-uart-reader launched...
+
+ERF] format 19008 cycles.
+
+[PERF] spec compute 91011 cycles.
+
+[PERF] format 19058 cycles.
+
+[PERF] spec compute 91775 cycles.
+
+[PERF] format 19011 cycles.
+
+[PERF] spec compute 85480 cycles.
+
+[PERF] format 19012 cycles.
+
+[PERF] spec compute 91615 cycles.
+
+[PERF] format 19063 cycles.
+
+[PERF] spec compute 84196 cycles.
+
+[PERF] format 19062 cycles.
+
+[PERF] spec compute 88967 cycles.
+
+[PERF] format 19012 cycles.
+
+[PERF] spec compute 89664 cycles.
+
+[PERF] format 19057 cycles.
+
+[PERF] spec compute 89524 cycles.
+
+[PERF] format 19008 cycles.
+
+[PERF] spec compute 91596 cycles.
+
+[PERF] format 19011 cycles.
+
+[PERF] spec compute 89463 cycles.
+
+[PERF] encode 4307 cycles.
+
+[S2LP] Packet transmitted!
+
+[PERF] send 63295 cycles.
+
+[PERF] format 19012 cycles.
+
+[PERF] spec compute 89844 cycles.
+
+[PERF] format 19010 cycles.
+
+[PERF] spec compute 89279 cycles.
+
+[PERF] format 19064 cycles.
+
+[PERF] spec compute 89639 cycles.
+
+[PERF] format 19008 cycles.
+
+[PERF] spec compute 89234 cycles.
+
+[PERF] format 19065 cycles.
+
+[PERF] spec compute 90058 cycles.
+
+[PERF] format 19062 cycles.
+
+[PERF] spec compute 89178 cycles.
+
+[PERF] format 19009 cycles.
+
+[PERF] spec compute 90242 cycles.
+
+[PERF] format 19011 cycles.
+
+[PERF] spec compute 90107 cycles.
+
+[PERF] format 19010 cycles.
+
+[PERF] spec compute 89155 cycles.
+
+[PERF] format 19064 cycles.
+
+[PERF] spec compute 90205 cycles.
+
+[PERF] encode 4387 cycles.
+
+[S2LP] Packet transmitted!
+
+[PERF] send 63296 cycles.
+
+[PERF] format 19012 cycles.
+
+[PERF] spec compute 88999 cycles.
+
+[PERF] format 19055 cycles.
+
+[PERF] spec compute 87592 cycles.
+
+[PERF] format 19002 cycles.
+
+[PERF] spec compute 90049 cycles.
+
+[PERF] format 19010 cycles.
+
+[PERF] spec compute 89328 cycles.
+
+[PERF] format 19064 cycles.
+
+[PERF] spec compute 90406 cycles.
+
+[PERF] format 19061 cycles.
+
+[PERF] spec compute 87979 cycles.
+
+[PERF] format 19062 cycles.
+
+[PERF] spec compute 90487 cycles.
+
+[PERF] format 19056 cycles.
+
+[PERF] spec compute 89740 cycles.
+
+[PERF] format 19011 cycles.
+
+[PERF] spec compute 89303 cycles.
+
+[PERF] format 19066 cycles.
+
+[PERF] spec compute 85594 cycles.
+
+[PERF] encode 4385 cycles.
+
+[S2LP] Packet transmitted!
+
+[PERF] send 63256 cycles.
+
+[PERF] format 19011 cycles.
+
+[PERF] spec compute 88705 cycles.
+
+[PERF] format 19009 cycles.
+
+[PERF] spec compute 88994 cycles.
+
+[PERF] format 19060 cycles.
+
+[PERF] spec compute 89536 cycles.
+
+[PERF] format 19009 cycles.
+
+[PERF] spec compute 87257 cycles.
+
+[PERF] format 19064 cycles.
+
+[PERF] spec compute 89068 cycles.
+
+[PERF] format 19007 cycles.
+
+[PERF] spec compute 89476 cycles.
+
+[PERF] format 19061 cycles.
+
+[PERF] spec compute 89972 cycles.
+
+[PERF] format 19063 cycles.
+
+[PERF] spec compute 91375 cycles.
+
+[PERF] format 19010 cycles.
+
+[PERF] spec compute 88760 cycles.
+
+[PERF] format 19059 cycles.
+
+[PERF] spec compute 89951 cycles.
+
+[PERF] encode 4386 cycles.
+
+[S2LP] Packet transmitted!
+
+[PERF] send 63294 cycles.
+
+[PERF] format 19007 cycles.
+
+[PERF] spec compute 88999 cycles.
+
+[PERF] format 19067 cycles.
+
+[PERF] spec compute 89655 cycles.
+
+[PERF] format 19006 cycles.
+
+[PERF] spec compute 89783 cycles.
+
+[PERF] format 19060 cycles.
+
+[PERF] spec compute 90365 cycles.
+
+[PERF] format 19064 cycles.
+
+[PERF] spec compute 88726 cycles.
+
+[PERF] format 19007 cycles.
+
+[PERF] spec compute 91054 cycles.
+
+[PERF] format 19061 cycles.
+
+[PERF] spec compute 90033 cycles.
+
+[PERF] format 19061 cycles.
+
+[PERF] spec compute 89350 cycles.
+
+[PERF] format 19011 cycles.
+
+[PERF] spec compute 89342 cycles.
+
+[PERF] format 19062 cycles.
+
+[PERF] spec compute 90656 cycles.
+
+[PERF] encode 4387 cycles.
+
+[S2LP] Packet transmitted!
+
+[PERF] send 63299 cycles.
+
+[PERF] format 19061 cycles.
+
+[PERF] spec compute 89745 cycles.
+
+[PERF] format 19005 cycles.
+
+[PERF] spec compute 90260 cycles.
+
+[PERF] format 19010 cycles.
+
+[PERF] spec compute 89872 cycles.
+
+[PERF] format 19007 cycles.
+
+[PERF] spec compute 90033 cycles.
+
+[PERF] format 19011 cycles.
+
+[PERF] spec compute 89399 cycles.
+
+[PERF] format 19065 cycles.
+
+[PERF] spec compute 90189 cycles.
+
+[PERF] format 19065 cycles.
+
+[PERF] spec compute 90081 cycles.
+
+[PERF] format 19058 cycles.
+
+[PERF] spec compute 89924 cycles.
+
+[PERF] format 19011 cycles.
+
+[PERF] spec compute 87884 cycles.
+
+[PERF] format 19005 cycles.
+
+[PERF] spec compute 91744 cycles.
+
+[PERF] encode 4385 cycles.
+
+[S2LP] Packet transmitted!
+
+[PERF] send 63281 cycles.
+
+[PERF] format 19061 cycles.
+
+[PERF] spec compute 88904 cycles.
+
+[PERF] format 19065 cycles.
+
+[PERF] spec compute 90733 cycles.
+
+[PERF] format 19007 cycles.
+
+[PERF] spec compute 89607 cycles.
+
+[PERF] format 19063 cycles.
+
+[PERF] spec compute 89368 cycles.
+
+[PERF] format 19017 cycles.
+
+[PERF] spec compute 84918 cycles.
+
+[PERF] format 19057 cycles.
+
+[PERF] spec compute 91727 cycles.
+
+[PERF] format 19065 cycles.
+
+[PERF] spec compute 84426 cycles.
+
+[PERF] format 19063 cycles.
+
+[PERF] spec compute 89115 cycles.
+
+[PERF] format 19005 cycles.
+
+[PERF] spec compute 90445 cycles.
+
+[PERF] format 19011 cycles.
+
+[PERF] spec compute 90547 cycles.
+
+[PERF] encode 4308 cycles.
+
+[S2LP] Packet transmitted!
+
+[PERF] send 63312 cycles.
+
+[PERF] format 19062 cycles.
+
+[PERF] spec compute 87240 cycles.
+
+[PERF] format 19012 cycles.
+
+[PERF] spec compute 89809 cycles.
+
+[PERF] format 19010 cycles.
+
+[PERF] spec compute 91138 cycles.
+
+[PERF] format 19060 cycles.
+
+[PERF] spec compute 88897 cycles.
+
+[PERF] format 19055 cycles.
+
+[PERF] spec compute 89717 cycles.
+
+[PERF] format 19062 cycles.
+
+[PERF] spec compute 90536 cycles.
+
+[PERF] format 19066 cycles.
+
+[PERF] spec compute 90601 cycles.
+
+[PERF] format 19059 cycles.
+
+[PERF] spec compute 89402 cycles.
+
+[PERF] format 19065 cycles.
+
+[PERF] spec compute 90105 cycles.
+
+[PERF] format 19066 cycles.
+
+[PERF] spec compute 90898 cycles.
+
+[PERF] encode 4387 cycles.
+
+[S2LP] Packet transmitted!
+
+[PERF] send 63197 cycles.
+
+[PERF] format 19056 cycles.
+
+[PERF] spec compute 91090 cycles.
+
+[PERF] format 19062 cycles.
+
+[PERF] spec compute 90410 cycles.
+
+[PERF] format 19006 cycles.
+
+[PERF] spec compute 90109 cycles.
+
+[PERF] format 19009 cycles.
+
+[PERF] spec compute 88971 cycles.
+
+[PERF] format 19010 cycles.
+
+[PERF] spec compute 89047 cycles.
+
+[PERF] format 19061 cycles.
+
+[PERF] spec compute 89108 cycles.
+
+[PERF] format 19007 cycles.
+
+[PERF] spec compute 89572 cycles.
+
+[PERF] format 19057 cycles.
+
+[PERF] spec compute 88095 cycles.
+
+[PERF] format 19063 cycles.
+
+[PERF] spec compute 91436 cycles.
+
+[PERF] format 19003 cycles.
+
+[PERF] spec compute 91168 cycles.
+
+[PERF] encode 4387 cycles.
+
+[S2LP] Packet transmitted!
+
+[PERF] send 63211 cycles.
+
+[PERF] format 19063 cycles.
+
+[PERF] spec compute 89511 cycles.
+
+[PERF] format 19012 cycles.
+
+[PERF] spec compute 90375 cycles.
+
+[PERF] format 19012 cycles.
+
+[PERF] spec compute 90040 cycles.
+
+[PERF] format 19017 cycles.
+
+[PERF] spec compute 88069 cycles.
+
+[PERF] format 19006 cycles.
+
+[PERF] spec compute 90621 cycles.
+
+[PERF] format 19011 cycles.
+
+[PERF] spec compute 89774 cycles.
+
+[PERF] format 19011 cycles.
+
+[PERF] spec compute 90150 cycles.
+
+[PERF] format 19014 cycles.
+
+[PERF] spec compute 85496 cycles.
+
+[PERF] format 19060 cycles.
+
+[PERF] spec compute 91926 cycles.
+
+[PERF] format 19063 cycles.
+
+[PERF] spec compute 86609 cycles.
+
+[PERF] encode 4387 cycles.
+
+[S2LP] Packet transmitted!
+
+[PERF] send 63335 cycles.
+
+[PERF] format 19012 cycles.
+
+[PERF] spec compute 89422 cycles.
+
+[PERF] format 19007 cycles.
+
+[PERF] spec compute 84496 cycles.
+
+[PERF] format 19010 cycles.
+
+[PERF] spec compute 89223 cycles.
+
+[PERF] format 19061 cycles.
+
+[PERF] spec compute 89476 cycles.
+
+[PERF] format 19011 cycles.
+
+[PERF] spec compute 89475 cycles.
+
+[PERF] format 19065 cycles.
+
+[PERF] spec compute 91481 cycles.
+
+[PERF] format 19066 cycles.
+
+[PERF] spec compute 88504 cycles.
+
+[PERF] format 19059 cycles.
+
+[PERF] spec compute 89900 cycles.
+
+[PERF] format 19009 cycles.
+
+[PERF] spec compute 90859 cycles.
+
+[PERF] format 19061 cycles.
+
+[PERF] spec compute 92018 cycles.
+
+[PERF] encode 4307 cycles.
+
+[S2LP] Packet transmitted!
+
+[PERF] send 63167 Helloworld
+
+[S2LP] Init OK
+
