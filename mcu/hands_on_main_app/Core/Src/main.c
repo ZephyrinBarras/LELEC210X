@@ -131,7 +131,9 @@ void run(void)
   */
 int main(void)
 {
+
   /* USER CODE BEGIN 1 */
+	printf("bienvenue\n");
 
   /* USER CODE END 1 */
 
