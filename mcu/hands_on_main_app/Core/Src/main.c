@@ -91,7 +91,7 @@ static void acquire_and_send_packet() {
 		//start_cycle_count();
 		HAL_SuspendTick();
 		HAL_PWR_EnterSLEEPMode(PWR_LOWPOWERREGULATOR_ON, PWR_SLEEPENTRY_WFI);
-
+		//__WFI();
 		//stop_cycle_count("wfi");
 		//fait pas chier
 	}
@@ -211,7 +211,7 @@ void SystemClock_Config(void)
 
   /** Configure the main internal regulator output voltage
   */
-  if (HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE1) != HAL_OK)
+  if (HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE2) != HAL_OK)
   {
     Error_Handler();
   }
